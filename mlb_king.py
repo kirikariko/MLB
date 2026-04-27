@@ -23,10 +23,10 @@ from datetime import datetime, timedelta, timezone
 
 MLB_TEAM_IDS = {
     'ARI': 109, 'ATL': 144, 'BAL': 110, 'BOS': 111, 'CHC': 112, 'CWS': 145,
-    'CIN': 113, 'CLE': 114, 'COL': 115, 'DET': 116, 'HOU': 117, 'KCR': 118,
+    'CIN': 113, 'CLE': 114, 'COL': 115, 'DET': 116, 'HOU': 117, 'KC': 118,
     'LAA': 108, 'LAD': 119, 'MIA': 146, 'MIL': 158, 'MIN': 142, 'NYM': 121,
-    'NYY': 147, 'OAK': 133, 'PHI': 143, 'PIT': 134, 'SDP': 135, 'SEA': 136,
-    'SFG': 137, 'STL': 138, 'TBR': 139, 'TEX': 140, 'TOR': 141, 'WSN': 120
+    'NYY': 147, 'OAK': 133, 'PHI': 143, 'PIT': 134, 'SD': 135, 'SEA': 136,
+    'SF': 137, 'STL': 138, 'TB': 139, 'TEX': 140, 'TOR': 141, 'WSH': 120
 }
 
 # MLB API team ID -> our standard abbreviation
@@ -37,6 +37,12 @@ MLB_ID_TO_ABBR = {v: k for k, v in MLB_TEAM_IDS.items()}
 FG_ABBR_TO_OURS = {
     'ATH': 'OAK',
     'CHW': 'CWS',
+    # FanGraphs uses long codes; our standard is short (dept1 compat)
+    'KCR': 'KC',
+    'SDP': 'SD',
+    'SFG': 'SF',
+    'TBR': 'TB',
+    'WSN': 'WSH',
 }
 # All other FG abbrs (ARI, ATL, BAL, ...) are identical to ours
 
@@ -50,16 +56,16 @@ ODDS_NAME_TO_ABBR = {
     'Chicago Cubs': 'CHC', 'Chicago White Sox': 'CWS',
     'Cincinnati Reds': 'CIN', 'Cleveland Guardians': 'CLE',
     'Colorado Rockies': 'COL', 'Detroit Tigers': 'DET',
-    'Houston Astros': 'HOU', 'Kansas City Royals': 'KCR',
+    'Houston Astros': 'HOU', 'Kansas City Royals': 'KC',
     'Los Angeles Angels': 'LAA', 'Los Angeles Dodgers': 'LAD',
     'Miami Marlins': 'MIA', 'Milwaukee Brewers': 'MIL',
     'Minnesota Twins': 'MIN', 'New York Mets': 'NYM',
     'New York Yankees': 'NYY', 'Athletics': 'OAK',
     'Philadelphia Phillies': 'PHI', 'Pittsburgh Pirates': 'PIT',
-    'San Diego Padres': 'SDP', 'San Francisco Giants': 'SFG',
+    'San Diego Padres': 'SD', 'San Francisco Giants': 'SF',
     'Seattle Mariners': 'SEA', 'St. Louis Cardinals': 'STL',
-    'Tampa Bay Rays': 'TBR', 'Texas Rangers': 'TEX',
-    'Toronto Blue Jays': 'TOR', 'Washington Nationals': 'WSN',
+    'Tampa Bay Rays': 'TB', 'Texas Rangers': 'TEX',
+    'Toronto Blue Jays': 'TOR', 'Washington Nationals': 'WSH',
 }
 
 # Stadium coordinates for weather API (Open-Meteo)
@@ -75,7 +81,7 @@ STADIUM_COORDINATES = {
     'COL': {'lat': 39.75, 'lon': -104.99},
     'DET': {'lat': 42.34, 'lon': -83.05},
     'HOU': {'lat': 29.75, 'lon': -95.35},
-    'KCR': {'lat': 39.05, 'lon': -94.48},
+    'KC': {'lat': 39.05, 'lon': -94.48},
     'LAA': {'lat': 33.80, 'lon': -117.88},
     'LAD': {'lat': 34.07, 'lon': -118.24},
     'MIA': {'lat': 25.78, 'lon': -80.22},
@@ -86,27 +92,27 @@ STADIUM_COORDINATES = {
     'OAK': {'lat': 37.75, 'lon': -122.20},
     'PHI': {'lat': 39.90, 'lon': -75.17},
     'PIT': {'lat': 40.45, 'lon': -80.01},
-    'SDP': {'lat': 32.71, 'lon': -117.16},
+    'SD': {'lat': 32.71, 'lon': -117.16},
     'SEA': {'lat': 47.59, 'lon': -122.33},
-    'SFG': {'lat': 37.78, 'lon': -122.39},
+    'SF': {'lat': 37.78, 'lon': -122.39},
     'STL': {'lat': 38.62, 'lon': -90.20},
-    'TBR': {'lat': 27.77, 'lon': -82.65},
+    'TB': {'lat': 27.77, 'lon': -82.65},
     'TEX': {'lat': 32.75, 'lon': -97.08},
     'TOR': {'lat': 43.64, 'lon': -79.39},
-    'WSN': {'lat': 38.87, 'lon': -77.01},
+    'WSH': {'lat': 38.87, 'lon': -77.01},
 }
 
 # Stadium timezone offsets (standard UTC offset — used for timezone change calc)
 STADIUM_TIMEZONE = {
     # Eastern (UTC-5)
-    'NYY': -5, 'NYM': -5, 'BOS': -5, 'BAL': -5, 'PHI': -5, 'WSN': -5,
-    'MIA': -5, 'TBR': -5, 'ATL': -5, 'CIN': -5, 'CLE': -5, 'DET': -5, 'PIT': -5, 'TOR': -5,
+    'NYY': -5, 'NYM': -5, 'BOS': -5, 'BAL': -5, 'PHI': -5, 'WSH': -5,
+    'MIA': -5, 'TB': -5, 'ATL': -5, 'CIN': -5, 'CLE': -5, 'DET': -5, 'PIT': -5, 'TOR': -5,
     # Central (UTC-6)
-    'CHC': -6, 'CWS': -6, 'MIN': -6, 'MIL': -6, 'STL': -6, 'KCR': -6, 'HOU': -6, 'TEX': -6,
+    'CHC': -6, 'CWS': -6, 'MIN': -6, 'MIL': -6, 'STL': -6, 'KC': -6, 'HOU': -6, 'TEX': -6,
     # Mountain (UTC-7)
     'ARI': -7, 'COL': -7,
     # Pacific (UTC-8)
-    'LAD': -8, 'LAA': -8, 'SDP': -8, 'SFG': -8, 'SEA': -8, 'OAK': -8,
+    'LAD': -8, 'LAA': -8, 'SD': -8, 'SF': -8, 'SEA': -8, 'OAK': -8,
 }
 
 
@@ -181,8 +187,8 @@ COLUMNS = [
     # Situational Tags (93-94)
     'HOME_SIT_TAG', 'AWAY_SIT_TAG',
     # SP Statcast (95-102)
-    'HOME_SP_xwOBA', 'HOME_SP_HardHit', 'HOME_SP_Barrel', 'HOME_SP_PitchMix',
-    'AWAY_SP_xwOBA', 'AWAY_SP_HardHit', 'AWAY_SP_Barrel', 'AWAY_SP_PitchMix',
+    'HOME_SP_IP', 'HOME_SP_xwOBA', 'HOME_SP_HardHit', 'HOME_SP_Barrel', 'HOME_SP_PitchMix',
+    'AWAY_SP_IP', 'AWAY_SP_xwOBA', 'AWAY_SP_HardHit', 'AWAY_SP_Barrel', 'AWAY_SP_PitchMix',
     # Results + ID (103-106)
     'U/O_RESULT', 'Winning Team',
     'DATE', 'GAME_ID'
@@ -207,6 +213,24 @@ class MLBApi:
         self._team_stats = {}      # (team_id, group, sitCode) -> stats dict
         self._player_stats = {}    # (player_id, group, sitCode) -> stats dict
         self._fielding = {}        # team_id -> stats dict
+        # Data leak prevention: cutoff_date = target_date - 1 day
+        # All cumulative stats are computed with endDate=cutoff_date so they
+        # never include the target date's games (pre-game state).
+        self._cutoff_date = None
+        self._season_start = f'{year}-01-01'
+
+    def set_cutoff_date(self, target_date_str):
+        """Set the data cutoff to (target_date - 1 day). Must be called before
+        any stat fetches to prevent same-day data leak.
+        """
+        target = datetime.strptime(target_date_str, '%Y-%m-%d')
+        cutoff = target - timedelta(days=1)
+        self._cutoff_date = cutoff.strftime('%Y-%m-%d')
+        # Reset caches so stats get re-fetched with new cutoff
+        self._team_stats = {}
+        self._player_stats = {}
+        self._fielding = {}
+        print(f"  [Cutoff] All stats anchored to <= {self._cutoff_date} (target={target_date_str})")
 
     def _get(self, url, params=None):
         """Make GET request with retry."""
@@ -360,18 +384,32 @@ class MLBApi:
 
     # --- Team Hitting/Pitching Stats ---
     def get_team_stats(self, team_id, group='hitting', sit_code=None):
-        """Get team batting or pitching stats. sit_code: h/a/d/n/vl/vr or None for season."""
+        """Get team batting or pitching stats. sit_code: h/a/d/n/vl/vr or None for season.
+
+        Cumulative stats (no sit_code) use byDateRange with endDate=cutoff_date
+        to prevent same-day data leak. Splits use statSplits (date-filter not
+        supported by API — splits leak slightly but change slowly).
+        """
         cache_key = (team_id, group, sit_code)
         if cache_key in self._team_stats:
             return self._team_stats[cache_key]
 
-        params = {
-            'stats': 'statSplits' if sit_code else 'season',
-            'group': group,
-            'season': self.year,
-        }
         if sit_code:
-            params['sitCodes'] = sit_code
+            params = {
+                'stats': 'statSplits',
+                'group': group,
+                'season': self.year,
+                'sitCodes': sit_code,
+            }
+        else:
+            # Cumulative — anchor to cutoff to avoid leak
+            params = {
+                'stats': 'byDateRange',
+                'group': group,
+                'season': self.year,
+                'startDate': self._season_start,
+                'endDate': self._cutoff_date or datetime.now().strftime('%Y-%m-%d'),
+            }
 
         data = self._get(f"{self.BASE}/teams/{team_id}/stats", params)
         if not data:
@@ -398,13 +436,21 @@ class MLBApi:
         if cache_key in self._player_stats:
             return self._player_stats[cache_key]
 
-        params = {
-            'stats': 'statSplits' if sit_code else 'season',
-            'group': 'pitching',
-            'season': self.year,
-        }
         if sit_code:
-            params['sitCodes'] = sit_code
+            params = {
+                'stats': 'statSplits',
+                'group': 'pitching',
+                'season': self.year,
+                'sitCodes': sit_code,
+            }
+        else:
+            params = {
+                'stats': 'byDateRange',
+                'group': 'pitching',
+                'season': self.year,
+                'startDate': self._season_start,
+                'endDate': self._cutoff_date or datetime.now().strftime('%Y-%m-%d'),
+            }
 
         data = self._get(f"{self.BASE}/people/{pitcher_id}/stats", params)
         if not data:
@@ -428,9 +474,11 @@ class MLBApi:
             return self._fielding[team_id]
 
         data = self._get(f"{self.BASE}/teams/{team_id}/stats", {
-            'stats': 'season',
+            'stats': 'byDateRange',
             'group': 'fielding',
             'season': self.year,
+            'startDate': self._season_start,
+            'endDate': self._cutoff_date or datetime.now().strftime('%Y-%m-%d'),
         })
         if not data:
             return {}
@@ -448,9 +496,11 @@ class MLBApi:
 
     # --- Last 7 Days Stats (byDateRange) ---
     def get_team_stats_last7d(self, team_id, group='hitting'):
-        """Get team stats for last 7 days using byDateRange."""
-        end_date = datetime.now().strftime('%Y-%m-%d')
-        start_date = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+        """Get team stats for last 7 days ending at cutoff_date (pre-game state)."""
+        anchor = (datetime.strptime(self._cutoff_date, '%Y-%m-%d')
+                  if self._cutoff_date else datetime.now())
+        end_date = anchor.strftime('%Y-%m-%d')
+        start_date = (anchor - timedelta(days=7)).strftime('%Y-%m-%d')
         cache_key = (team_id, group, f'last7d_{end_date}')
         if cache_key in self._team_stats:
             return self._team_stats[cache_key]
@@ -477,12 +527,14 @@ class MLBApi:
         return stats
 
     def get_pitcher_stats_last7d(self, pitcher_id):
-        """Get individual pitcher stats for last 7 days."""
+        """Get individual pitcher stats for last 7 days ending at cutoff_date."""
         if not pitcher_id:
             return {}
 
-        end_date = datetime.now().strftime('%Y-%m-%d')
-        start_date = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+        anchor = (datetime.strptime(self._cutoff_date, '%Y-%m-%d')
+                  if self._cutoff_date else datetime.now())
+        end_date = anchor.strftime('%Y-%m-%d')
+        start_date = (anchor - timedelta(days=7)).strftime('%Y-%m-%d')
         cache_key = (pitcher_id, 'pitching', f'last7d_{end_date}')
         if cache_key in self._player_stats:
             return self._player_stats[cache_key]
@@ -663,13 +715,21 @@ class MLBApi:
         if cache_key in self._player_stats:
             return self._player_stats[cache_key]
 
-        params = {
-            'stats': 'statSplits' if sit_code else 'season',
-            'group': 'hitting',
-            'season': self.year,
-        }
         if sit_code:
-            params['sitCodes'] = sit_code
+            params = {
+                'stats': 'statSplits',
+                'group': 'hitting',
+                'season': self.year,
+                'sitCodes': sit_code,
+            }
+        else:
+            params = {
+                'stats': 'byDateRange',
+                'group': 'hitting',
+                'season': self.year,
+                'startDate': self._season_start,
+                'endDate': self._cutoff_date or datetime.now().strftime('%Y-%m-%d'),
+            }
 
         data = self._get(f"{self.BASE}/people/{batter_id}/stats", params)
         if not data:
@@ -687,12 +747,14 @@ class MLBApi:
         return stats
 
     def get_batter_stats_last7d(self, batter_id):
-        """Get individual batter hitting stats for last 7 days."""
+        """Get individual batter hitting stats for last 7 days ending at cutoff_date."""
         if not batter_id:
             return {}
 
-        end_date = datetime.now().strftime('%Y-%m-%d')
-        start_date = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+        anchor = (datetime.strptime(self._cutoff_date, '%Y-%m-%d')
+                  if self._cutoff_date else datetime.now())
+        end_date = anchor.strftime('%Y-%m-%d')
+        start_date = (anchor - timedelta(days=7)).strftime('%Y-%m-%d')
         cache_key = (batter_id, 'hitting', f'last7d_{end_date}')
         if cache_key in self._player_stats:
             return self._player_stats[cache_key]
@@ -860,10 +922,10 @@ class FanGraphsApi:
         return {
             'COL': 114, 'ARI': 106, 'CIN': 105, 'TEX': 104, 'BOS': 104,
             'CHC': 103, 'ATL': 102, 'BAL': 102, 'MIL': 101, 'PHI': 101,
-            'NYY': 101, 'LAA': 100, 'HOU': 100, 'KCR': 100, 'MIN': 100,
+            'NYY': 101, 'LAA': 100, 'HOU': 100, 'KC': 100, 'MIN': 100,
             'STL': 100, 'TOR': 100, 'CWS': 99, 'DET': 99, 'PIT': 99,
-            'WSN': 99, 'CLE': 98, 'SDP': 98, 'NYM': 98, 'LAD': 97,
-            'SFG': 97, 'TBR': 97, 'SEA': 96, 'MIA': 96, 'OAK': 95,
+            'WSH': 99, 'CLE': 98, 'SD': 98, 'NYM': 98, 'LAD': 97,
+            'SF': 97, 'TB': 97, 'SEA': 96, 'MIA': 96, 'OAK': 95,
         }
 
 
@@ -1080,11 +1142,15 @@ def get_ou_lines():
 # DATA CALCULATIONS
 # ============================================================
 
-def calc_l5g(schedule, team_id):
-    """Calculate Last 5 Games stats from schedule data."""
+def calc_l5g(schedule, team_id, target_date=None):
+    """Calculate Last 5 Games stats from schedule data.
+    target_date: only count games with date < target_date (pre-game leak prevention).
+    """
     completed = []
     for g in schedule:
         if g['status'] != 'Final':
+            continue
+        if target_date and g['date'] >= target_date:
             continue
         is_home = g['home_id'] == team_id
         runs_for = g['home_score'] if is_home else g['away_score']
@@ -1107,11 +1173,15 @@ def calc_l5g(schedule, team_id):
     }
 
 
-def calc_h2h(schedule, team_id, opponent_id):
-    """Calculate recent Head-to-Head win percentage."""
+def calc_h2h(schedule, team_id, opponent_id, target_date=None):
+    """Calculate recent Head-to-Head win percentage.
+    target_date: only count games with date < target_date.
+    """
     h2h_games = []
     for g in schedule:
         if g['status'] != 'Final':
+            continue
+        if target_date and g['date'] >= target_date:
             continue
         other_id = g['away_id'] if g['home_id'] == team_id else g['home_id']
         if other_id != opponent_id:
@@ -1126,11 +1196,15 @@ def calc_h2h(schedule, team_id, opponent_id):
     return round(sum(h2h_games) / len(h2h_games), 3)
 
 
-def calc_home_away_runs(schedule, team_id, location='home'):
-    """Calculate avg runs scored/allowed in home or away games only."""
+def calc_home_away_runs(schedule, team_id, location='home', target_date=None):
+    """Calculate avg runs scored/allowed in home or away games only.
+    target_date: only count games with date < target_date.
+    """
     games = []
     for g in schedule:
         if g['status'] != 'Final':
+            continue
+        if target_date and g['date'] >= target_date:
             continue
         is_home = g['home_id'] == team_id
         if location == 'home' and not is_home:
@@ -1235,17 +1309,23 @@ def parse_ip(ip_str):
         return 0.0
 
 
-def calc_bullpen_stats(schedule, team_id, mlb_api, days_era=30, days_ip=3):
+def calc_bullpen_stats(schedule, team_id, mlb_api, days_era=30, days_ip=3, target_date=None):
     """
     Calculate bullpen stats from game boxscores.
     - BP_ERA_30d: Bullpen ERA over last 30 days
     - BP_IRS_30d: Bullpen Inherited Runners Scored % over last 30 days
     - BP_IP_3d: Bullpen innings pitched in last 3 days
     - BP_WORKLOAD: Bullpen appearances in last 7 days
-    """
-    today = datetime.now()
 
-    # Filter completed games within windows
+    target_date: anchor windows to this date (excludes target_date itself).
+    Without it, defaults to datetime.now() — risks including same-day games.
+    """
+    if target_date:
+        anchor = datetime.strptime(target_date, '%Y-%m-%d')
+    else:
+        anchor = datetime.now()
+
+    # Filter completed games within windows (strictly before target_date)
     games_30d = []
     games_7d = []
     games_3d = []
@@ -1253,11 +1333,13 @@ def calc_bullpen_stats(schedule, team_id, mlb_api, days_era=30, days_ip=3):
     for g in schedule:
         if g['status'] != 'Final':
             continue
+        if target_date and g['date'] >= target_date:
+            continue
         try:
             game_date = datetime.strptime(g['date'], '%Y-%m-%d')
         except ValueError:
             continue
-        diff = (today - game_date).days
+        diff = (anchor - game_date).days
         if diff <= days_era:
             games_30d.append(g)
         if diff <= 7:
@@ -1434,8 +1516,8 @@ def scrape_rotowire_lineups():
     import re
     url = 'https://www.rotowire.com/baseball/daily-lineups.php'
     ROTOWIRE_TO_STD = {
-        'WSH': 'WSN', 'KC': 'KCR', 'SD': 'SDP', 'TB': 'TBR',
-        'SF': 'SFG', 'AZ': 'ARI', 'ATH': 'OAK',
+        # Our standard now matches dept1 short codes, so only non-matching pairs need remap
+        'AZ': 'ARI', 'ATH': 'OAK',
     }
     try:
         r = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=20)
@@ -1632,11 +1714,9 @@ def _lineup_game_id_variants(home_abbr, away_abbr):
     Lineup JSON may use different abbreviations (WSH vs WSN, SD vs SDP, etc.)."""
     # Standard abbreviation -> lineup JSON abbreviation mapping
     ALT = {
-        'WSN': 'WSH', 'SDP': 'SD', 'TBR': 'TB', 'KCR': 'KC',
-        'SFG': 'SF', 'ARI': 'AZ',
-        # Reverse mappings too
-        'WSH': 'WSN', 'SD': 'SDP', 'TB': 'TBR', 'KC': 'KCR',
-        'SF': 'SFG', 'AZ': 'ARI',
+        # Only AZ ↔ ARI differs now (our standard matches dept1 short codes)
+        'ARI': 'AZ',
+        'AZ': 'ARI',
     }
     homes = [home_abbr] + ([ALT[home_abbr]] if home_abbr in ALT else [])
     aways = [away_abbr] + ([ALT[away_abbr]] if away_abbr in ALT else [])
@@ -1911,6 +1991,10 @@ class MLBKing:
         print(f"  MLB KING v2 - Collecting data for {date_str}")
         print(f"{'='*60}\n")
 
+        # Step 0: Set cutoff date (target_date - 1) to prevent same-day data leak.
+        # All cumulative stats (season totals, last 7d) will be anchored here.
+        self.mlb.set_cutoff_date(date_str)
+
         # Step 1: Get today's games
         games = self.mlb.get_today_games(date_str)
         self._today_games_cache = games
@@ -2016,8 +2100,9 @@ class MLBKing:
             location='home', day_night=day_night,
             schedule=home_sched, standings=standings,
             fg_batting=fg_batting, fg_pitching=fg_pitching,
-            batters=home_batters
+            batters=home_batters, target_date=date_str
         )
+        home_sp_ip = self._last_sp_ip
 
         # -- AWAY TEAM BLOCK (Col 37-72) --
         away_data = self._collect_team_block(
@@ -2026,8 +2111,9 @@ class MLBKing:
             location='away', day_night=day_night,
             schedule=away_sched, standings=standings,
             fg_batting=fg_batting, fg_pitching=fg_pitching,
-            batters=away_batters
+            batters=away_batters, target_date=date_str
         )
+        away_sp_ip = self._last_sp_ip
 
         # -- SERIES INFO (Col 73-75) --
         series = calc_series_info(home_sched, home_id, away_id, date_str)
@@ -2093,10 +2179,12 @@ class MLBKing:
                 away_travel['road_streak'],      # AWAY_ROAD_STREAK
                 home_sit,                        # HOME_SIT_TAG
                 away_sit,                        # AWAY_SIT_TAG
+                home_sp_ip,                      # HOME_SP_IP
                 home_sc['xwoba'],                # HOME_SP_xwOBA
                 home_sc['hard_hit_pct'],         # HOME_SP_HardHit
                 home_sc['barrel_pct'],           # HOME_SP_Barrel
                 home_sc['pitch_mix'],            # HOME_SP_PitchMix
+                away_sp_ip,                      # AWAY_SP_IP
                 away_sc['xwoba'],                # AWAY_SP_xwOBA
                 away_sc['hard_hit_pct'],         # AWAY_SP_HardHit
                 away_sc['barrel_pct'],           # AWAY_SP_Barrel
@@ -2112,7 +2200,7 @@ class MLBKing:
     def _collect_team_block(self, team_id, abbr, sp_id, opponent_id,
                             location, day_night, schedule, standings,
                             fg_batting, fg_pitching, opponent_sp_id=None,
-                            batters=None):
+                            batters=None, target_date=None):
         """Collect 36-column block for one team."""
         use_lineup = batters is not None and len(batters) > 0
         src = f"lineup({len(batters)})" if use_lineup else "team avg"
@@ -2130,18 +2218,19 @@ class MLBKing:
         loc_split = st.get('splits', {}).get(loc_key, {})
         loc_win_rate = loc_split.get('pct', None)
 
-        # --- Home/Away only runs ---
-        loc_runs = calc_home_away_runs(schedule, team_id, loc_key)
+        # --- Home/Away only runs (pre-game cutoff) ---
+        loc_runs = calc_home_away_runs(schedule, team_id, loc_key, target_date)
 
-        # --- L5G ---
-        l5g = calc_l5g(schedule, team_id)
+        # --- L5G (pre-game cutoff) ---
+        l5g = calc_l5g(schedule, team_id, target_date)
 
-        # --- H2H ---
-        h2h_wp = calc_h2h(schedule, team_id, opponent_id)
+        # --- H2H (pre-game cutoff) ---
+        h2h_wp = calc_h2h(schedule, team_id, opponent_id, target_date)
 
         # --- SP Stats (all splits for PM) ---
         sp_season = self.mlb.get_pitcher_stats(sp_id)
         sp_era = safe_float(sp_season.get('era'))
+        sp_ip = sp_season.get('inningsPitched')  # e.g. "22.2"
 
         sp_loc_code = 'h' if location == 'home' else 'a'
         sp_loc = self.mlb.get_pitcher_stats(sp_id, sit_code=sp_loc_code)
@@ -2217,7 +2306,7 @@ class MLBKing:
         siera = safe_float(fg_pit.get('SIERA'))
 
         # --- Bullpen Stats (from boxscores) ---
-        bp = calc_bullpen_stats(schedule, team_id, self.mlb)
+        bp = calc_bullpen_stats(schedule, team_id, self.mlb, target_date=target_date)
         bp_era_30d = bp['bp_era_30d']
         bp_irs_30d = bp['bp_irs_30d']
         bp_ip_3d = bp['bp_ip_3d']
@@ -2267,6 +2356,9 @@ class MLBKing:
         bvp_str = f"BvP={bvp_ab}AB/{bvp_avg}" if bvp_ab else "BvP=N/A"
         print(f"    [{abbr}] Done. SWP={swp}, ERA_SP={sp_era}, BA={avg_total}, OBP={obp}, {bvp_str}")
 
+        # sp_ip is stored but NOT in team block dict — used by _collect_game_row
+        self._last_sp_ip = sp_ip
+
         return {
             'swp': swp,
             'saps': saps,
@@ -2315,6 +2407,13 @@ def main():
     """Main entry point — collect today's data and save to CSV.
     Usage: python mlb_king.py [YYYY-MM-DD]  (defaults to today EDT)
     """
+    # Reconfigure stdout for UTF-8 (Windows cp949 can't handle em-dash, etc.)
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except AttributeError:
+        pass  # Python < 3.7 or already configured
+
     if len(sys.argv) > 1:
         today_edt = sys.argv[1]
     else:
@@ -2390,24 +2489,24 @@ def main():
 # Historical rivalry pairs (canonical MLB rivalries)
 RIVALRIES = {
     frozenset(['NYY', 'BOS']): 'NYY_BOS',
-    frozenset(['LAD', 'SFG']): 'LAD_SFG',
+    frozenset(['LAD', 'SF']): 'LAD_SF',
     frozenset(['CHC', 'STL']): 'CHC_STL',
     frozenset(['NYM', 'PHI']): 'NYM_PHI',
-    frozenset(['BAL', 'WSN']): 'BAL_WSN',
+    frozenset(['BAL', 'WSH']): 'BAL_WSH',
     frozenset(['CWS', 'CHC']): 'CWS_CHC',
     frozenset(['LAA', 'LAD']): 'LAA_LAD',
     frozenset(['NYM', 'NYY']): 'NYM_NYY',
     frozenset(['TEX', 'HOU']): 'TEX_HOU',
-    frozenset(['SFG', 'OAK']): 'SFG_OAK',
-    frozenset(['KCR', 'STL']): 'KCR_STL',
+    frozenset(['SF', 'OAK']): 'SF_OAK',
+    frozenset(['KC', 'STL']): 'KC_STL',
     frozenset(['CIN', 'CLE']): 'CIN_CLE',
     frozenset(['PIT', 'PHI']): 'PIT_PHI',
     frozenset(['DET', 'CWS']): 'DET_CWS',
-    frozenset(['TBR', 'MIA']): 'TBR_MIA',
+    frozenset(['TB', 'MIA']): 'TB_MIA',
     # Added 2026-04-16
-    frozenset(['LAD', 'SDP']): 'LAD_SDP',
+    frozenset(['LAD', 'SD']): 'LAD_SD',
     frozenset(['ATL', 'NYM']): 'ATL_NYM',
-    frozenset(['BOS', 'TBR']): 'BOS_TBR',
+    frozenset(['BOS', 'TB']): 'BOS_TB',
 }
 
 
