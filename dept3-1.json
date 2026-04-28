@@ -1,57 +1,84 @@
 {
-  "DATE": "2026-04-27",
-  "generated_at": "2026-04-27T09:13:27.218702+00:00",
+  "DATE": "2026-04-28",
+  "generated_at": "2026-04-28T08:32:05.345317+00:00",
   "games": [
     {
-      "DATE": "2026-04-27",
+      "DATE": "2026-04-28",
       "GAME_ID": "CLE_TB",
       "home_team": "CLE",
       "away_team": "TB",
       "pitcher": {
         "home_sp": {
-          "id": 800048,
-          "throws": "L",
-          "pitch_mix": "4-Seam Fastball:32/Changeup:23/Slider:12",
-          "xwOBA": 0.285,
-          "barrel_pct": 2.7,
-          "hard_hit_pct": 29.3
+          "id": 676440,
+          "throws": "R",
+          "pitch_mix": "4-Seam Fastball:28/Cutter:27/Changeup:18",
+          "xwOBA": 0.339,
+          "barrel_pct": 8.5,
+          "hard_hit_pct": 53.2
         },
         "away_sp": {
-          "id": 571927,
-          "throws": "L",
-          "pitch_mix": "Sinker:46/Changeup:32/Curveball:11",
-          "xwOBA": 0.352,
-          "barrel_pct": 13.6,
-          "hard_hit_pct": 40.9
+          "id": 607259,
+          "throws": "R",
+          "pitch_mix": "Sinker:32/Changeup:28/Cutter:17",
+          "xwOBA": 0.34,
+          "barrel_pct": 8.5,
+          "hard_hit_pct": 33.0
         }
       },
       "batting_splits": {
         "home_team": {
-          "avg_vs_LHP": 0.269,
-          "avg_vs_RHP": 0.239,
-          "ops_vs_LHP": 0.745,
-          "ops_vs_RHP": 0.68,
+          "avg_vs_LHP": 0.239,
+          "avg_vs_RHP": 0.207,
+          "ops_vs_LHP": 0.72,
+          "ops_vs_RHP": 0.683,
           "season_wOBA": 0.3150482624490684
         },
         "away_team": {
-          "avg_vs_LHP": 0.274,
-          "avg_vs_RHP": 0.263,
-          "ops_vs_LHP": 0.718,
-          "ops_vs_RHP": 0.733,
+          "avg_vs_LHP": 0.247,
+          "avg_vs_RHP": 0.252,
+          "ops_vs_LHP": 0.695,
+          "ops_vs_RHP": 0.735,
           "season_wOBA": 0.3271602054226249
         }
       },
       "bullpen": {
         "home_team": {
-          "era_30d": 4.79,
+          "era_30d": 4.95,
           "irs_pct_30d": 40.5,
-          "ip_3d": 8.3,
-          "workload_7d": 19,
+          "ip_3d": 8.7,
+          "workload_7d": 20,
           "top_relievers": [
             {
               "id": 670036,
               "name": "Matt Festa",
               "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 0.3,
+              "ip_3d": 1.3,
+              "apps_3d": 2
+            },
+            {
+              "id": 683769,
+              "name": "Hunter Gaddis",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 0.3,
+              "ip_3d": 0.3,
+              "apps_3d": 1
+            },
+            {
+              "id": 681870,
+              "name": "Erik Sabrowski",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 0.7,
+              "ip_3d": 0.7,
+              "apps_3d": 1
+            },
+            {
+              "id": 641401,
+              "name": "Connor Brogdon",
+              "apps_7d": 2,
               "last_appearance": "2026-04-25",
               "last_ip": 1.0,
               "ip_3d": 1.0,
@@ -60,35 +87,8 @@
             {
               "id": 682120,
               "name": "Tim Herrin",
-              "apps_7d": 3,
+              "apps_7d": 2,
               "last_appearance": "2026-04-26",
-              "last_ip": 1.0,
-              "ip_3d": 1.0,
-              "apps_3d": 1
-            },
-            {
-              "id": 641401,
-              "name": "Connor Brogdon",
-              "apps_7d": 3,
-              "last_appearance": "2026-04-25",
-              "last_ip": 1.0,
-              "ip_3d": 1.0,
-              "apps_3d": 1
-            },
-            {
-              "id": 688883,
-              "name": "Peyton Pallette",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-25",
-              "last_ip": 1.0,
-              "ip_3d": 1.0,
-              "apps_3d": 1
-            },
-            {
-              "id": 671922,
-              "name": "Cade Smith",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-24",
               "last_ip": 1.0,
               "ip_3d": 1.0,
               "apps_3d": 1
@@ -96,28 +96,28 @@
           ]
         },
         "away_team": {
-          "era_30d": 4.75,
+          "era_30d": 4.64,
           "irs_pct_30d": 34.5,
-          "ip_3d": 13.7,
+          "ip_3d": 12.7,
           "workload_7d": 17,
           "top_relievers": [
             {
-              "id": 694680,
-              "name": "Trevor Martin",
+              "id": 641329,
+              "name": "Bryan Baker",
               "apps_7d": 3,
-              "last_appearance": "2026-04-25",
+              "last_appearance": "2026-04-27",
               "last_ip": 1.0,
               "ip_3d": 2.0,
               "apps_3d": 2
             },
             {
-              "id": 642121,
-              "name": "Cole Sulser",
-              "apps_7d": 3,
-              "last_appearance": "2026-04-26",
-              "last_ip": 1.3,
-              "ip_3d": 2.3,
-              "apps_3d": 2
+              "id": 693855,
+              "name": "Ian Seymour",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
             },
             {
               "id": 685801,
@@ -138,67 +138,67 @@
               "apps_3d": 1
             },
             {
-              "id": 641329,
-              "name": "Bryan Baker",
+              "id": 642121,
+              "name": "Cole Sulser",
               "apps_7d": 2,
               "last_appearance": "2026-04-26",
-              "last_ip": 1.0,
-              "ip_3d": 2.0,
-              "apps_3d": 2
+              "last_ip": 1.3,
+              "ip_3d": 1.3,
+              "apps_3d": 1
             }
           ]
         }
       }
     },
     {
-      "DATE": "2026-04-27",
-      "GAME_ID": "PIT_STL",
-      "home_team": "PIT",
-      "away_team": "STL",
+      "DATE": "2026-04-28",
+      "GAME_ID": "BAL_HOU",
+      "home_team": "BAL",
+      "away_team": "HOU",
       "pitcher": {
         "home_sp": {
-          "id": 682254,
-          "throws": "L",
-          "pitch_mix": "4-Seam Fastball:64",
-          "xwOBA": 0.301,
-          "barrel_pct": 12.5,
-          "hard_hit_pct": 45.8
+          "id": 669358,
+          "throws": "R",
+          "pitch_mix": "4-Seam Fastball:36/Curveball:32/Cutter:20",
+          "xwOBA": 0.329,
+          "barrel_pct": 6.6,
+          "hard_hit_pct": 38.5
         },
         "away_sp": {
-          "id": 669160,
+          "id": 678906,
           "throws": "R",
-          "pitch_mix": "4-Seam Fastball:29/Sweeper:19/Sinker:19",
-          "xwOBA": 0.33,
-          "barrel_pct": 6.3,
-          "hard_hit_pct": 46.8
+          "pitch_mix": "Sweeper:37/4-Seam Fastball:29",
+          "xwOBA": 0.262,
+          "barrel_pct": 2.4,
+          "hard_hit_pct": 35.7
         }
       },
       "batting_splits": {
         "home_team": {
-          "avg_vs_LHP": 0.215,
-          "avg_vs_RHP": 0.241,
-          "ops_vs_LHP": 0.65,
-          "ops_vs_RHP": 0.718,
-          "season_wOBA": 0.3140592263478833
+          "avg_vs_LHP": 0.234,
+          "avg_vs_RHP": 0.264,
+          "ops_vs_LHP": 0.687,
+          "ops_vs_RHP": 0.733,
+          "season_wOBA": 0.32304261109328675
         },
         "away_team": {
-          "avg_vs_LHP": 0.244,
-          "avg_vs_RHP": 0.256,
-          "ops_vs_LHP": 0.749,
-          "ops_vs_RHP": 0.7,
-          "season_wOBA": 0.3190237488164458
+          "avg_vs_LHP": 0.272,
+          "avg_vs_RHP": 0.259,
+          "ops_vs_LHP": 0.767,
+          "ops_vs_RHP": 0.789,
+          "season_wOBA": 0.3460530916707475
         }
       },
       "bullpen": {
         "home_team": {
-          "era_30d": 2.89,
-          "irs_pct_30d": 29.2,
+          "era_30d": 4.17,
+          "irs_pct_30d": 15.2,
           "ip_3d": 11.3,
           "workload_7d": 18,
           "top_relievers": [
             {
-              "id": 664875,
-              "name": "Justin Lawrence",
+              "id": 666974,
+              "name": "Yennier Cano",
               "apps_7d": 3,
               "last_appearance": "2026-04-26",
               "last_ip": 1.0,
@@ -206,37 +206,37 @@
               "apps_3d": 1
             },
             {
-              "id": 681895,
-              "name": "Evan Sisk",
-              "apps_7d": 3,
+              "id": 664991,
+              "name": "Grant Wolfram",
+              "apps_7d": 2,
               "last_appearance": "2026-04-26",
+              "last_ip": 0.0,
+              "ip_3d": 0.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 670329,
+              "name": "Rico Garcia",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 669330,
+              "name": "Tyler Wells",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-25",
               "last_ip": 1.3,
               "ip_3d": 1.3,
               "apps_3d": 1
             },
             {
-              "id": 642397,
-              "name": "Gregory Soto",
+              "id": 689296,
+              "name": "Anthony Nunez",
               "apps_7d": 2,
-              "last_appearance": "2026-04-25",
-              "last_ip": 1.0,
-              "ip_3d": 1.0,
-              "apps_3d": 1
-            },
-            {
-              "id": 642701,
-              "name": "Dennis Santana",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-25",
-              "last_ip": 1.0,
-              "ip_3d": 1.0,
-              "apps_3d": 1
-            },
-            {
-              "id": 670990,
-              "name": "Yohan Ramírez",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-25",
+              "last_appearance": "2026-04-26",
               "last_ip": 1.0,
               "ip_3d": 1.0,
               "apps_3d": 1
@@ -244,18 +244,314 @@
           ]
         },
         "away_team": {
-          "era_30d": 4.93,
-          "irs_pct_30d": 32.5,
-          "ip_3d": 12.3,
+          "era_30d": 6.42,
+          "irs_pct_30d": 31.6,
+          "ip_3d": 6.0,
+          "workload_7d": 17,
+          "top_relievers": [
+            {
+              "id": 660853,
+              "name": "Enyel De Los Santos",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 676467,
+              "name": "Colton Gordon",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-24",
+              "last_ip": 2.0,
+              "ip_3d": 0,
+              "apps_3d": 0
+            },
+            {
+              "id": 678906,
+              "name": "Kai-Wei Teng",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-25",
+              "last_ip": 0.3,
+              "ip_3d": 0.3,
+              "apps_3d": 1
+            },
+            {
+              "id": 687911,
+              "name": "Bryan King",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 805123,
+              "name": "AJ Blubaugh",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-25",
+              "last_ip": 1.3,
+              "ip_3d": 1.3,
+              "apps_3d": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "DATE": "2026-04-28",
+      "GAME_ID": "CIN_COL",
+      "home_team": "CIN",
+      "away_team": "COL",
+      "pitcher": {
+        "home_sp": {
+          "id": 695505,
+          "throws": "R",
+          "pitch_mix": "4-Seam Fastball:57/Slider:36",
+          "xwOBA": 0.299,
+          "barrel_pct": 10.0,
+          "hard_hit_pct": 42.0
+        },
+        "away_sp": {
+          "id": null,
+          "throws": null,
+          "pitch_mix": null,
+          "xwOBA": null,
+          "barrel_pct": null,
+          "hard_hit_pct": null
+        }
+      },
+      "batting_splits": {
+        "home_team": {
+          "avg_vs_LHP": 0.188,
+          "avg_vs_RHP": 0.206,
+          "ops_vs_LHP": 0.719,
+          "ops_vs_RHP": 0.673,
+          "season_wOBA": 0.30832890451461953
+        },
+        "away_team": {
+          "avg_vs_LHP": 0.234,
+          "avg_vs_RHP": 0.247,
+          "ops_vs_LHP": 0.641,
+          "ops_vs_RHP": 0.724,
+          "season_wOBA": 0.31683451679559443
+        }
+      },
+      "bullpen": {
+        "home_team": {
+          "era_30d": 2.75,
+          "irs_pct_30d": 21.1,
+          "ip_3d": 7.7,
+          "workload_7d": 19,
+          "top_relievers": [
+            {
+              "id": 594580,
+              "name": "Sam Moll",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 0.3,
+              "ip_3d": 1.3,
+              "apps_3d": 2
+            },
+            {
+              "id": 572955,
+              "name": "Pierce Johnson",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 0.7,
+              "ip_3d": 0.7,
+              "apps_3d": 1
+            },
+            {
+              "id": 656271,
+              "name": "Brock Burke",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 693312,
+              "name": "Kyle Nicolas",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-24",
+              "last_ip": 1.0,
+              "ip_3d": 0,
+              "apps_3d": 0
+            },
+            {
+              "id": 683175,
+              "name": "Connor Phillips",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-25",
+              "last_ip": 0.7,
+              "ip_3d": 0.7,
+              "apps_3d": 1
+            }
+          ]
+        },
+        "away_team": {
+          "era_30d": 3.73,
+          "irs_pct_30d": 14.3,
+          "ip_3d": 7.7,
+          "workload_7d": 19,
+          "top_relievers": [
+            {
+              "id": 675848,
+              "name": "Juan Mejia",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.7,
+              "ip_3d": 1.7,
+              "apps_3d": 1
+            },
+            {
+              "id": 677955,
+              "name": "Jaden Hill",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 688642,
+              "name": "Zach Agnos",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 678020,
+              "name": "Seth Halvorsen",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 657514,
+              "name": "Brennan Bernardino",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-23",
+              "last_ip": 0.7,
+              "ip_3d": 0,
+              "apps_3d": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "DATE": "2026-04-28",
+      "GAME_ID": "PIT_STL",
+      "home_team": "PIT",
+      "away_team": "STL",
+      "pitcher": {
+        "home_sp": {
+          "id": null,
+          "throws": null,
+          "pitch_mix": null,
+          "xwOBA": null,
+          "barrel_pct": null,
+          "hard_hit_pct": null
+        },
+        "away_sp": {
+          "id": 681517,
+          "throws": "R",
+          "pitch_mix": "4-Seam Fastball:32/Sinker:17/Curveball:14",
+          "xwOBA": 0.371,
+          "barrel_pct": 11.0,
+          "hard_hit_pct": 50.0
+        }
+      },
+      "batting_splits": {
+        "home_team": {
+          "avg_vs_LHP": 0.23,
+          "avg_vs_RHP": 0.251,
+          "ops_vs_LHP": 0.65,
+          "ops_vs_RHP": 0.712,
+          "season_wOBA": 0.3140592263478833
+        },
+        "away_team": {
+          "avg_vs_LHP": 0.234,
+          "avg_vs_RHP": 0.256,
+          "ops_vs_LHP": 0.739,
+          "ops_vs_RHP": 0.701,
+          "season_wOBA": 0.3190237488164458
+        }
+      },
+      "bullpen": {
+        "home_team": {
+          "era_30d": 2.95,
+          "irs_pct_30d": 28.0,
+          "ip_3d": 17.3,
+          "workload_7d": 25,
+          "top_relievers": [
+            {
+              "id": 664875,
+              "name": "Justin Lawrence",
+              "apps_7d": 4,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 681895,
+              "name": "Evan Sisk",
+              "apps_7d": 4,
+              "last_appearance": "2026-04-27",
+              "last_ip": 0.7,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 642397,
+              "name": "Gregory Soto",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 642701,
+              "name": "Dennis Santana",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 0.7,
+              "ip_3d": 1.7,
+              "apps_3d": 2
+            },
+            {
+              "id": 676755,
+              "name": "Isaac Mattson",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 0.3,
+              "ip_3d": 1.3,
+              "apps_3d": 2
+            }
+          ]
+        },
+        "away_team": {
+          "era_30d": 4.62,
+          "irs_pct_30d": 28.9,
+          "ip_3d": 11.7,
           "workload_7d": 22,
           "top_relievers": [
             {
-              "id": 694335,
-              "name": "Matt Svanson",
+              "id": 666277,
+              "name": "George Soriano",
               "apps_7d": 4,
-              "last_appearance": "2026-04-26",
+              "last_appearance": "2026-04-27",
               "last_ip": 1.0,
-              "ip_3d": 1.7,
+              "ip_3d": 2.0,
               "apps_3d": 2
             },
             {
@@ -264,8 +560,8 @@
               "apps_7d": 3,
               "last_appearance": "2026-04-25",
               "last_ip": 1.0,
-              "ip_3d": 2.0,
-              "apps_3d": 2
+              "ip_3d": 1.0,
+              "apps_3d": 1
             },
             {
               "id": 592773,
@@ -277,21 +573,21 @@
               "apps_3d": 2
             },
             {
-              "id": 666277,
-              "name": "George Soriano",
-              "apps_7d": 3,
-              "last_appearance": "2026-04-25",
-              "last_ip": 1.0,
-              "ip_3d": 1.7,
-              "apps_3d": 2
-            },
-            {
               "id": 700669,
               "name": "Gordon Graceffo",
               "apps_7d": 3,
               "last_appearance": "2026-04-25",
               "last_ip": 0.7,
-              "ip_3d": 2.7,
+              "ip_3d": 0.7,
+              "apps_3d": 1
+            },
+            {
+              "id": 694335,
+              "name": "Matt Svanson",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.7,
               "apps_3d": 2
             }
           ]
@@ -299,140 +595,252 @@
       }
     },
     {
-      "DATE": "2026-04-27",
-      "GAME_ID": "TOR_BOS",
-      "home_team": "TOR",
-      "away_team": "BOS",
+      "DATE": "2026-04-28",
+      "GAME_ID": "PHI_SF",
+      "home_team": "PHI",
+      "away_team": "SF",
       "pitcher": {
         "home_sp": {
-          "id": 656302,
-          "throws": "R",
-          "pitch_mix": "4-Seam Fastball:39/Slider:28",
-          "xwOBA": 0.263,
-          "barrel_pct": 0.0,
-          "hard_hit_pct": 32.7
+          "id": 666200,
+          "throws": "L",
+          "pitch_mix": "Sweeper:36/4-Seam Fastball:26/Changeup:21",
+          "xwOBA": 0.32,
+          "barrel_pct": 6.3,
+          "hard_hit_pct": 32.9
         },
         "away_sp": {
-          "id": 624133,
-          "throws": "L",
-          "pitch_mix": "Sinker:30/Changeup:21/Cutter:20",
-          "xwOBA": 0.35,
-          "barrel_pct": 10.0,
-          "hard_hit_pct": 42.5
+          "id": 641816,
+          "throws": "R",
+          "pitch_mix": "4-Seam Fastball:46/Split-Finger:26/Cutter:15",
+          "xwOBA": 0.371,
+          "barrel_pct": 13.5,
+          "hard_hit_pct": 36.5
         }
       },
       "batting_splits": {
         "home_team": {
-          "avg_vs_LHP": 0.282,
-          "avg_vs_RHP": 0.257,
-          "ops_vs_LHP": 0.699,
-          "ops_vs_RHP": 0.7,
-          "season_wOBA": 0.3114517609278361
+          "avg_vs_LHP": 0.199,
+          "avg_vs_RHP": 0.219,
+          "ops_vs_LHP": 0.563,
+          "ops_vs_RHP": 0.708,
+          "season_wOBA": 0.2959820374804325
         },
         "away_team": {
-          "avg_vs_LHP": 0.298,
-          "avg_vs_RHP": 0.213,
-          "ops_vs_LHP": 0.694,
-          "ops_vs_RHP": 0.66,
-          "season_wOBA": 0.30378430411929175
+          "avg_vs_LHP": 0.258,
+          "avg_vs_RHP": 0.239,
+          "ops_vs_LHP": 0.734,
+          "ops_vs_RHP": 0.643,
+          "season_wOBA": 0.29716042374620344
         }
       },
       "bullpen": {
         "home_team": {
-          "era_30d": 4.27,
-          "irs_pct_30d": 28.9,
-          "ip_3d": 13.3,
-          "workload_7d": 24,
+          "era_30d": 4.26,
+          "irs_pct_30d": 32.4,
+          "ip_3d": 8.3,
+          "workload_7d": 23,
           "top_relievers": [
             {
-              "id": 680755,
-              "name": "Braydon Fisher",
-              "apps_7d": 4,
+              "id": 689147,
+              "name": "Orion Kerkering",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-25",
+              "last_ip": 1.3,
+              "ip_3d": 1.3,
+              "apps_3d": 1
+            },
+            {
+              "id": 621383,
+              "name": "Tanner Banks",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-25",
+              "last_ip": 0.0,
+              "ip_3d": 0.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 641835,
+              "name": "Tim Mayza",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 621237,
+              "name": "José Alvarado",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-25",
+              "last_ip": 1.3,
+              "ip_3d": 1.3,
+              "apps_3d": 1
+            },
+            {
+              "id": 641745,
+              "name": "Brad Keller",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-25",
+              "last_ip": 1.3,
+              "ip_3d": 1.3,
+              "apps_3d": 1
+            }
+          ]
+        },
+        "away_team": {
+          "era_30d": 3.18,
+          "irs_pct_30d": 32.3,
+          "ip_3d": 5.3,
+          "workload_7d": 16,
+          "top_relievers": [
+            {
+              "id": 669062,
+              "name": "Erik Miller",
+              "apps_7d": 3,
               "last_appearance": "2026-04-26",
               "last_ip": 1.3,
               "ip_3d": 2.3,
               "apps_3d": 2
             },
             {
-              "id": 686973,
-              "name": "Louis Varland",
-              "apps_7d": 4,
-              "last_appearance": "2026-04-26",
-              "last_ip": 1.0,
-              "ip_3d": 2.0,
-              "apps_3d": 2
-            },
-            {
-              "id": 643511,
-              "name": "Tyler Rogers",
-              "apps_7d": 4,
-              "last_appearance": "2026-04-26",
-              "last_ip": 1.0,
-              "ip_3d": 2.0,
-              "apps_3d": 2
-            },
-            {
-              "id": 656546,
-              "name": "Jeff Hoffman",
+              "id": 676254,
+              "name": "Ryan Walker",
               "apps_7d": 3,
-              "last_appearance": "2026-04-26",
+              "last_appearance": "2026-04-25",
               "last_ip": 1.0,
               "ip_3d": 1.0,
               "apps_3d": 1
             },
+            {
+              "id": 621366,
+              "name": "Ryan Borucki",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-24",
+              "last_ip": 1.0,
+              "ip_3d": 0,
+              "apps_3d": 0
+            },
+            {
+              "id": 657424,
+              "name": "Matt Gage",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-25",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 676775,
+              "name": "Keaton Winn",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-25",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "DATE": "2026-04-28",
+      "GAME_ID": "TOR_BOS",
+      "home_team": "TOR",
+      "away_team": "BOS",
+      "pitcher": {
+        "home_sp": {
+          "id": 702056,
+          "throws": "R",
+          "pitch_mix": null,
+          "xwOBA": null,
+          "barrel_pct": null,
+          "hard_hit_pct": null
+        },
+        "away_sp": {
+          "id": 801139,
+          "throws": "L",
+          "pitch_mix": "4-Seam Fastball:50",
+          "xwOBA": 0.151,
+          "barrel_pct": 0.0,
+          "hard_hit_pct": 40.0
+        }
+      },
+      "batting_splits": {
+        "home_team": {
+          "avg_vs_LHP": 0.273,
+          "avg_vs_RHP": 0.269,
+          "ops_vs_LHP": 0.644,
+          "ops_vs_RHP": 0.7,
+          "season_wOBA": 0.3114517609278361
+        },
+        "away_team": {
+          "avg_vs_LHP": 0.309,
+          "avg_vs_RHP": 0.214,
+          "ops_vs_LHP": 0.691,
+          "ops_vs_RHP": 0.664,
+          "season_wOBA": 0.30378430411929175
+        }
+      },
+      "bullpen": {
+        "home_team": {
+          "era_30d": 4.05,
+          "irs_pct_30d": 25.6,
+          "ip_3d": 10.0,
+          "workload_7d": 23,
+          "top_relievers": [
             {
               "id": 689254,
               "name": "Mason Fluharty",
               "apps_7d": 3,
               "last_appearance": "2026-04-25",
               "last_ip": 0.3,
-              "ip_3d": 1.3,
-              "apps_3d": 2
-            }
-          ]
-        },
-        "away_team": {
-          "era_30d": 3.73,
-          "irs_pct_30d": 31.6,
-          "ip_3d": 10.0,
-          "workload_7d": 23,
-          "top_relievers": [
-            {
-              "id": 543056,
-              "name": "Danny Coulombe",
-              "apps_7d": 3,
-              "last_appearance": "2026-04-25",
-              "last_ip": 1.0,
-              "ip_3d": 1.0,
-              "apps_3d": 1
-            },
-            {
-              "id": 677161,
-              "name": "Zack Kelly",
-              "apps_7d": 3,
-              "last_appearance": "2026-04-26",
-              "last_ip": 0.3,
               "ip_3d": 0.3,
               "apps_3d": 1
             },
             {
-              "id": 669711,
-              "name": "Greg Weissert",
+              "id": 643511,
+              "name": "Tyler Rogers",
               "apps_7d": 3,
-              "last_appearance": "2026-04-25",
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 686973,
+              "name": "Louis Varland",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 667297,
+              "name": "Tommy Nance",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
               "last_ip": 1.0,
               "ip_3d": 1.0,
               "apps_3d": 1
             },
             {
-              "id": 670245,
-              "name": "Ryan Watson",
+              "id": 680755,
+              "name": "Braydon Fisher",
               "apps_7d": 3,
-              "last_appearance": "2026-04-24",
-              "last_ip": 2.0,
-              "ip_3d": 2.0,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.3,
+              "ip_3d": 1.3,
               "apps_3d": 1
-            },
+            }
+          ]
+        },
+        "away_team": {
+          "era_30d": 3.84,
+          "irs_pct_30d": 33.3,
+          "ip_3d": 6.3,
+          "workload_7d": 17,
+          "top_relievers": [
             {
               "id": 701719,
               "name": "Tyler Samaniego",
@@ -441,56 +849,388 @@
               "last_ip": 1.0,
               "ip_3d": 1.0,
               "apps_3d": 1
+            },
+            {
+              "id": 669711,
+              "name": "Greg Weissert",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 677161,
+              "name": "Zack Kelly",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-26",
+              "last_ip": 0.3,
+              "ip_3d": 0.3,
+              "apps_3d": 1
+            },
+            {
+              "id": 543056,
+              "name": "Danny Coulombe",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-25",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 670245,
+              "name": "Ryan Watson",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-24",
+              "last_ip": 2.0,
+              "ip_3d": 0,
+              "apps_3d": 0
             }
           ]
         }
       }
     },
     {
-      "DATE": "2026-04-27",
+      "DATE": "2026-04-28",
+      "GAME_ID": "NYM_WSH",
+      "home_team": "NYM",
+      "away_team": "WSH",
+      "pitcher": {
+        "home_sp": {
+          "id": 605280,
+          "throws": "R",
+          "pitch_mix": "Sinker:49/Sweeper:17/Changeup:16",
+          "xwOBA": 0.325,
+          "barrel_pct": 5.6,
+          "hard_hit_pct": 42.2
+        },
+        "away_sp": {
+          "id": 641793,
+          "throws": "R",
+          "pitch_mix": "Slider:25/4-Seam Fastball:24/Split-Finger:20",
+          "xwOBA": 0.425,
+          "barrel_pct": 14.9,
+          "hard_hit_pct": 46.8
+        }
+      },
+      "batting_splits": {
+        "home_team": {
+          "avg_vs_LHP": 0.212,
+          "avg_vs_RHP": 0.254,
+          "ops_vs_LHP": 0.636,
+          "ops_vs_RHP": 0.62,
+          "season_wOBA": 0.28225396975730227
+        },
+        "away_team": {
+          "avg_vs_LHP": 0.276,
+          "avg_vs_RHP": 0.23,
+          "ops_vs_LHP": 0.762,
+          "ops_vs_RHP": 0.703,
+          "season_wOBA": 0.3214474079456735
+        }
+      },
+      "bullpen": {
+        "home_team": {
+          "era_30d": 3.61,
+          "irs_pct_30d": 40.0,
+          "ip_3d": 16.7,
+          "workload_7d": 21,
+          "top_relievers": [
+            {
+              "id": 642207,
+              "name": "Devin Williams",
+              "apps_7d": 4,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 623211,
+              "name": "Huascar Brazobán",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 2.0,
+              "ip_3d": 2.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 548384,
+              "name": "Brooks Raley",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 596133,
+              "name": "Luke Weaver",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 681810,
+              "name": "Austin Warren",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-26",
+              "last_ip": 2.0,
+              "ip_3d": 2.0,
+              "apps_3d": 1
+            }
+          ]
+        },
+        "away_team": {
+          "era_30d": 5.26,
+          "irs_pct_30d": 50.0,
+          "ip_3d": 7.3,
+          "workload_7d": 19,
+          "top_relievers": [
+            {
+              "id": 681402,
+              "name": "Gus Varland",
+              "apps_7d": 4,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 672335,
+              "name": "Cionel Pérez",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-25",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 663992,
+              "name": "Richard Lovelady",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 680730,
+              "name": "Mitchell Parker",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-25",
+              "last_ip": 1.3,
+              "ip_3d": 1.3,
+              "apps_3d": 1
+            },
+            {
+              "id": 642759,
+              "name": "Julian Fernández",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-23",
+              "last_ip": 2.0,
+              "ip_3d": 0,
+              "apps_3d": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "DATE": "2026-04-28",
+      "GAME_ID": "ATL_DET",
+      "home_team": "ATL",
+      "away_team": "DET",
+      "pitcher": {
+        "home_sp": {
+          "id": 527048,
+          "throws": "L",
+          "pitch_mix": "Sinker:32/Changeup:29/Cutter:22",
+          "xwOBA": 0.338,
+          "barrel_pct": 5.8,
+          "hard_hit_pct": 40.6
+        },
+        "away_sp": {
+          "id": 663554,
+          "throws": "R",
+          "pitch_mix": "4-Seam Fastball:34/Split-Finger:29/Slider:23",
+          "xwOBA": 0.287,
+          "barrel_pct": 8.1,
+          "hard_hit_pct": 44.6
+        }
+      },
+      "batting_splits": {
+        "home_team": {
+          "avg_vs_LHP": 0.232,
+          "avg_vs_RHP": 0.276,
+          "ops_vs_LHP": 0.788,
+          "ops_vs_RHP": 0.796,
+          "season_wOBA": 0.3502470053732395
+        },
+        "away_team": {
+          "avg_vs_LHP": 0.242,
+          "avg_vs_RHP": 0.213,
+          "ops_vs_LHP": 0.713,
+          "ops_vs_RHP": 0.76,
+          "season_wOBA": 0.3349213109361067
+        }
+      },
+      "bullpen": {
+        "home_team": {
+          "era_30d": 3.33,
+          "irs_pct_30d": 26.1,
+          "ip_3d": 6.0,
+          "workload_7d": 20,
+          "top_relievers": [
+            {
+              "id": 607481,
+              "name": "Aaron Bummer",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 606303,
+              "name": "Joel Payamps",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 669276,
+              "name": "Dylan Lee",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-25",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 663158,
+              "name": "Robert Suarez",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 660761,
+              "name": "José Suarez",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-25",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            }
+          ]
+        },
+        "away_team": {
+          "era_30d": 4.75,
+          "irs_pct_30d": 41.5,
+          "ip_3d": 10.0,
+          "workload_7d": 22,
+          "top_relievers": [
+            {
+              "id": 640448,
+              "name": "Kyle Finnegan",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 676684,
+              "name": "Will Vest",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 676428,
+              "name": "Brant Hurter",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 657756,
+              "name": "Connor Seabold",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-25",
+              "last_ip": 0.3,
+              "ip_3d": 0.3,
+              "apps_3d": 1
+            },
+            {
+              "id": 445276,
+              "name": "Kenley Jansen",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-24",
+              "last_ip": 0.7,
+              "ip_3d": 0,
+              "apps_3d": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "DATE": "2026-04-28",
       "GAME_ID": "MIN_SEA",
       "home_team": "MIN",
       "away_team": "SEA",
       "pitcher": {
         "home_sp": {
-          "id": 687570,
-          "throws": "L",
-          "pitch_mix": "Slider:51",
-          "xwOBA": 0.26,
-          "barrel_pct": 18.2,
-          "hard_hit_pct": 54.5
+          "id": 657746,
+          "throws": "R",
+          "pitch_mix": "4-Seam Fastball:45/Sinker:13/Curveball:12",
+          "xwOBA": 0.277,
+          "barrel_pct": 11.2,
+          "hard_hit_pct": 36.0
         },
         "away_sp": {
-          "id": 622491,
+          "id": 669302,
           "throws": "R",
-          "pitch_mix": "4-Seam Fastball:40/Slider:29/Sinker:20",
-          "xwOBA": 0.358,
-          "barrel_pct": 11.8,
-          "hard_hit_pct": 47.4
+          "pitch_mix": "4-Seam Fastball:30/Slider:18/Split-Finger:15",
+          "xwOBA": 0.308,
+          "barrel_pct": 7.6,
+          "hard_hit_pct": 46.7
         }
       },
       "batting_splits": {
         "home_team": {
           "avg_vs_LHP": 0.206,
-          "avg_vs_RHP": 0.224,
+          "avg_vs_RHP": 0.23,
           "ops_vs_LHP": 0.697,
-          "ops_vs_RHP": 0.698,
+          "ops_vs_RHP": 0.719,
           "season_wOBA": 0.3164044794306826
         },
         "away_team": {
-          "avg_vs_LHP": 0.191,
-          "avg_vs_RHP": 0.227,
-          "ops_vs_LHP": 0.648,
-          "ops_vs_RHP": 0.722,
+          "avg_vs_LHP": 0.208,
+          "avg_vs_RHP": 0.239,
+          "ops_vs_LHP": 0.625,
+          "ops_vs_RHP": 0.726,
           "season_wOBA": 0.3171449236313936
         }
       },
       "bullpen": {
         "home_team": {
-          "era_30d": 4.79,
-          "irs_pct_30d": 31.4,
-          "ip_3d": 7.3,
-          "workload_7d": 18,
+          "era_30d": 5.03,
+          "irs_pct_30d": 33.3,
+          "ip_3d": 9.7,
+          "workload_7d": 20,
           "top_relievers": [
             {
               "id": 607455,
@@ -498,8 +1238,8 @@
               "apps_7d": 4,
               "last_appearance": "2026-04-26",
               "last_ip": 0.7,
-              "ip_3d": 1.4,
-              "apps_3d": 2
+              "ip_3d": 0.7,
+              "apps_3d": 1
             },
             {
               "id": 623437,
@@ -516,7 +1256,16 @@
               "apps_7d": 3,
               "last_appearance": "2026-04-25",
               "last_ip": 1.0,
-              "ip_3d": 2.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 573124,
+              "name": "Taylor Rogers",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
               "apps_3d": 2
             },
             {
@@ -527,28 +1276,37 @@
               "last_ip": 0.7,
               "ip_3d": 0.7,
               "apps_3d": 1
-            },
-            {
-              "id": 573124,
-              "name": "Taylor Rogers",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-25",
-              "last_ip": 0.0,
-              "ip_3d": 0.0,
-              "apps_3d": 1
             }
           ]
         },
         "away_team": {
-          "era_30d": 3.13,
+          "era_30d": 3.27,
           "irs_pct_30d": 15.2,
           "ip_3d": 12.0,
-          "workload_7d": 22,
+          "workload_7d": 20,
           "top_relievers": [
+            {
+              "id": 660825,
+              "name": "Eduard Bazardo",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.3,
+              "ip_3d": 1.3,
+              "apps_3d": 1
+            },
+            {
+              "id": 642100,
+              "name": "Gabe Speier",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 0.7,
+              "ip_3d": 0.7,
+              "apps_3d": 1
+            },
             {
               "id": 678606,
               "name": "Jose A. Ferrer",
-              "apps_7d": 4,
+              "apps_7d": 3,
               "last_appearance": "2026-04-26",
               "last_ip": 1.0,
               "ip_3d": 3.0,
@@ -557,96 +1315,105 @@
             {
               "id": 666374,
               "name": "Matt Brash",
-              "apps_7d": 4,
-              "last_appearance": "2026-04-25",
-              "last_ip": 1.0,
-              "ip_3d": 2.0,
-              "apps_3d": 2
-            },
-            {
-              "id": 681867,
-              "name": "Cooper Criswell",
               "apps_7d": 3,
               "last_appearance": "2026-04-25",
-              "last_ip": 2.0,
-              "ip_3d": 2.0,
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
               "apps_3d": 1
             },
             {
-              "id": 660825,
-              "name": "Eduard Bazardo",
+              "id": 662253,
+              "name": "Andrés Muñoz",
               "apps_7d": 3,
-              "last_appearance": "2026-04-26",
-              "last_ip": 1.3,
-              "ip_3d": 2.0,
-              "apps_3d": 2
-            },
-            {
-              "id": 642100,
-              "name": "Gabe Speier",
-              "apps_7d": 3,
-              "last_appearance": "2026-04-26",
-              "last_ip": 0.7,
+              "last_appearance": "2026-04-25",
+              "last_ip": 1.0,
               "ip_3d": 1.0,
-              "apps_3d": 2
+              "apps_3d": 1
             }
           ]
         }
       }
     },
     {
-      "DATE": "2026-04-27",
+      "DATE": "2026-04-28",
       "GAME_ID": "CWS_LAA",
       "home_team": "CWS",
       "away_team": "LAA",
       "pitcher": {
         "home_sp": {
-          "id": 641743,
-          "throws": "L",
-          "pitch_mix": "4-Seam Fastball:34/Sweeper:19/Cutter:17",
-          "xwOBA": 0.419,
-          "barrel_pct": 9.7,
-          "hard_hit_pct": 47.2
+          "id": 663436,
+          "throws": "R",
+          "pitch_mix": "4-Seam Fastball:25/Changeup:18/Cutter:17",
+          "xwOBA": 0.34,
+          "barrel_pct": 7.1,
+          "hard_hit_pct": 51.2
         },
         "away_sp": {
-          "id": 686799,
+          "id": 667755,
           "throws": "R",
-          "pitch_mix": "Sinker:36/Changeup:26/4-Seam Fastball:21",
-          "xwOBA": 0.358,
-          "barrel_pct": 8.2,
-          "hard_hit_pct": 42.4
+          "pitch_mix": "Sinker:30/Curveball:28/4-Seam Fastball:24",
+          "xwOBA": 0.265,
+          "barrel_pct": 8.3,
+          "hard_hit_pct": 29.8
         }
       },
       "batting_splits": {
         "home_team": {
-          "avg_vs_LHP": 0.171,
-          "avg_vs_RHP": 0.227,
-          "ops_vs_LHP": 0.73,
-          "ops_vs_RHP": 0.672,
+          "avg_vs_LHP": 0.168,
+          "avg_vs_RHP": 0.229,
+          "ops_vs_LHP": 0.752,
+          "ops_vs_RHP": 0.668,
           "season_wOBA": 0.3091986546236457
         },
         "away_team": {
-          "avg_vs_LHP": 0.245,
-          "avg_vs_RHP": 0.242,
-          "ops_vs_LHP": 0.727,
-          "ops_vs_RHP": 0.729,
+          "avg_vs_LHP": 0.202,
+          "avg_vs_RHP": 0.233,
+          "ops_vs_LHP": 0.744,
+          "ops_vs_RHP": 0.734,
           "season_wOBA": 0.3280232220062515
         }
       },
       "bullpen": {
         "home_team": {
-          "era_30d": 4.6,
-          "irs_pct_30d": 32.1,
-          "ip_3d": 21.0,
-          "workload_7d": 20,
+          "era_30d": 4.5,
+          "irs_pct_30d": 31.5,
+          "ip_3d": 18.0,
+          "workload_7d": 24,
           "top_relievers": [
+            {
+              "id": 674370,
+              "name": "Osvaldo Bido",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 3.0,
+              "ip_3d": 3.3,
+              "apps_3d": 2
+            },
+            {
+              "id": 663855,
+              "name": "Jordan Hicks",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 0.3,
+              "ip_3d": 1.3,
+              "apps_3d": 2
+            },
             {
               "id": 656794,
               "name": "Sean Newcomb",
               "apps_7d": 3,
               "last_appearance": "2026-04-26",
               "last_ip": 0.7,
-              "ip_3d": 1.0,
+              "ip_3d": 0.7,
+              "apps_3d": 1
+            },
+            {
+              "id": 691799,
+              "name": "Grant Taylor",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.3,
+              "ip_3d": 2.3,
               "apps_3d": 2
             },
             {
@@ -655,68 +1422,32 @@
               "apps_7d": 3,
               "last_appearance": "2026-04-26",
               "last_ip": 1.0,
-              "ip_3d": 2.0,
-              "apps_3d": 2
-            },
-            {
-              "id": 608371,
-              "name": "Lucas Sims",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-22",
-              "last_ip": 1.0,
-              "ip_3d": 0,
-              "apps_3d": 0
-            },
-            {
-              "id": 674370,
-              "name": "Osvaldo Bido",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-25",
-              "last_ip": 0.3,
-              "ip_3d": 0.3,
-              "apps_3d": 1
-            },
-            {
-              "id": 663855,
-              "name": "Jordan Hicks",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-25",
-              "last_ip": 1.0,
               "ip_3d": 1.0,
               "apps_3d": 1
             }
           ]
         },
         "away_team": {
-          "era_30d": 5.8,
-          "irs_pct_30d": 39.7,
-          "ip_3d": 12.0,
-          "workload_7d": 22,
+          "era_30d": 6.15,
+          "irs_pct_30d": 42.1,
+          "ip_3d": 11.0,
+          "workload_7d": 23,
           "top_relievers": [
-            {
-              "id": 681217,
-              "name": "Chase Silseth",
-              "apps_7d": 3,
-              "last_appearance": "2026-04-25",
-              "last_ip": 1.0,
-              "ip_3d": 1.0,
-              "apps_3d": 1
-            },
-            {
-              "id": 641312,
-              "name": "Shaun Anderson",
-              "apps_7d": 3,
-              "last_appearance": "2026-04-25",
-              "last_ip": 1.0,
-              "ip_3d": 2.0,
-              "apps_3d": 2
-            },
             {
               "id": 519141,
               "name": "Drew Pomeranz",
+              "apps_7d": 4,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.0,
+              "ip_3d": 1.3,
+              "apps_3d": 2
+            },
+            {
+              "id": 680704,
+              "name": "Nick Sandlin",
               "apps_7d": 3,
-              "last_appearance": "2026-04-26",
-              "last_ip": 0.3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 0.0,
               "ip_3d": 1.3,
               "apps_3d": 2
             },
@@ -726,13 +1457,170 @@
               "apps_7d": 3,
               "last_appearance": "2026-04-26",
               "last_ip": 1.7,
-              "ip_3d": 2.7,
-              "apps_3d": 2
+              "ip_3d": 1.7,
+              "apps_3d": 1
             },
             {
               "id": 696147,
               "name": "Sam Bachman",
               "apps_7d": 2,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 681217,
+              "name": "Chase Silseth",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-25",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "DATE": "2026-04-28",
+      "GAME_ID": "MIL_ARI",
+      "home_team": "MIL",
+      "away_team": "ARI",
+      "pitcher": {
+        "home_sp": {
+          "id": 694477,
+          "throws": "R",
+          "pitch_mix": "Cutter:38/4-Seam Fastball:26/Sinker:20",
+          "xwOBA": 0.318,
+          "barrel_pct": 9.3,
+          "hard_hit_pct": 41.3
+        },
+        "away_sp": {
+          "id": null,
+          "throws": null,
+          "pitch_mix": null,
+          "xwOBA": null,
+          "barrel_pct": null,
+          "hard_hit_pct": null
+        }
+      },
+      "batting_splits": {
+        "home_team": {
+          "avg_vs_LHP": 0.23,
+          "avg_vs_RHP": 0.238,
+          "ops_vs_LHP": 0.639,
+          "ops_vs_RHP": 0.694,
+          "season_wOBA": 0.30744180361117884
+        },
+        "away_team": {
+          "avg_vs_LHP": 0.296,
+          "avg_vs_RHP": 0.23,
+          "ops_vs_LHP": 0.837,
+          "ops_vs_RHP": 0.696,
+          "season_wOBA": 0.3250231114102573
+        }
+      },
+      "bullpen": {
+        "home_team": {
+          "era_30d": 4.44,
+          "irs_pct_30d": 46.5,
+          "ip_3d": 7.0,
+          "workload_7d": 19,
+          "top_relievers": [
+            {
+              "id": 676879,
+              "name": "Aaron Ashby",
+              "apps_7d": 4,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 3.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 681982,
+              "name": "Grant Anderson",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-25",
+              "last_ip": 0.3,
+              "ip_3d": 0.3,
+              "apps_3d": 1
+            },
+            {
+              "id": 656730,
+              "name": "Trevor Megill",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 682842,
+              "name": "Abner Uribe",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 672582,
+              "name": "Angel Zerpa",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-25",
+              "last_ip": 0.7,
+              "ip_3d": 0.7,
+              "apps_3d": 1
+            }
+          ]
+        },
+        "away_team": {
+          "era_30d": 4.52,
+          "irs_pct_30d": 28.1,
+          "ip_3d": 10.0,
+          "workload_7d": 21,
+          "top_relievers": [
+            {
+              "id": 642528,
+              "name": "Jonathan Loáisiga",
+              "apps_7d": 4,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 664199,
+              "name": "Taylor Clarke",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-25",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 656464,
+              "name": "Kevin Ginkel",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 657044,
+              "name": "Ryan Thompson",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 666661,
+              "name": "Juan Morillo",
+              "apps_7d": 3,
               "last_appearance": "2026-04-26",
               "last_ip": 1.0,
               "ip_3d": 1.0,
@@ -743,51 +1631,60 @@
       }
     },
     {
-      "DATE": "2026-04-27",
+      "DATE": "2026-04-28",
       "GAME_ID": "TEX_NYY",
       "home_team": "TEX",
       "away_team": "NYY",
       "pitcher": {
         "home_sp": {
-          "id": 683004,
+          "id": 594798,
           "throws": "R",
-          "pitch_mix": "4-Seam Fastball:39/Changeup:22/Slider:19",
-          "xwOBA": 0.352,
-          "barrel_pct": 14.1,
-          "hard_hit_pct": 46.5
+          "pitch_mix": "4-Seam Fastball:48/Slider:31/Changeup:15",
+          "xwOBA": 0.277,
+          "barrel_pct": 10.2,
+          "hard_hit_pct": 39.0
         },
         "away_sp": {
-          "id": 608331,
-          "throws": "L",
-          "pitch_mix": "Cutter:22/Sinker:20/4-Seam Fastball:19",
-          "xwOBA": 0.243,
-          "barrel_pct": 2.7,
-          "hard_hit_pct": 30.4
+          "id": 693645,
+          "throws": "R",
+          "pitch_mix": "4-Seam Fastball:40/Cutter:27/Sinker:23",
+          "xwOBA": 0.244,
+          "barrel_pct": 6.8,
+          "hard_hit_pct": 38.6
         }
       },
       "batting_splits": {
         "home_team": {
-          "avg_vs_LHP": 0.214,
-          "avg_vs_RHP": 0.213,
-          "ops_vs_LHP": 0.595,
-          "ops_vs_RHP": 0.734,
+          "avg_vs_LHP": 0.168,
+          "avg_vs_RHP": 0.243,
+          "ops_vs_LHP": 0.586,
+          "ops_vs_RHP": 0.736,
           "season_wOBA": 0.312254287886574
         },
         "away_team": {
-          "avg_vs_LHP": 0.205,
-          "avg_vs_RHP": 0.246,
+          "avg_vs_LHP": 0.212,
+          "avg_vs_RHP": 0.241,
           "ops_vs_LHP": 0.726,
-          "ops_vs_RHP": 0.778,
+          "ops_vs_RHP": 0.788,
           "season_wOBA": 0.33710004293693685
         }
       },
       "bullpen": {
         "home_team": {
-          "era_30d": 2.96,
-          "irs_pct_30d": 26.3,
+          "era_30d": 3.05,
+          "irs_pct_30d": 22.9,
           "ip_3d": 10.0,
-          "workload_7d": 19,
+          "workload_7d": 21,
           "top_relievers": [
+            {
+              "id": 686560,
+              "name": "Gavin Collyer",
+              "apps_7d": 4,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
             {
               "id": 668390,
               "name": "Cole Winn",
@@ -807,15 +1704,6 @@
               "apps_3d": 1
             },
             {
-              "id": 686560,
-              "name": "Gavin Collyer",
-              "apps_7d": 3,
-              "last_appearance": "2026-04-26",
-              "last_ip": 1.0,
-              "ip_3d": 1.0,
-              "apps_3d": 1
-            },
-            {
               "id": 656222,
               "name": "Jalen Beeks",
               "apps_7d": 3,
@@ -825,22 +1713,40 @@
               "apps_3d": 1
             },
             {
-              "id": 656641,
-              "name": "Jacob Latz",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-25",
-              "last_ip": 1.0,
-              "ip_3d": 1.0,
-              "apps_3d": 1
+              "id": 682608,
+              "name": "Peyton Gray",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 2.0,
+              "ip_3d": 3.0,
+              "apps_3d": 2
             }
           ]
         },
         "away_team": {
-          "era_30d": 4.22,
-          "irs_pct_30d": 34.1,
+          "era_30d": 4.42,
+          "irs_pct_30d": 35.9,
           "ip_3d": 10.7,
-          "workload_7d": 13,
+          "workload_7d": 16,
           "top_relievers": [
+            {
+              "id": 657612,
+              "name": "Tim Hill",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 670280,
+              "name": "David Bednar",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
             {
               "id": 687396,
               "name": "Brent Headrick",
@@ -851,31 +1757,13 @@
               "apps_3d": 0
             },
             {
-              "id": 657612,
-              "name": "Tim Hill",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-25",
-              "last_ip": 1.0,
-              "ip_3d": 1.0,
-              "apps_3d": 1
-            },
-            {
-              "id": 670280,
-              "name": "David Bednar",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-23",
-              "last_ip": 1.0,
-              "ip_3d": 0,
-              "apps_3d": 0
-            },
-            {
               "id": 518585,
               "name": "Fernando Cruz",
               "apps_7d": 2,
               "last_appearance": "2026-04-25",
               "last_ip": 0.7,
-              "ip_3d": 1.7,
-              "apps_3d": 2
+              "ip_3d": 0.7,
+              "apps_3d": 1
             },
             {
               "id": 642232,
@@ -883,76 +1771,233 @@
               "apps_7d": 2,
               "last_appearance": "2026-04-26",
               "last_ip": 1.0,
-              "ip_3d": 3.0,
-              "apps_3d": 2
+              "ip_3d": 1.0,
+              "apps_3d": 1
             }
           ]
         }
       }
     },
     {
-      "DATE": "2026-04-27",
-      "GAME_ID": "SD_CHC",
-      "home_team": "SD",
-      "away_team": "CHC",
+      "DATE": "2026-04-28",
+      "GAME_ID": "OAK_KC",
+      "home_team": "OAK",
+      "away_team": "KC",
       "pitcher": {
         "home_sp": {
-          "id": 681190,
-          "throws": "R",
-          "pitch_mix": "4-Seam Fastball:31/Cutter:24/Sinker:12",
-          "xwOBA": 0.329,
-          "barrel_pct": 13.5,
-          "hard_hit_pct": 41.9
+          "id": null,
+          "throws": null,
+          "pitch_mix": null,
+          "xwOBA": null,
+          "barrel_pct": null,
+          "hard_hit_pct": null
         },
         "away_sp": {
-          "id": 571510,
+          "id": 663460,
           "throws": "L",
-          "pitch_mix": "4-Seam Fastball:55/Changeup:26",
-          "xwOBA": 0.307,
-          "barrel_pct": 9.7,
-          "hard_hit_pct": 58.1
+          "pitch_mix": "4-Seam Fastball:43/Changeup:22/Sweeper:15",
+          "xwOBA": 0.343,
+          "barrel_pct": 11.3,
+          "hard_hit_pct": 39.4
         }
       },
       "batting_splits": {
         "home_team": {
-          "avg_vs_LHP": 0.249,
-          "avg_vs_RHP": 0.257,
+          "avg_vs_LHP": 0.198,
+          "avg_vs_RHP": 0.248,
           "ops_vs_LHP": 0.617,
-          "ops_vs_RHP": 0.708,
-          "season_wOBA": 0.30947945546914285
+          "ops_vs_RHP": 0.746,
+          "season_wOBA": 0.3157143360944825
         },
         "away_team": {
-          "avg_vs_LHP": 0.281,
-          "avg_vs_RHP": 0.257,
-          "ops_vs_LHP": 0.844,
-          "ops_vs_RHP": 0.745,
-          "season_wOBA": 0.34845604101816813
+          "avg_vs_LHP": 0.225,
+          "avg_vs_RHP": 0.254,
+          "ops_vs_LHP": 0.67,
+          "ops_vs_RHP": 0.723,
+          "season_wOBA": 0.3166612827333816
         }
       },
       "bullpen": {
         "home_team": {
-          "era_30d": 3.64,
-          "irs_pct_30d": 30.8,
-          "ip_3d": 5.0,
-          "workload_7d": 15,
+          "era_30d": 3.95,
+          "irs_pct_30d": 26.2,
+          "ip_3d": 7.7,
+          "workload_7d": 17,
           "top_relievers": [
             {
-              "id": 670970,
-              "name": "Adrian Morejon",
+              "id": 663687,
+              "name": "Hogan Harris",
               "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 686993,
+              "name": "Justin Sterner",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 605130,
+              "name": "Scott Barlow",
+              "apps_7d": 2,
               "last_appearance": "2026-04-25",
               "last_ip": 1.0,
               "ip_3d": 1.0,
               "apps_3d": 1
             },
             {
-              "id": 592094,
-              "name": "Jason Adam",
+              "id": 678022,
+              "name": "Jack Perkins",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-26",
+              "last_ip": 2.0,
+              "ip_3d": 2.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 643410,
+              "name": "Mark Leiter Jr.",
               "apps_7d": 2,
               "last_appearance": "2026-04-25",
               "last_ip": 1.0,
               "ip_3d": 1.0,
               "apps_3d": 1
+            }
+          ]
+        },
+        "away_team": {
+          "era_30d": 5.1,
+          "irs_pct_30d": 29.6,
+          "ip_3d": 6.7,
+          "workload_7d": 17,
+          "top_relievers": [
+            {
+              "id": 683232,
+              "name": "Nick Mears",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 668674,
+              "name": "Lucas Erceg",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 621381,
+              "name": "Matt Strahm",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-24",
+              "last_ip": 1.0,
+              "ip_3d": 0,
+              "apps_3d": 0
+            },
+            {
+              "id": 669212,
+              "name": "Eli Morgan",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-26",
+              "last_ip": 0.7,
+              "ip_3d": 0.7,
+              "apps_3d": 1
+            },
+            {
+              "id": 656638,
+              "name": "Alex Lange",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-26",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "DATE": "2026-04-28",
+      "GAME_ID": "SD_CHC",
+      "home_team": "SD",
+      "away_team": "CHC",
+      "pitcher": {
+        "home_sp": {
+          "id": 621111,
+          "throws": "R",
+          "pitch_mix": "Cutter:26/Curveball:16/Changeup:12",
+          "xwOBA": 0.35,
+          "barrel_pct": 4.8,
+          "hard_hit_pct": 38.7
+        },
+        "away_sp": {
+          "id": 665795,
+          "throws": "R",
+          "pitch_mix": "Changeup:32/Sinker:22/Curveball:20",
+          "xwOBA": 0.307,
+          "barrel_pct": 10.5,
+          "hard_hit_pct": 37.2
+        }
+      },
+      "batting_splits": {
+        "home_team": {
+          "avg_vs_LHP": 0.259,
+          "avg_vs_RHP": 0.226,
+          "ops_vs_LHP": 0.663,
+          "ops_vs_RHP": 0.714,
+          "season_wOBA": 0.30947945546914285
+        },
+        "away_team": {
+          "avg_vs_LHP": 0.273,
+          "avg_vs_RHP": 0.259,
+          "ops_vs_LHP": 0.834,
+          "ops_vs_RHP": 0.748,
+          "season_wOBA": 0.34845604101816813
+        }
+      },
+      "bullpen": {
+        "home_team": {
+          "era_30d": 3.78,
+          "irs_pct_30d": 30.0,
+          "ip_3d": 9.0,
+          "workload_7d": 18,
+          "top_relievers": [
+            {
+              "id": 670970,
+              "name": "Adrian Morejon",
+              "apps_7d": 4,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.7,
+              "ip_3d": 2.7,
+              "apps_3d": 2
+            },
+            {
+              "id": 592094,
+              "name": "Jason Adam",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.3,
+              "ip_3d": 2.3,
+              "apps_3d": 2
+            },
+            {
+              "id": 695243,
+              "name": "Mason Miller",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
             },
             {
               "id": 688158,
@@ -971,38 +2016,29 @@
               "last_ip": 0.7,
               "ip_3d": 0.7,
               "apps_3d": 1
-            },
-            {
-              "id": 676760,
-              "name": "Ron Marinaccio",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-26",
-              "last_ip": 0.3,
-              "ip_3d": 0.3,
-              "apps_3d": 1
             }
           ]
         },
         "away_team": {
-          "era_30d": 4.11,
-          "irs_pct_30d": 32.5,
+          "era_30d": 4.31,
+          "irs_pct_30d": 35.0,
           "ip_3d": 11.3,
-          "workload_7d": 19,
+          "workload_7d": 20,
           "top_relievers": [
             {
-              "id": 571948,
-              "name": "Hoby Milner",
-              "apps_7d": 4,
-              "last_appearance": "2026-04-26",
+              "id": 657097,
+              "name": "Jacob Webb",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
               "last_ip": 1.0,
               "ip_3d": 1.0,
               "apps_3d": 1
             },
             {
-              "id": 656686,
-              "name": "Corbin Martin",
+              "id": 571948,
+              "name": "Hoby Milner",
               "apps_7d": 3,
-              "last_appearance": "2026-04-24",
+              "last_appearance": "2026-04-26",
               "last_ip": 1.0,
               "ip_3d": 1.0,
               "apps_3d": 1
@@ -1017,15 +2053,6 @@
               "apps_3d": 0
             },
             {
-              "id": 657097,
-              "name": "Jacob Webb",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-23",
-              "last_ip": 0.3,
-              "ip_3d": 0,
-              "apps_3d": 0
-            },
-            {
               "id": 573204,
               "name": "Caleb Thielbar",
               "apps_7d": 2,
@@ -1033,73 +2060,73 @@
               "last_ip": 0.0,
               "ip_3d": 0,
               "apps_3d": 0
+            },
+            {
+              "id": 676962,
+              "name": "Ben Brown",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-27",
+              "last_ip": 2.0,
+              "ip_3d": 2.0,
+              "apps_3d": 1
             }
           ]
         }
       }
     },
     {
-      "DATE": "2026-04-27",
+      "DATE": "2026-04-28",
       "GAME_ID": "LAD_MIA",
       "home_team": "LAD",
       "away_team": "MIA",
       "pitcher": {
         "home_sp": {
-          "id": 808967,
+          "id": 660271,
           "throws": "R",
-          "pitch_mix": "Split-Finger:30/4-Seam Fastball:25/Cutter:18",
-          "xwOBA": 0.304,
-          "barrel_pct": 9.0,
-          "hard_hit_pct": 34.8
+          "pitch_mix": "4-Seam Fastball:44/Sweeper:22/Curveball:14",
+          "xwOBA": 0.227,
+          "barrel_pct": 3.3,
+          "hard_hit_pct": 35.0
         },
         "away_sp": {
-          "id": 663978,
+          "id": 676083,
           "throws": "R",
-          "pitch_mix": "4-Seam Fastball:31/Changeup:25/Cutter:13",
-          "xwOBA": 0.311,
-          "barrel_pct": 7.6,
-          "hard_hit_pct": 48.1
+          "pitch_mix": "4-Seam Fastball:31/Slider:25/Changeup:20",
+          "xwOBA": 0.299,
+          "barrel_pct": 4.8,
+          "hard_hit_pct": 40.5
         }
       },
       "batting_splits": {
         "home_team": {
-          "avg_vs_LHP": 0.233,
-          "avg_vs_RHP": 0.276,
-          "ops_vs_LHP": 0.843,
-          "ops_vs_RHP": 0.823,
+          "avg_vs_LHP": 0.231,
+          "avg_vs_RHP": 0.298,
+          "ops_vs_LHP": 0.838,
+          "ops_vs_RHP": 0.815,
           "season_wOBA": 0.36342268152619833
         },
         "away_team": {
-          "avg_vs_LHP": 0.218,
-          "avg_vs_RHP": 0.268,
-          "ops_vs_LHP": 0.642,
-          "ops_vs_RHP": 0.748,
+          "avg_vs_LHP": 0.215,
+          "avg_vs_RHP": 0.263,
+          "ops_vs_LHP": 0.633,
+          "ops_vs_RHP": 0.749,
           "season_wOBA": 0.32288071090669207
         }
       },
       "bullpen": {
         "home_team": {
-          "era_30d": 4.76,
+          "era_30d": 4.7,
           "irs_pct_30d": 23.1,
-          "ip_3d": 9.7,
-          "workload_7d": 17,
+          "ip_3d": 11.0,
+          "workload_7d": 19,
           "top_relievers": [
-            {
-              "id": 683618,
-              "name": "Edgardo Henriquez",
-              "apps_7d": 3,
-              "last_appearance": "2026-04-26",
-              "last_ip": 1.0,
-              "ip_3d": 1.3,
-              "apps_3d": 2
-            },
             {
               "id": 656945,
               "name": "Tanner Scott",
-              "apps_7d": 3,
-              "last_appearance": "2026-04-24",
-              "last_ip": 0.7,
-              "ip_3d": 0.7,
+              "apps_7d": 4,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.0,
+              "ip_3d": 1.0,
               "apps_3d": 1
             },
             {
@@ -1121,10 +2148,19 @@
               "apps_3d": 2
             },
             {
-              "id": 671109,
-              "name": "Jake Eder",
+              "id": 683618,
+              "name": "Edgardo Henriquez",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.0,
+              "ip_3d": 2.0,
+              "apps_3d": 2
+            },
+            {
+              "id": 681911,
+              "name": "Alex Vesia",
               "apps_7d": 2,
-              "last_appearance": "2026-04-25",
+              "last_appearance": "2026-04-27",
               "last_ip": 1.0,
               "ip_3d": 1.0,
               "apps_3d": 1
@@ -1132,54 +2168,54 @@
           ]
         },
         "away_team": {
-          "era_30d": 3.68,
-          "irs_pct_30d": 31.0,
-          "ip_3d": 8.7,
-          "workload_7d": 18,
+          "era_30d": 3.86,
+          "irs_pct_30d": 34.4,
+          "ip_3d": 10.3,
+          "workload_7d": 20,
           "top_relievers": [
             {
-              "id": 669622,
-              "name": "Anthony Bender",
-              "apps_7d": 4,
-              "last_appearance": "2026-04-26",
+              "id": 667463,
+              "name": "John King",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
               "last_ip": 1.0,
-              "ip_3d": 1.7,
+              "ip_3d": 1.0,
+              "apps_3d": 1
+            },
+            {
+              "id": 663969,
+              "name": "Tyler Phillips",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-27",
+              "last_ip": 0.3,
+              "ip_3d": 2.3,
               "apps_3d": 2
             },
             {
               "id": 677053,
               "name": "Andrew Nardi",
               "apps_7d": 3,
-              "last_appearance": "2026-04-26",
-              "last_ip": 1.0,
-              "ip_3d": 1.0,
-              "apps_3d": 1
-            },
-            {
-              "id": 676534,
-              "name": "Calvin Faucher",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-26",
-              "last_ip": 1.0,
-              "ip_3d": 1.0,
-              "apps_3d": 1
-            },
-            {
-              "id": 664126,
-              "name": "Pete Fairbanks",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-22",
+              "last_appearance": "2026-04-27",
               "last_ip": 0.7,
-              "ip_3d": 0,
-              "apps_3d": 0
+              "ip_3d": 1.7,
+              "apps_3d": 2
             },
             {
-              "id": 667463,
-              "name": "John King",
-              "apps_7d": 2,
-              "last_appearance": "2026-04-24",
+              "id": 669622,
+              "name": "Anthony Bender",
+              "apps_7d": 3,
+              "last_appearance": "2026-04-26",
               "last_ip": 1.0,
-              "ip_3d": 1.0,
+              "ip_3d": 1.7,
+              "apps_3d": 2
+            },
+            {
+              "id": 656848,
+              "name": "Michael Petersen",
+              "apps_7d": 2,
+              "last_appearance": "2026-04-27",
+              "last_ip": 1.3,
+              "ip_3d": 1.3,
               "apps_3d": 1
             }
           ]
