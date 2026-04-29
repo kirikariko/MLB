@@ -1058,32 +1058,43 @@ class SavantApi:
 # WEATHER API (Open-Meteo)
 # ============================================================
 
-def get_weather_forecast(home_abbr, date_str):
-    """Get weather forecast for a game using home team's stadium coordinates."""
+def get_weather_forecast(home_abbr, date_str, max_retries=3):
+    """Get weather forecast for a game using home team's stadium coordinates.
+    Retries with exponential backoff on transient failures.
+    """
+    empty = {'Avg_Temp_C': None, 'Precipitation_mm': None,
+             'Max_Wind_kph': None, 'Wind_Dir_Deg': None}
     coords = STADIUM_COORDINATES.get(home_abbr)
     if not coords:
-        return {'Avg_Temp_C': None, 'Precipitation_mm': None, 'Max_Wind_kph': None}
+        return empty
 
-    try:
-        r = requests.get("https://api.open-meteo.com/v1/forecast", params={
-            'latitude': coords['lat'],
-            'longitude': coords['lon'],
-            'start_date': date_str,
-            'end_date': date_str,
-            'daily': 'temperature_2m_mean,precipitation_sum,wind_speed_10m_max,wind_direction_10m_dominant',
-            'timezone': 'auto'
-        }, timeout=15)
-        r.raise_for_status()
-        daily = r.json().get('daily', {})
-        return {
-            'Avg_Temp_C': daily.get('temperature_2m_mean', [None])[0],
-            'Precipitation_mm': daily.get('precipitation_sum', [None])[0],
-            'Max_Wind_kph': daily.get('wind_speed_10m_max', [None])[0],
-            'Wind_Dir_Deg': daily.get('wind_direction_10m_dominant', [None])[0],
-        }
-    except requests.exceptions.RequestException as e:
-        print(f"  [Weather ERROR] {home_abbr}: {e}")
-        return {'Avg_Temp_C': None, 'Precipitation_mm': None, 'Max_Wind_kph': None, 'Wind_Dir_Deg': None}
+    last_err = None
+    for attempt in range(max_retries):
+        try:
+            r = requests.get("https://api.open-meteo.com/v1/forecast", params={
+                'latitude': coords['lat'],
+                'longitude': coords['lon'],
+                'start_date': date_str,
+                'end_date': date_str,
+                'daily': 'temperature_2m_mean,precipitation_sum,wind_speed_10m_max,wind_direction_10m_dominant',
+                'timezone': 'auto'
+            }, timeout=30)
+            r.raise_for_status()
+            daily = r.json().get('daily', {})
+            return {
+                'Avg_Temp_C': daily.get('temperature_2m_mean', [None])[0],
+                'Precipitation_mm': daily.get('precipitation_sum', [None])[0],
+                'Max_Wind_kph': daily.get('wind_speed_10m_max', [None])[0],
+                'Wind_Dir_Deg': daily.get('wind_direction_10m_dominant', [None])[0],
+            }
+        except requests.exceptions.RequestException as e:
+            last_err = e
+            if attempt < max_retries - 1:
+                wait = 2 ** attempt  # 1s, 2s, 4s
+                time.sleep(wait)
+
+    print(f"  [Weather ERROR] {home_abbr} (after {max_retries} retries): {last_err}")
+    return empty
 
 
 # ============================================================
