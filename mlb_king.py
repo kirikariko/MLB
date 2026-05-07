@@ -1519,6 +1519,30 @@ def _normalize_name(s):
     return ''.join(c for c in nfkd if not unicodedata.combining(c)).lower().strip()
 
 
+def _abbrev_key(s):
+    """Build a 'first_initial.last_name' key for matching abbreviated names.
+
+    Examples:
+      'George Springer'   -> 'g.springer'
+      'G. Springer'       -> 'g.springer'
+      'Vladimir Guerrero' -> 'v.guerrero'
+      'V. Guerrero Jr.'   -> 'v.guerrero'   (suffix stripped)
+    """
+    import re
+    norm = _normalize_name(s)
+    if not norm:
+        return ''
+    # Remove common suffixes (jr, sr, ii, iii, iv) and possessive periods
+    norm = re.sub(r'\b(jr|sr|ii|iii|iv)\b\.?', '', norm).strip()
+    parts = re.split(r'[\s.]+', norm)
+    parts = [p for p in parts if p]
+    if len(parts) < 2:
+        return norm  # single token — return as-is
+    first = parts[0][0]
+    last = parts[-1]
+    return f"{first}.{last}"
+
+
 def scrape_rotowire_lineups():
     """Scrape today's expected/confirmed lineups from RotoWire.
     Returns flat dict: {GAME_ID: {home_roster_batters: [...], away_roster_batters: [...]}}
@@ -1680,32 +1704,46 @@ def resolve_lineup_ids(lineup_games, mlb_api):
         print("  [Resolver] No player roster available — skipping ID resolution")
         return
 
-    name_map = {}
+    name_map = {}      # full normalized name -> id
+    abbrev_map = {}    # 'g.springer' -> [(id, full_name), ...] (list for ambiguity)
     for p in players:
         full = p.get('fullName')
         if not full:
             continue
-        key = _normalize_name(full)
-        name_map[key] = p['id']
+        name_map[_normalize_name(full)] = p['id']
+        abbr = _abbrev_key(full)
+        if abbr:
+            abbrev_map.setdefault(abbr, []).append((p['id'], full))
 
-    print(f"  [Resolver] Built name->id map: {len(name_map)} players")
+    print(f"  [Resolver] Built name->id map: {len(name_map)} players, {len(abbrev_map)} abbrev keys")
 
     resolved = 0
+    resolved_abbr = 0
     missed = 0
     for gid, g in lineup_games.items():
         for side in ('home_roster_batters', 'away_roster_batters'):
             for b in g.get(side, []):
                 if b.get('id'):
                     continue
-                key = _normalize_name(b.get('name', ''))
-                pid = name_map.get(key)
+                raw = b.get('name', '')
+                # Try exact full-name match first
+                pid = name_map.get(_normalize_name(raw))
                 if pid:
                     b['id'] = pid
                     resolved += 1
-                else:
-                    missed += 1
+                    continue
+                # Fall back to abbreviated key (G. Springer -> g.springer)
+                ak = _abbrev_key(raw)
+                candidates = abbrev_map.get(ak, [])
+                if candidates:
+                    # If multiple, pick first (rare ambiguity); single match is cleanest case
+                    b['id'] = candidates[0][0]
+                    resolved_abbr += 1
+                    continue
+                # Final miss
+                missed += 1
 
-    print(f"  [Resolver] Resolved {resolved} batter IDs, {missed} unmatched")
+    print(f"  [Resolver] Resolved {resolved} (full) + {resolved_abbr} (abbrev), {missed} unmatched")
 
 
 def _lineup_game_id_variants_in_set(gid, today_gids):
@@ -1725,9 +1763,11 @@ def _lineup_game_id_variants(home_abbr, away_abbr):
     Lineup JSON may use different abbreviations (WSH vs WSN, SD vs SDP, etc.)."""
     # Standard abbreviation -> lineup JSON abbreviation mapping
     ALT = {
-        # Only AZ ↔ ARI differs now (our standard matches dept1 short codes)
+        # Standard <-> lineup JSON abbreviation differences
         'ARI': 'AZ',
         'AZ': 'ARI',
+        'OAK': 'ATH',  # Lineup file uses ATH (Athletics' new abbr)
+        'ATH': 'OAK',
     }
     homes = [home_abbr] + ([ALT[home_abbr]] if home_abbr in ALT else [])
     aways = [away_abbr] + ([ALT[away_abbr]] if away_abbr in ALT else [])
