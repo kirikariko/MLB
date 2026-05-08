@@ -2969,6 +2969,7 @@ def build_dept32_json(df, collector, date_str, output_path):
 def push_to_github(repo_dir, files, date_str):
     """Stage, commit, and push specified files to GitHub.
     Silently no-ops if git is not available or remote is unreachable.
+    Auto-recovers from stale .git/index.lock files (common when prior run crashed).
     """
     import subprocess
 
@@ -2981,9 +2982,24 @@ def push_to_github(repo_dir, files, date_str):
         print(f"  [Git] Not a git repo — skipping push ({r.stderr.strip()})")
         return
 
+    # Auto-recover from stale lock file (no live git process holding it)
+    lock_path = os.path.join(repo_dir, '.git', 'index.lock')
+    if os.path.exists(lock_path):
+        # Check age — if older than 60 seconds, almost certainly stale
+        try:
+            age = time.time() - os.path.getmtime(lock_path)
+            if age > 60:
+                os.remove(lock_path)
+                print(f"  [Git] Removed stale index.lock (age {age:.0f}s)")
+        except OSError as e:
+            print(f"  [Git] Could not remove stale lock: {e}")
+
     # Stage only the files we want
     rel_files = [os.path.relpath(f, repo_dir) for f in files]
-    run(['git', 'add', '--'] + rel_files)
+    add_result = run(['git', 'add', '--'] + rel_files)
+    if add_result.returncode != 0:
+        print(f"  [Git] Stage failed: {add_result.stderr.strip()}")
+        return
 
     # Check if anything actually changed
     r = run(['git', 'diff', '--cached', '--quiet'])
