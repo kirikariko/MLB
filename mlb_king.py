@@ -1496,6 +1496,26 @@ def calc_bullpen_fatigue(schedule, team_id, mlb_api, game_date):
     return result
 
 
+def _atomic_replace(src, dst, max_retries=5):
+    """os.replace(src, dst) with retry on Windows PermissionError.
+
+    Windows fails atomic rename if the target file is open by another process
+    (Excel, file viewer, Cowork sync, antivirus scan). Retry with short backoff
+    to handle transient locks.
+    """
+    last_err = None
+    for attempt in range(max_retries):
+        try:
+            os.replace(src, dst)
+            return
+        except (PermissionError, OSError) as e:
+            last_err = e
+            # Backoff: 0.2s, 0.4s, 0.8s, 1.6s, 3.2s (total ~6.2s)
+            time.sleep(0.2 * (2 ** attempt))
+    # Final attempt failed — propagate the error
+    raise last_err
+
+
 def safe_float(val, default=None):
     """Safely convert to float."""
     if val is None:
@@ -2495,7 +2515,7 @@ def main():
         df.to_csv(f, index=False, lineterminator='\n')
         f.flush()
         os.fsync(f.fileno())  # force OS-level flush to disk
-    os.replace(csv_tmp, csv_path)
+    _atomic_replace(csv_tmp, csv_path)
 
     # --- JSON ---
     json_tmp = json_path + '.writing'
@@ -2503,7 +2523,7 @@ def main():
         df.to_json(f, orient='records', indent=2)
         f.flush()
         os.fsync(f.fileno())
-    os.replace(json_tmp, json_path)
+    _atomic_replace(json_tmp, json_path)
 
     print(f"\nSaved to {csv_path} ({len(df)} rows, {os.path.getsize(csv_path)} bytes)")
     print(f"Saved to {json_path} ({os.path.getsize(json_path)} bytes)")
@@ -2827,13 +2847,13 @@ def build_dept31_json(df, collector, date_str, output_path):
         'games': games_out,
     }
 
-    # Atomic write
+    # Atomic write (with retry for Windows file-lock conflicts)
     tmp = output_path + '.writing'
     with open(tmp, 'w', encoding='utf-8') as f:
         json.dump(payload, f, indent=2, ensure_ascii=False, default=str)
         f.flush()
         os.fsync(f.fileno())
-    os.replace(tmp, output_path)
+    _atomic_replace(tmp, output_path)
     print(f"Saved to {output_path} ({len(games_out)} games, {os.path.getsize(output_path)} bytes)")
 
 
@@ -2983,14 +3003,22 @@ def push_to_github(repo_dir, files, date_str):
         return
 
     # Auto-recover from stale lock file (no live git process holding it)
+    # mlb_king.py is single-threaded and never runs concurrently with itself,
+    # so any lock present at this point is from a crashed prior run.
     lock_path = os.path.join(repo_dir, '.git', 'index.lock')
     if os.path.exists(lock_path):
-        # Check age — if older than 60 seconds, almost certainly stale
         try:
             age = time.time() - os.path.getmtime(lock_path)
-            if age > 60:
+            if age > 10:  # 10s buffer for the very rare case of an active git op
                 os.remove(lock_path)
                 print(f"  [Git] Removed stale index.lock (age {age:.0f}s)")
+            else:
+                # Wait briefly then remove anyway — at this point in main(),
+                # no other git op should be running.
+                time.sleep(2)
+                if os.path.exists(lock_path):
+                    os.remove(lock_path)
+                    print(f"  [Git] Removed lock after 2s wait")
         except OSError as e:
             print(f"  [Git] Could not remove stale lock: {e}")
 
