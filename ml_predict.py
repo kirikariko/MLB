@@ -64,7 +64,8 @@ BASE_DIR = Path(__file__).parent  # MLB 폴더 루트
 # 97개 컬럼 중 학습에 사용할 피처 (타겟/메타 제외)
 NON_FEATURE_COLS = [
     'Winning_Team', 'UO_RESULT', 'DATE', 'GAME_ID',
-    'UMP_NAME', 'HOME_SIT_TAG', 'AWAY_SIT_TAG'
+    'UMP_NAME', 'HOME_SIT_TAG', 'AWAY_SIT_TAG',
+    'y_wl', 'y_ou',  # target columns — exclude from features
 ]
 
 # ⛔ 절대 제거 금지 보호 피처 (CLAUDE.md 규칙)
