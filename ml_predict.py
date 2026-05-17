@@ -743,11 +743,90 @@ def main():
     )
 
     print(f"\n{'=' * 60}")
-    print(f"✅ 완료! GitHub push 후 Claude가 다운로드합니다.")
-    print(f"  git add {out_path.relative_to(base_dir)}")
-    print(f"  git commit -m 'ml_predictions {date_str}'")
-    print(f"  git push")
+    print(f"✅ 완료. GitHub 자동 푸시 진행...")
     print(f"{'=' * 60}")
+
+    # 자동 git add + commit + push
+    auto_git_push(out_path, date_str, base_dir)
+
+
+def auto_git_push(out_path, date_str: str, base_dir):
+    """ml_predictions.json을 자동으로 git add + commit + push.
+    Stale lock 자동 복구, push 실패 시 rebase 1회 시도 후 재푸시.
+    """
+    import subprocess
+    import time as _time
+
+    def run(cmd):
+        return subprocess.run(cmd, cwd=str(base_dir), capture_output=True, text=True)
+
+    # 0. git repo 여부 확인
+    r = run(['git', 'rev-parse', '--is-inside-work-tree'])
+    if r.returncode != 0:
+        print(f"  [Git] Not a git repo — skipping push")
+        return
+
+    # 1. Stale lock 자동 제거 (10초 이상이면 즉시, 그 미만은 2초 대기 후 제거)
+    lock_path = base_dir / '.git' / 'index.lock'
+    if lock_path.exists():
+        try:
+            age = _time.time() - lock_path.stat().st_mtime
+            if age > 10:
+                lock_path.unlink()
+                print(f"  [Git] Removed stale index.lock (age {age:.0f}s)")
+            else:
+                _time.sleep(2)
+                if lock_path.exists():
+                    lock_path.unlink()
+                    print(f"  [Git] Removed lock after 2s wait")
+        except OSError as e:
+            print(f"  [Git] Could not remove lock: {e}")
+
+    # 2. Stage the file
+    rel_path = str(out_path.relative_to(base_dir)).replace('\\', '/')
+    r = run(['git', 'add', '--', rel_path])
+    if r.returncode != 0:
+        print(f"  [Git] Stage failed: {r.stderr.strip()}")
+        return
+
+    # 3. 변경 사항 있는지 확인
+    r = run(['git', 'diff', '--cached', '--quiet'])
+    if r.returncode == 0:
+        print(f"  [Git] No changes to push")
+        return
+
+    # 4. Commit
+    msg = f"ml_predictions {date_str}"
+    r = run(['git', 'commit', '-m', msg])
+    if r.returncode != 0:
+        print(f"  [Git] Commit failed: {r.stderr.strip()}")
+        return
+    print(f"  [Git] Committed: {msg}")
+
+    # 5. Push — 실패 시 rebase 1회 시도 후 재푸시
+    def push_attempt():
+        for branch in ('main', 'master'):
+            r = run(['git', 'push', '-u', 'origin', f'HEAD:{branch}'])
+            if r.returncode == 0:
+                return True, branch
+        return False, r.stderr.strip()
+
+    ok, info = push_attempt()
+    if ok:
+        print(f"  [Git] Pushed to origin/{info}: {msg}")
+        return
+
+    # 푸시 실패 — non-fast-forward일 가능성. rebase 후 재시도
+    print(f"  [Git] Push rejected, trying rebase+push...")
+    rebase = run(['git', 'pull', 'origin', 'main', '--rebase', '--autostash'])
+    if rebase.returncode != 0:
+        print(f"  [Git] Rebase failed: {rebase.stderr.strip()}")
+        return
+    ok, info = push_attempt()
+    if ok:
+        print(f"  [Git] Pushed (after rebase) to origin/{info}: {msg}")
+    else:
+        print(f"  [Git] Push failed even after rebase: {info}")
 
 
 if __name__ == '__main__':
