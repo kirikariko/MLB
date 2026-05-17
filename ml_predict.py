@@ -90,32 +90,50 @@ GITHUB_BRANCH = 'main'
 
 
 def fetch_from_github(remote_path: str, local_path: Path, max_retries: int = 2) -> bool:
-    """Download a file from GitHub raw and save to local_path.
+    """Sync a file from GitHub via `git fetch` + checkout (works with private repos).
+
+    Strategy:
+      1. Use git CLI (already authenticated) to fetch origin/{branch}
+      2. Checkout `remote_path` from origin/{branch} into local_path
     Returns True on success, False on failure (caller should fallback to local cache).
     """
-    import urllib.request
-    import urllib.error
+    import subprocess
 
-    url = f"https://raw.githubusercontent.com/{GITHUB_REPO}/{GITHUB_BRANCH}/{remote_path}"
+    repo_root = Path(__file__).parent
     last_err = None
     for attempt in range(max_retries):
         try:
-            req = urllib.request.Request(url, headers={'User-Agent': 'ml_predict.py'})
-            with urllib.request.urlopen(req, timeout=20) as resp:
-                data = resp.read()
-            # Write atomically
+            # Fetch latest from remote (silent)
+            r = subprocess.run(
+                ['git', 'fetch', 'origin', GITHUB_BRANCH],
+                cwd=str(repo_root), capture_output=True, text=True, timeout=30,
+            )
+            if r.returncode != 0:
+                last_err = f"git fetch failed: {r.stderr.strip()}"
+                continue
+
+            # Checkout the file from origin/{branch} into local_path
             local_path.parent.mkdir(parents=True, exist_ok=True)
+            # Get file contents from remote ref via git show
+            r2 = subprocess.run(
+                ['git', 'show', f'origin/{GITHUB_BRANCH}:{remote_path}'],
+                cwd=str(repo_root), capture_output=True, timeout=30,
+            )
+            if r2.returncode != 0:
+                last_err = f"git show failed: {r2.stderr.decode().strip()}"
+                continue
+
             tmp = local_path.with_suffix(local_path.suffix + '.dl')
-            tmp.write_bytes(data)
+            tmp.write_bytes(r2.stdout)
             tmp.replace(local_path)
-            print(f"  [GitHub] Downloaded {remote_path} ({len(data)} bytes) -> {local_path}")
+            print(f"  [GitHub] Synced {remote_path} ({len(r2.stdout)} bytes) -> {local_path}")
             return True
-        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError) as e:
-            last_err = e
+        except (subprocess.TimeoutExpired, OSError) as e:
+            last_err = str(e)
             if attempt < max_retries - 1:
                 import time as _t
                 _t.sleep(1)
-    print(f"  [GitHub] Failed to fetch {url}: {last_err}")
+    print(f"  [GitHub] Failed to sync {remote_path}: {last_err}")
     return False
 
 
