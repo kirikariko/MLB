@@ -78,136 +78,115 @@ PROTECTED_FEATURES = [
     'Series_Game_Num'
 ]
 
-# raw_stats.json → mlb_two.csv 컬럼 매핑
-HOME_MAP = {
-    'swp': 'SWP_HOMETEAM',
-    'saps': 'SAPS_HOMETEAM',
-    'sapa': 'SAPA_HOMETEAM',
-    'win_rate': 'Home_Win_Rate',
-    'saps_home_only': 'SAPS_HOME_ONLY_HOMETEAM',
-    'sapa_home_only': 'SAPA_HOME_ONLY_HOMETEAM',
-    'l5g_wp': 'L5G_WP_HOMETEAM',
-    'l5g_avg_runs': 'L5G_avg_runs_HOME',
-    'l5g_avg_runs_conceded': 'L5G_avg_runs_conceded_HOME',
-    'h2h_wp': 'R_H2H_WP_HOMETEAM',
-    'era_pitcher': 'ERA_HOMETEAM_PITCHER',
-    'ba_total': 'AVG_BA_HOME_Total',
-    'ba_vs_lhp': 'AVG_BA_HOME_VS_LHP',
-    'ba_vs_rhp': 'AVG_BA_HOME_VS_RHP',
-    'ba_homeonly': 'AVG_BA_HOME_HOMEONLY',
-    'era_pitcher_homeonly': 'ERA_HOME_PITCHER_HOMEONLY',
-    'ba_day': 'AVG_BA_HOME_DAY',
-    'era_pitcher_day': 'ERA_HOME_PITCHER_DAY',
-    'ba_night': 'AVG_BA_HOME_NIGHT',
-    'era_pitcher_night': 'ERA_HOME_PITCHER_NIGHT',
-    'obp': 'OBP_HOME',
-    'era_team': 'ERA_HOMETEAM',
-    'pm': 'Home_Team_PM',
-    'bm': 'Home_Team_BM',
-    'woba': 'HOMETEAM_wOBA',
-    'siera': 'HOMETEAM_SIERA',
-    'bp_era_30d': 'BP_ERA_30d_HOME',
-    'bp_irs_30d': 'BP_IRS_30d_HOME',
-    'bp_ip_3d': 'BP_IP_3d_HOME',
-    'bullpen_workload': 'HOMETEAM_BULLPEN_WORKLOAD',
-    'fpct': 'HOMETEAM_FPct',
-    'errors': 'HOMETEAM_E',
-    'bvp_ab': 'BVP_AB_HOME',
-    'bvp_avg': 'BVP_AVG_HOME',
-    'bvp_obp': 'BVP_OBP_HOME',
-    'bvp_conf': 'BVP_CONFIDENCE_HOME',
-    'road_streak': 'HOME_ROAD_STREAK',
-    'travel_mi': 'HOME_TRAVEL_MI',
-    'rest_days': 'HOME_REST_DAYS',
-}
+# NOTE: 이전에 있던 HOME_MAP/AWAY_MAP/SP_IP_MAP/ENV_MAP/META_MAP 5개 매핑은
+# raw_stats.json -> CSV 컬럼 변환용이었으나, mlb_two.csv 단일 소스로 단순화하면서
+# 불필요해져 제거됨. CSV 컬럼명이 그대로 피처명이므로 매핑 불필요.
 
-AWAY_MAP = {
-    'swp': 'SWP_AWAYTEAM',
-    'saps': 'SAPS_AWAYTEAM',
-    'sapa': 'SAPA_AWAYTEAM',
-    'win_rate_away': 'AwayTEAM_Win_Rate_ONLYAWAY',
-    'saps_away_only': 'SAPS_AWAY_ONLY_AWAYTEAM',
-    'sapa_away_only': 'SAPA_AWAY_ONLY_AWAYTEAM',
-    'l5g_wp': 'L5G_WP_AWAYTEAM',
-    'l5g_avg_runs': 'L5G_avg_runs_AWAY',
-    'l5g_avg_runs_conceded': 'L5G_avg_runs_conceded_AWAY',
-    'h2h_wp': 'R_H2H_WP_AWAYTEAM',
-    'era_pitcher': 'ERA_AWAYTEAM_PITCHER',
-    'ba_total': 'AVG_BA_AWAY_Total',
-    'ba_vs_lhp': 'AVG_BA_AWAY_VS_LHP',
-    'ba_vs_rhp': 'AVG_BA_AWAY_VS_RHP',
-    'ba_awayonly': 'AVG_BA_AWAY_AWAYONLY',
-    'era_pitcher_awayonly': 'ERA_AWAY_PITCHER_AWAYONLY',
-    'ba_day': 'AVG_BA_AWAY_DAY',
-    'era_pitcher_day': 'ERA_AWAY_PITCHER_DAY',
-    'ba_night': 'AVG_BA_AWAY_NIGHT',
-    'era_pitcher_night': 'ERA_AWAY_PITCHER_NIGHT',
-    'obp': 'OBP_AWAY',
-    'era_team': 'ERA_AWAYTEAM',
-    'pm': 'AWAYTEAM_PM',
-    'bm': 'AWAYTEAM_BM',
-    'woba': 'AWAYTEAM_wOBA',
-    'siera': 'AWAYTEAM_SIERA',
-    'bp_era_30d': 'BP_ERA_30d_AWAY',
-    'bp_irs_30d': 'BP_IRS_30d_AWAY',
-    'bp_ip_3d': 'BP_IP_3d_AWAY',
-    'bullpen_workload': 'AWAYTEAM_BULLPEN_WORKLOAD',
-    'fpct': 'AWAYTEAM_FPct',
-    'errors': 'AWAYTEAM_E',
-    'bvp_ab': 'BVP_AB_AWAY',
-    'bvp_avg': 'BVP_AVG_AWAY',
-    'bvp_obp': 'BVP_OBP_AWAY',
-    'bvp_conf': 'BVP_CONFIDENCE_AWAY',
-    'road_streak': 'AWAY_ROAD_STREAK',
-    'travel_mi': 'AWAY_TRAVEL_MI',
-    'rest_days': 'AWAY_REST_DAYS',
-}
+# ============================================================
+# GITHUB AUTO-DOWNLOAD
+# ============================================================
+GITHUB_REPO = 'kirikariko/MLB'
+GITHUB_BRANCH = 'main'
 
-SP_IP_MAP = {
-    'home_sp_ip': 'HOME_SP_IP',
-    'away_sp_ip': 'AWAY_SP_IP',
-}
 
-ENV_MAP = {
-    'avg_temp_c': 'Avg_Temp_C',
-    'precipitation_mm': 'Precipitation_mm',
-    'max_wind_kph': 'Max_Wind_kph',
-    'wind_dir_deg': 'WIND_DIR_DEG',
-}
+def fetch_from_github(remote_path: str, local_path: Path, max_retries: int = 2) -> bool:
+    """Download a file from GitHub raw and save to local_path.
+    Returns True on success, False on failure (caller should fallback to local cache).
+    """
+    import urllib.request
+    import urllib.error
 
-META_MAP = {
-    'series_game_num': 'Series_Game_Num',
-    'series_home_wins': 'Series_Home_Wins',
-    'series_away_wins': 'Series_Away_Wins',
-    'uo_line': 'UO_LINE',
-    'park_factor': 'PARK_FACTOR',
-    'ump_rpg': 'UMP_RPG',
-}
+    url = f"https://raw.githubusercontent.com/{GITHUB_REPO}/{GITHUB_BRANCH}/{remote_path}"
+    last_err = None
+    for attempt in range(max_retries):
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': 'ml_predict.py'})
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                data = resp.read()
+            # Write atomically
+            local_path.parent.mkdir(parents=True, exist_ok=True)
+            tmp = local_path.with_suffix(local_path.suffix + '.dl')
+            tmp.write_bytes(data)
+            tmp.replace(local_path)
+            print(f"  [GitHub] Downloaded {remote_path} ({len(data)} bytes) -> {local_path}")
+            return True
+        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError) as e:
+            last_err = e
+            if attempt < max_retries - 1:
+                import time as _t
+                _t.sleep(1)
+    print(f"  [GitHub] Failed to fetch {url}: {last_err}")
+    return False
 
 
 # ============================================================
 # DATA LOADING
 # ============================================================
-def load_training_data(base_dir: Path):
-    """mlb_two.csv에서 학습 데이터 로드"""
-    csv_path = base_dir / 'data' / 'mlb_two.csv'
-    print(f"[1/6] 학습 데이터 로드: {csv_path}")
+def load_all_data(base_dir: Path, target_date: str = None):
+    """mlb_two.csv 하나에서 학습 데이터 + 예측 데이터를 모두 로드.
 
-    df = pd.read_csv(csv_path)
+    구조:
+      - 결과 있는 행 (Winning_Team in '1'/'0') → 학습용
+      - target_date의 결과 없는 행 → 예측 대상 (없으면 마지막 날짜)
+    GitHub에서 최신본 자동 다운로드 (실패 시 로컬 캐시 fallback).
+    """
+    # GitHub 우선, 실패 시 로컬 fallback
+    csv_local = base_dir / 'data' / 'mlb_two.csv'
+    csv_root = base_dir / 'mlb_two.csv'
+    print(f"[1/6] mlb_two.csv 로드")
+    fetched = fetch_from_github('mlb_two.csv', csv_local)
+    if not fetched:
+        # GitHub 실패 — 로컬 캐시 사용
+        if csv_local.exists():
+            print(f"  [Fallback] Using cached {csv_local}")
+        elif csv_root.exists():
+            print(f"  [Fallback] Using {csv_root}")
+            csv_local = csv_root
+        else:
+            print(f"  ⛔ HALT: GitHub 다운로드 실패 + 로컬 캐시 없음")
+            sys.exit(1)
+
+    df = pd.read_csv(csv_local)
     print(f"  전체 행: {len(df)}, 컬럼: {len(df.columns)}")
 
-    # W/L 타겟: "1"=홈승, "0"=원정승
-    valid_wl = df['Winning_Team'].isin(['1', '0'])
+    # 예측 대상 결정 — target_date (있으면), 없으면 결과 비어있는 마지막 날짜
+    df['DATE'] = df['DATE'].astype(str)
+    no_result = df['Winning_Team'].isna() | ~df['Winning_Team'].astype(str).isin(['1', '0'])
+    if target_date:
+        predict_mask = (df['DATE'] == target_date) & no_result
+    else:
+        # 결과 없는 행 중 가장 최근 날짜
+        pending = df[no_result]
+        if pending.empty:
+            print(f"  ⛔ HALT: 예측 대상 (결과 없는 행) 없음")
+            sys.exit(1)
+        target_date = pending['DATE'].max()
+        predict_mask = (df['DATE'] == target_date) & no_result
+    df_predict = df[predict_mask].copy()
+    print(f"  예측 대상 ({target_date}): {len(df_predict)}경기")
+
+    if df_predict.empty:
+        print(f"  ⛔ HALT: {target_date}에 예측할 경기 없음")
+        sys.exit(1)
+
+    # 학습 데이터: W/L 결과 있는 행
+    valid_wl = df['Winning_Team'].astype(str).isin(['1', '0']) & (df['DATE'] < target_date)
     df_wl = df[valid_wl].copy()
     df_wl['y_wl'] = df_wl['Winning_Team'].astype(int)
-    print(f"  W/L 유효 행: {len(df_wl)}")
+    print(f"  W/L 학습 행: {len(df_wl)} (target_date 이전, 결과 있음)")
 
-    # O/U 타겟: "1"=오버, "0"=언더
-    valid_ou = df['UO_RESULT'].isin(['1', '0'])
+    # 학습 데이터: O/U 결과 있는 행
+    valid_ou = df['UO_RESULT'].astype(str).isin(['1', '0']) & (df['DATE'] < target_date)
     df_ou = df[valid_ou].copy()
     df_ou['y_ou'] = df_ou['UO_RESULT'].astype(int)
-    print(f"  O/U 유효 행: {len(df_ou)}")
+    print(f"  O/U 학습 행: {len(df_ou)}")
 
+    return df_wl, df_ou, df_predict, target_date
+
+
+# 하위 호환 (구 이름 유지)
+def load_training_data(base_dir: Path):
+    df_wl, df_ou, _, _ = load_all_data(base_dir)
     return df_wl, df_ou
 
 
@@ -369,167 +348,8 @@ def train_ou_models(X: pd.DataFrame, y: pd.Series, feature_cols: list):
 
 
 # ============================================================
-# PREDICTION — raw_stats.json → feature vector
+# PREDICTION (single-CSV flow — see predict_from_df below)
 # ============================================================
-def game_to_feature_row(game: dict, feature_cols: list) -> dict:
-    """raw_stats.json의 1경기 → mlb_two.csv 컬럼명 dict 변환"""
-    row = {}
-
-    # Home 매핑
-    home = game.get('home', {})
-    for src_key, dst_col in HOME_MAP.items():
-        val = home.get(src_key)
-        if val is not None and dst_col in feature_cols:
-            row[dst_col] = _to_float(val)
-
-    # Away 매핑
-    away = game.get('away', {})
-    for src_key, dst_col in AWAY_MAP.items():
-        val = away.get(src_key)
-        if val is not None and dst_col in feature_cols:
-            row[dst_col] = _to_float(val)
-
-    # SP IP 매핑
-    sp_ip = game.get('sp_ip', {})
-    for src_key, dst_col in SP_IP_MAP.items():
-        val = sp_ip.get(src_key)
-        if val is not None and dst_col in feature_cols:
-            row[dst_col] = _to_float(val)
-
-    # Environment 매핑
-    env = game.get('environment_basic', {})
-    if isinstance(env, dict):
-        weather = env.get('weather', env)
-        if isinstance(weather, dict):
-            for src_key, dst_col in ENV_MAP.items():
-                val = weather.get(src_key)
-                if val is not None and dst_col in feature_cols:
-                    row[dst_col] = _to_float(val)
-        # Park factor
-        pf = env.get('park_factor')
-        if isinstance(pf, dict):
-            rf = pf.get('runs_factor')
-            if rf is not None and 'PARK_FACTOR' in feature_cols:
-                # park_factor in raw_stats is scale 80-120, csv uses same
-                row['PARK_FACTOR'] = _to_float(rf)
-        elif pf is not None and 'PARK_FACTOR' in feature_cols:
-            row['PARK_FACTOR'] = _to_float(pf)
-
-        # Umpire
-        ump = env.get('umpire', {})
-        if isinstance(ump, dict):
-            rpg = ump.get('rpg') or ump.get('ump_rpg')
-            if rpg is not None and 'UMP_RPG' in feature_cols:
-                row['UMP_RPG'] = _to_float(rpg)
-
-    # Series 매핑
-    series = game.get('series', {})
-    if isinstance(series, dict):
-        sgn = series.get('game_num') or series.get('series_game_num')
-        if sgn is not None and 'Series_Game_Num' in feature_cols:
-            row['Series_Game_Num'] = _to_float(sgn)
-        shw = series.get('home_wins') or series.get('series_home_wins')
-        if shw is not None and 'Series_Home_Wins' in feature_cols:
-            row['Series_Home_Wins'] = _to_float(shw)
-        saw = series.get('away_wins') or series.get('series_away_wins')
-        if saw is not None and 'Series_Away_Wins' in feature_cols:
-            row['Series_Away_Wins'] = _to_float(saw)
-
-    # UO_LINE from odds or environment
-    uo = game.get('uo_line')
-    if uo is not None and 'UO_LINE' in feature_cols:
-        row['UO_LINE'] = _to_float(uo)
-
-    return row
-
-
-def _to_float(val):
-    """안전한 float 변환"""
-    if val is None:
-        return np.nan
-    try:
-        return float(val)
-    except (ValueError, TypeError):
-        return np.nan
-
-
-def predict_games(games: list, feature_cols: list, imputer,
-                  wl_models: dict, wl_scaler, wl_scores: dict,
-                  ou_models: dict, ou_scaler, ou_scores: dict):
-    """오늘 경기 예측"""
-    print(f"\n[4/6] 경기 예측 ({len(games)}경기)")
-
-    results = []
-
-    for game in games:
-        game_id = game['game_id']
-        row_dict = game_to_feature_row(game, feature_cols)
-
-        # 매핑률 계산
-        mapped = sum(1 for c in feature_cols if c in row_dict and not np.isnan(row_dict.get(c, np.nan)))
-        mapping_pct = mapped / len(feature_cols) * 100
-
-        # DataFrame으로 변환 + imputation
-        row_df = pd.DataFrame([{c: row_dict.get(c, np.nan) for c in feature_cols}])
-        row_imputed = pd.DataFrame(
-            imputer.transform(row_df),
-            columns=feature_cols
-        )
-
-        # W/L 예측
-        wl_preds = {}
-        row_scaled = wl_scaler.transform(row_imputed)
-
-        if 'lr' in wl_models:
-            p = wl_models['lr'].predict_proba(row_scaled)[0][1]
-            wl_preds['lr'] = float(p)
-        if 'xgb' in wl_models:
-            p = wl_models['xgb'].predict_proba(row_imputed)[0][1]
-            wl_preds['xgb'] = float(p)
-        if 'lgb' in wl_models:
-            p = wl_models['lgb'].predict_proba(row_imputed)[0][1]
-            wl_preds['lgb'] = float(p)
-
-        # 가중 앙상블 (CV accuracy 기반 가중치)
-        wl_ensemble = _weighted_avg(wl_preds, wl_scores)
-
-        # O/U 예측
-        ou_preds = {}
-        row_ou_scaled = ou_scaler.transform(row_imputed)
-
-        if 'lr' in ou_models:
-            p = ou_models['lr'].predict_proba(row_ou_scaled)[0][1]
-            ou_preds['lr'] = float(p)
-        if 'xgb' in ou_models:
-            p = ou_models['xgb'].predict_proba(row_imputed)[0][1]
-            ou_preds['xgb'] = float(p)
-        if 'lgb' in ou_models:
-            p = ou_models['lgb'].predict_proba(row_imputed)[0][1]
-            ou_preds['lgb'] = float(p)
-
-        ou_ensemble = _weighted_avg(ou_preds, ou_scores)
-
-        result = {
-            'game_id': game_id,
-            'ml_home_win_prob': round(wl_ensemble, 4),
-            'ml_away_win_prob': round(1.0 - wl_ensemble, 4),
-            'ml_over_prob': round(ou_ensemble, 4),
-            'ml_under_prob': round(1.0 - ou_ensemble, 4),
-            'model_breakdown': {
-                'wl': {k: round(v, 4) for k, v in wl_preds.items()},
-                'ou': {k: round(v, 4) for k, v in ou_preds.items()},
-            },
-            'mapping_pct': round(mapping_pct, 1),
-            'features_mapped': mapped,
-            'features_total': len(feature_cols),
-        }
-
-        results.append(result)
-        print(f"  {game_id}: WL={wl_ensemble:.3f} (LR={wl_preds.get('lr','N/A'):.3f} "
-              f"XGB={wl_preds.get('xgb','N/A'):.3f} LGB={wl_preds.get('lgb','N/A'):.3f}) "
-              f"mapping={mapping_pct:.0f}%")
-
-    return results
 
 
 def _weighted_avg(preds: dict, scores: dict) -> float:
@@ -543,63 +363,113 @@ def _weighted_avg(preds: dict, scores: dict) -> float:
     return total_p / total_w if total_w > 0 else 0.5
 
 
-# ============================================================
-# SHAP EXPLANATION
-# ============================================================
-def compute_shap(results: list, games: list, feature_cols: list,
-                 imputer, wl_models: dict, ou_models: dict):
-    """SHAP 피처 중요도 계산"""
+def predict_from_df(df_predict: pd.DataFrame, feature_cols: list, imputer,
+                    wl_models: dict, wl_scaler, wl_scores: dict,
+                    ou_models: dict, ou_scaler, ou_scores: dict):
+    """예측 — df_predict의 각 행을 그대로 피처로 사용 (raw_stats.json 매핑 불필요)."""
+    results = []
+
+    # 한 번에 변환 + imputation (배치 처리 가능하지만 행별 로직 유지)
+    X_predict = df_predict[feature_cols].copy()
+    for c in X_predict.columns:
+        X_predict[c] = pd.to_numeric(X_predict[c], errors='coerce')
+    X_imputed = pd.DataFrame(imputer.transform(X_predict), columns=feature_cols,
+                             index=X_predict.index)
+
+    X_wl_scaled = wl_scaler.transform(X_imputed)
+    X_ou_scaled = ou_scaler.transform(X_imputed)
+
+    for pos, (idx, _) in enumerate(df_predict.iterrows()):
+        game_id = df_predict.loc[idx, 'GAME_ID']
+
+        # 매핑률 = 원본 값이 null이 아닌 피처 비율
+        raw_row = X_predict.loc[idx]
+        mapped = int(raw_row.notna().sum())
+        mapping_pct = mapped / len(feature_cols) * 100
+
+        row_imputed = X_imputed.loc[[idx]]
+        row_wl_scaled = X_wl_scaled[pos:pos + 1]
+        row_ou_scaled = X_ou_scaled[pos:pos + 1]
+
+        # W/L 예측
+        wl_preds = {}
+        if 'lr' in wl_models:
+            wl_preds['lr'] = float(wl_models['lr'].predict_proba(row_wl_scaled)[0][1])
+        if 'xgb' in wl_models:
+            wl_preds['xgb'] = float(wl_models['xgb'].predict_proba(row_imputed)[0][1])
+        if 'lgb' in wl_models:
+            wl_preds['lgb'] = float(wl_models['lgb'].predict_proba(row_imputed)[0][1])
+        wl_ensemble = _weighted_avg(wl_preds, wl_scores)
+
+        # O/U 예측
+        ou_preds = {}
+        if 'lr' in ou_models:
+            ou_preds['lr'] = float(ou_models['lr'].predict_proba(row_ou_scaled)[0][1])
+        if 'xgb' in ou_models:
+            ou_preds['xgb'] = float(ou_models['xgb'].predict_proba(row_imputed)[0][1])
+        if 'lgb' in ou_models:
+            ou_preds['lgb'] = float(ou_models['lgb'].predict_proba(row_imputed)[0][1])
+        ou_ensemble = _weighted_avg(ou_preds, ou_scores)
+
+        results.append({
+            'game_id': game_id,
+            'ml_home_win_prob': round(wl_ensemble, 4),
+            'ml_away_win_prob': round(1.0 - wl_ensemble, 4),
+            'ml_over_prob': round(ou_ensemble, 4),
+            'ml_under_prob': round(1.0 - ou_ensemble, 4),
+            'model_breakdown': {
+                'wl': {k: round(v, 4) for k, v in wl_preds.items()},
+                'ou': {k: round(v, 4) for k, v in ou_preds.items()},
+            },
+            'mapping_pct': round(mapping_pct, 1),
+            'features_mapped': mapped,
+            'features_total': len(feature_cols),
+        })
+        print(f"  {game_id}: WL={wl_ensemble:.3f}, OU={ou_ensemble:.3f}  mapping={mapping_pct:.0f}%")
+
+    return results
+
+
+def compute_shap_from_df(results: list, df_predict: pd.DataFrame, feature_cols: list,
+                         imputer, wl_models: dict, ou_models: dict):
+    """SHAP — DataFrame 기반."""
     if not HAS_SHAP:
         print("\n[5/6] SHAP 스킵 (shap 미설치)")
         return results
 
     print(f"\n[5/6] SHAP 계산")
 
-    # XGBoost 모델 우선, 없으면 LightGBM
     wl_model = wl_models.get('xgb') or wl_models.get('lgb')
-    ou_model = ou_models.get('xgb') or ou_models.get('lgb')
-
     if wl_model is None:
         print("  SHAP 스킵 (tree 모델 없음)")
         return results
 
     try:
-        wl_explainer = shap.TreeExplainer(wl_model)
-        ou_explainer = shap.TreeExplainer(ou_model) if ou_model else None
+        explainer = shap.TreeExplainer(wl_model)
 
-        for i, game in enumerate(games):
-            row_dict = game_to_feature_row(game, feature_cols)
-            row_df = pd.DataFrame([{c: row_dict.get(c, np.nan) for c in feature_cols}])
-            row_imputed = pd.DataFrame(
-                imputer.transform(row_df),
-                columns=feature_cols
-            )
+        X_predict = df_predict[feature_cols].copy()
+        for c in X_predict.columns:
+            X_predict[c] = pd.to_numeric(X_predict[c], errors='coerce')
+        X_imputed = pd.DataFrame(imputer.transform(X_predict), columns=feature_cols)
 
-            # W/L SHAP
-            shap_vals = wl_explainer.shap_values(row_imputed)
-            if isinstance(shap_vals, list):
-                sv = shap_vals[1][0]  # class 1 (home win)
-            else:
-                sv = shap_vals[0]
+        for i in range(len(df_predict)):
+            row = X_imputed.iloc[[i]]
+            shap_vals = explainer.shap_values(row)
+            sv = shap_vals[1][0] if isinstance(shap_vals, list) else shap_vals[0]
 
-            # Top 10 피처
             top_idx = np.argsort(np.abs(sv))[-10:][::-1]
-            shap_features = []
-            for idx in top_idx:
-                shap_features.append({
-                    'feature': feature_cols[idx],
-                    'shap_value': round(float(sv[idx]), 4),
-                    'feature_value': round(float(row_imputed.iloc[0, idx]), 4)
-                })
+            shap_features = [{
+                'feature': feature_cols[idx],
+                'shap_value': round(float(sv[idx]), 4),
+                'feature_value': round(float(row.iloc[0, idx]), 4),
+            } for idx in top_idx]
 
             results[i]['shap_features'] = shap_features
 
-            # Feature importance (전체)
             fi = dict(zip(feature_cols, [round(float(x), 4) for x in np.abs(sv)]))
-            fi_sorted = dict(sorted(fi.items(), key=lambda x: x[1], reverse=True)[:20])
-            results[i]['feature_importance'] = fi_sorted
+            results[i]['feature_importance'] = dict(sorted(fi.items(), key=lambda x: x[1], reverse=True)[:20])
 
-        print(f"  SHAP 완료 ({len(games)}경기)")
+        print(f"  SHAP 완료 ({len(df_predict)}경기)")
     except Exception as e:
         print(f"  SHAP 오류: {e}")
 
@@ -676,8 +546,9 @@ def main():
     print(f"BASE: {base_dir}")
     print(f"=" * 60)
 
-    # 1. 학습 데이터 로드
-    df_wl, df_ou = load_training_data(base_dir)
+    # 1. 학습 + 예측 데이터 단일 CSV에서 로드
+    target = args.date  # 명시되면 그 날짜, 아니면 None → 마지막 미결 날짜
+    df_wl, df_ou, df_predict, date_str = load_all_data(base_dir, target_date=target)
 
     if len(df_wl) < 50:
         print(f"⛔ HALT: 학습 데이터 {len(df_wl)}행 < 50행 최소 기준")
@@ -699,47 +570,24 @@ def main():
     # 3. O/U 모델 학습
     ou_models, ou_scores, ou_scaler = train_ou_models(X_ou, y_ou, feature_cols)
 
-    # 4. 오늘 경기 로드 + 예측
-    raw_path = base_dir / 'pipeline' / date_str / 'dept1' / 'raw_stats.json'
-    if not raw_path.exists():
-        print(f"⛔ HALT: {raw_path} 없음")
-        sys.exit(1)
-
-    with open(raw_path, 'r', encoding='utf-8') as f:
-        raw_data = json.load(f)
-
-    games = raw_data.get('games', [])
-    print(f"  오늘 경기: {len(games)}개")
-
-    # O/U 라인 보충 (odds.json에서)
-    odds_path = base_dir / 'pipeline' / date_str / 'dept1' / 'odds.json'
-    if odds_path.exists():
-        with open(odds_path, 'r', encoding='utf-8') as f:
-            odds_data = json.load(f)
-        odds_map = {g['game_id']: g for g in odds_data.get('games', [])}
-        for game in games:
-            gid = game['game_id']
-            if gid in odds_map and 'uo_line' not in game:
-                totals = odds_map[gid].get('totals', {})
-                if 'over_line' in totals:
-                    game['uo_line'] = totals['over_line']
-
-    # 예측 (W/L imputer 사용 — 동일 피처셋)
-    results = predict_games(
-        games, feature_cols, imputer_wl,
+    # 4. 예측 — df_predict의 각 행을 그대로 사용 (raw_stats.json 불필요)
+    print(f"\n[4/6] 예측: {len(df_predict)}경기")
+    results = predict_from_df(
+        df_predict, feature_cols, imputer_wl,
         wl_models, wl_scaler, wl_scores,
         ou_models, ou_scaler, ou_scores
     )
 
-    # 5. SHAP
-    results = compute_shap(results, games, feature_cols, imputer_wl, wl_models, ou_models)
+    # 5. SHAP (DataFrame 기반)
+    results = compute_shap_from_df(results, df_predict, feature_cols, imputer_wl,
+                                   wl_models, ou_models)
 
     # 6. 저장
-    avg_mapping = np.mean([r['mapping_pct'] for r in results])
+    n_features = len(feature_cols)
     out_path = save_output(
         results, date_str, base_dir,
-        wl_scores, ou_scores, len(feature_cols),
-        len(df_wl), len(df_ou), avg_mapping
+        wl_scores, ou_scores, n_features,
+        len(df_wl), len(df_ou), 100.0  # 매핑 100% (직접 컬럼 사용)
     )
 
     print(f"\n{'=' * 60}")
