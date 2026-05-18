@@ -669,17 +669,14 @@ def auto_git_push(out_path, date_str: str, base_dir):
         return
     print(f"  [Git] Committed: {msg}")
 
-    # 5. Push — 실패 시 rebase 1회 시도 후 재푸시
+    # 5. Push to main only (no master fallback — prevents divergent branches)
     def push_attempt():
-        for branch in ('main', 'master'):
-            r = run(['git', 'push', '-u', 'origin', f'HEAD:{branch}'])
-            if r.returncode == 0:
-                return True, branch
-        return False, r.stderr.strip()
+        r = run(['git', 'push', '-u', 'origin', 'HEAD:main'])
+        return (r.returncode == 0, r.stderr.strip())
 
     ok, info = push_attempt()
     if ok:
-        print(f"  [Git] Pushed to origin/{info}: {msg}")
+        print(f"  [Git] Pushed to origin/main: {msg}")
         return
 
     # 푸시 실패 — non-fast-forward일 가능성. rebase 후 재시도

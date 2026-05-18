@@ -2552,6 +2552,11 @@ def main():
         files_to_push.append(dept32_path)
     push_to_github(base_dir, files_to_push, today_edt)
 
+    # --- Auto upload dept3-1.json + dept3-2.json to Google Drive (update-in-place) ---
+    drive_files = [p for p in (dept31_path, dept32_path) if p and os.path.exists(p)]
+    if drive_files:
+        upload_to_drive(drive_files)
+
 
 # ============================================================
 # DEPT3-2 HELPERS (momentum, fatigue, motivation, schedule context)
@@ -2986,6 +2991,60 @@ def build_dept32_json(df, collector, date_str, output_path):
     print(f"Saved to {output_path} ({len(games_out)} games, {os.path.getsize(output_path)} bytes)")
 
 
+def upload_to_drive(file_paths):
+    """Upload files to Google Drive root, updating in-place if name already exists.
+
+    Requires Application Default Credentials with Drive scope:
+      gcloud auth application-default login --scopes=https://www.googleapis.com/auth/drive.file,openid,https://www.googleapis.com/auth/userinfo.email
+
+    Silently no-ops if google-api-python-client is not installed or auth fails.
+    """
+    try:
+        import google.auth
+        from googleapiclient.discovery import build
+        from googleapiclient.http import MediaFileUpload
+    except ImportError:
+        print(f"  [Drive] google-api-python-client not installed — skipping Drive upload")
+        return
+
+    try:
+        creds, _ = google.auth.default(scopes=['https://www.googleapis.com/auth/drive.file'])
+        svc = build('drive', 'v3', credentials=creds, cache_discovery=False)
+    except Exception as e:
+        print(f"  [Drive] Auth failed — skipping upload: {e}")
+        return
+
+    for path in file_paths:
+        try:
+            name = os.path.basename(path)
+            media = MediaFileUpload(path, mimetype='application/json', resumable=False)
+
+            # Find existing file by name (root, not trashed)
+            q = f"name = '{name}' and trashed = false"
+            existing = svc.files().list(
+                q=q, spaces='drive', fields='files(id,name)', pageSize=10
+            ).execute().get('files', [])
+
+            if existing:
+                file_id = existing[0]['id']
+                f = svc.files().update(
+                    fileId=file_id, media_body=media, fields='id,name,size,webViewLink'
+                ).execute()
+                print(f"  [Drive] Updated {f['name']} ({f.get('size','?')} bytes) -> {f.get('webViewLink','')}")
+                # Trash duplicates if any
+                for dup in existing[1:]:
+                    svc.files().update(fileId=dup['id'], body={'trashed': True}).execute()
+                    print(f"  [Drive] Trashed duplicate id={dup['id']}")
+            else:
+                f = svc.files().create(
+                    body={'name': name}, media_body=media,
+                    fields='id,name,size,webViewLink'
+                ).execute()
+                print(f"  [Drive] Created {f['name']} ({f.get('size','?')} bytes) -> {f.get('webViewLink','')}")
+        except Exception as e:
+            print(f"  [Drive] Upload failed for {path}: {e}")
+
+
 def push_to_github(repo_dir, files, date_str):
     """Stage, commit, and push specified files to GitHub.
     Silently no-ops if git is not available or remote is unreachable.
@@ -3042,13 +3101,23 @@ def push_to_github(repo_dir, files, date_str):
         print(f"  [Git] Commit failed: {r.stderr.strip()}")
         return
 
-    # Push (try main, fall back to master)
-    for branch in ('main', 'master'):
-        r = run(['git', 'push', '-u', 'origin', f'HEAD:{branch}'])
-        if r.returncode == 0:
-            print(f"  [Git] Pushed to origin/{branch}: {msg}")
-            return
-    print(f"  [Git] Push failed: {r.stderr.strip()}")
+    # Push to main only. If non-fast-forward, rebase once then retry.
+    # No master fallback — that creates a divergent branch problem.
+    r = run(['git', 'push', '-u', 'origin', 'HEAD:main'])
+    if r.returncode == 0:
+        print(f"  [Git] Pushed to origin/main: {msg}")
+        return
+
+    print(f"  [Git] Push to main rejected, attempting rebase+retry...")
+    rb = run(['git', 'pull', '--rebase', '--autostash', 'origin', 'main'])
+    if rb.returncode != 0:
+        print(f"  [Git] Rebase failed: {rb.stderr.strip()}")
+        return
+    r = run(['git', 'push', '-u', 'origin', 'HEAD:main'])
+    if r.returncode == 0:
+        print(f"  [Git] Pushed (after rebase) to origin/main: {msg}")
+    else:
+        print(f"  [Git] Push failed even after rebase: {r.stderr.strip()}")
 
 
 if __name__ == '__main__':
