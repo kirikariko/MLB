@@ -361,6 +361,8 @@ class MLBApi:
                     'game_time': game.get('gameDate', ''),
                     'status': game.get('status', {}).get('abstractGameState'),
                     'day_night': game.get('dayNight', 'night'),
+                    'game_number': game.get('gameNumber', 1),
+                    'double_header': game.get('doubleHeader', 'N'),
                     'home_id': home_team['id'],
                     'away_id': away_team['id'],
                     'home_abbr': MLB_ID_TO_ABBR.get(home_team['id'], home_team.get('abbreviation', '???')),
@@ -380,7 +382,28 @@ class MLBApi:
                 else:
                     games[-1]['ump_id'] = None
                     games[-1]['ump_name'] = None
-        return games
+
+        # Doubleheader dedup: keep only one row per (home, away) pair (game 1 by convention)
+        seen = {}
+        deduped = []
+        dropped = []
+        for g in games:
+            key = (g['home_id'], g['away_id'])
+            if key not in seen:
+                seen[key] = g
+                deduped.append(g)
+            else:
+                # Doubleheader detected — keep the one with smaller gameNumber (Game 1)
+                existing = seen[key]
+                if g.get('game_number', 1) < existing.get('game_number', 1):
+                    deduped[deduped.index(existing)] = g
+                    seen[key] = g
+                    dropped.append((existing.get('game_pk'), existing.get('game_number')))
+                else:
+                    dropped.append((g.get('game_pk'), g.get('game_number')))
+        if dropped:
+            print(f"  [Schedule] Doubleheader detected: dropped {len(dropped)} game(s) — kept Game 1 only. Dropped pks/nums: {dropped}")
+        return deduped
 
     # --- Team Hitting/Pitching Stats ---
     def get_team_stats(self, team_id, group='hitting', sit_code=None):
@@ -1696,15 +1719,37 @@ def load_lineups(date_str):
     for gid, g in games_iter:
         if not gid or not isinstance(g, dict):
             continue
-        home_block = g.get('home', {}) or {}
-        away_block = g.get('away', {}) or {}
-        home_lineup = _convert(home_block.get('lineup'))
-        away_lineup = _convert(away_block.get('lineup'))
+        # New format (2026+): { home: "PHI", away: "CIN", lineups: { home: [...], away: [...] },
+        #                       starting_pitchers: { home: {name, hand}, away: {...} } }
+        # Old format: { home: { lineup: [...], sp: {name, era, throws} }, away: {...} }
+        lineups_block = g.get('lineups')
+        home_sp_name = None
+        away_sp_name = None
+        if isinstance(lineups_block, dict):
+            home_lineup = _convert(lineups_block.get('home'))
+            away_lineup = _convert(lineups_block.get('away'))
+            sps = g.get('starting_pitchers') or {}
+            if isinstance(sps, dict):
+                hsp = sps.get('home') or {}
+                asp = sps.get('away') or {}
+                home_sp_name = (hsp.get('name') if isinstance(hsp, dict) else None) or None
+                away_sp_name = (asp.get('name') if isinstance(asp, dict) else None) or None
+        else:
+            home_block = g.get('home') if isinstance(g.get('home'), dict) else {}
+            away_block = g.get('away') if isinstance(g.get('away'), dict) else {}
+            home_lineup = _convert((home_block or {}).get('lineup'))
+            away_lineup = _convert((away_block or {}).get('lineup'))
+            hsp = (home_block or {}).get('sp') or {}
+            asp = (away_block or {}).get('sp') or {}
+            home_sp_name = (hsp.get('name') if isinstance(hsp, dict) else None) or None
+            away_sp_name = (asp.get('name') if isinstance(asp, dict) else None) or None
         if not home_lineup and not away_lineup:
             empty += 1
         flat[gid] = {
             'home_roster_batters': home_lineup,
             'away_roster_batters': away_lineup,
+            'home_sp_name': home_sp_name,
+            'away_sp_name': away_sp_name,
         }
 
     print(f"  [FALLBACK] Loaded lineups: {path} ({len(flat)} games, {empty} empty)")
@@ -1764,6 +1809,83 @@ def resolve_lineup_ids(lineup_games, mlb_api):
                 missed += 1
 
     print(f"  [Resolver] Resolved {resolved} (full) + {resolved_abbr} (abbrev), {missed} unmatched")
+
+
+def resolve_sp_ids_fallback(games, lineup_games, mlb_api):
+    """Fill missing probable-pitcher IDs in `games` from daily_lineups.json SP names.
+
+    Runs when MLB API returns no probable pitcher (TBD) — looks up the name from
+    the lineup source and resolves it to a player ID. Mutates `games` in place.
+    """
+    if not games or not lineup_games:
+        return
+
+    # Identify games that need SP fallback
+    pending = []
+    for g in games:
+        h_missing = not g.get('home_pitcher_id')
+        a_missing = not g.get('away_pitcher_id')
+        if h_missing or a_missing:
+            pending.append((g, h_missing, a_missing))
+    if not pending:
+        return
+
+    players = mlb_api.get_all_players()
+    if not players:
+        print(f"  [SP Fallback] No player roster — skipping ({len(pending)} game(s) had missing SP)")
+        return
+
+    # Restrict to pitchers (faster, less ambiguity)
+    name_map = {}
+    abbrev_map = {}
+    for p in players:
+        if p.get('primaryPosition', {}).get('code') != '1':
+            continue
+        full = p.get('fullName')
+        if not full:
+            continue
+        name_map[_normalize_name(full)] = p['id']
+        abbr = _abbrev_key(full)
+        if abbr:
+            abbrev_map.setdefault(abbr, []).append((p['id'], full))
+
+    filled = 0
+    for g, h_missing, a_missing in pending:
+        home_abbr = g['home_abbr']
+        away_abbr = g['away_abbr']
+        # Find matching lineup entry — try standard and variant gids
+        lg = None
+        for variant in _lineup_game_id_variants(home_abbr, away_abbr):
+            if variant in lineup_games:
+                lg = lineup_games[variant]
+                break
+        if not lg:
+            continue
+
+        if h_missing:
+            nm = lg.get('home_sp_name')
+            if nm:
+                pid = name_map.get(_normalize_name(nm)) or next(
+                    (c[0] for c in abbrev_map.get(_abbrev_key(nm), [])), None
+                )
+                if pid:
+                    g['home_pitcher_id'] = pid
+                    g['home_pitcher_name'] = nm
+                    filled += 1
+                    print(f"  [SP Fallback] {home_abbr}_{away_abbr} HOME SP filled: {nm} ({pid})")
+        if a_missing:
+            nm = lg.get('away_sp_name')
+            if nm:
+                pid = name_map.get(_normalize_name(nm)) or next(
+                    (c[0] for c in abbrev_map.get(_abbrev_key(nm), [])), None
+                )
+                if pid:
+                    g['away_pitcher_id'] = pid
+                    g['away_pitcher_name'] = nm
+                    filled += 1
+                    print(f"  [SP Fallback] {home_abbr}_{away_abbr} AWAY SP filled: {nm} ({pid})")
+
+    print(f"  [SP Fallback] Filled {filled} SP ID(s) from lineup source ({len(pending)} game(s) had missing SP)")
 
 
 def _lineup_game_id_variants_in_set(gid, today_gids):
@@ -2126,6 +2248,7 @@ class MLBKing:
 
         if lineup_games:
             resolve_lineup_ids(lineup_games, self.mlb)
+            resolve_sp_ids_fallback(games, lineup_games, self.mlb)
 
         # Step 5: Collect per-game data
         print(f"\n[5/7] Collecting team stats for {len(games)} games...")
