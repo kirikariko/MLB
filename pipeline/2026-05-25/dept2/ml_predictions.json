@@ -5,7 +5,7 @@
   "training_rows_wl": 2065,
   "training_rows_ou": 2005,
   "n_features": 89,
-  "mapping_pct": 100.0,
+  "mapping_pct": 100,
   "models": {
     "wl": {
       "lr": 0.5409,
@@ -45,14 +45,14 @@
           "lgb": 0.4241
         }
       },
-      "mapping_pct": 100.0,
+      "mapping_pct": 100,
       "features_mapped": 89,
       "features_total": 89,
       "shap_features": [
         {
           "feature": "HOME_SP_IP",
           "shap_value": -0.4331,
-          "feature_value": 50.0
+          "feature_value": 50
         },
         {
           "feature": "ERA_AWAYTEAM_PITCHER",
@@ -67,7 +67,7 @@
         {
           "feature": "BP_IP_3d_HOME",
           "shap_value": 0.1504,
-          "feature_value": 9.0
+          "feature_value": 9
         },
         {
           "feature": "BVP_AVG_AWAY",
@@ -141,7 +141,7 @@
           "lgb": 0.1631
         }
       },
-      "mapping_pct": 100.0,
+      "mapping_pct": 100,
       "features_mapped": 89,
       "features_total": 89,
       "shap_features": [
@@ -163,7 +163,7 @@
         {
           "feature": "HOMETEAM_E",
           "shap_value": 0.0986,
-          "feature_value": 30.0
+          "feature_value": 30
         },
         {
           "feature": "AVG_BA_AWAY_NIGHT",
@@ -193,7 +193,7 @@
         {
           "feature": "BP_IP_3d_AWAY",
           "shap_value": -0.0615,
-          "feature_value": 4.0
+          "feature_value": 4
         }
       ],
       "feature_importance": {
@@ -269,7 +269,7 @@
         {
           "feature": "AWAYTEAM_BM",
           "shap_value": -0.1223,
-          "feature_value": 2.0
+          "feature_value": 2
         },
         {
           "feature": "OBP_AWAY",
@@ -333,7 +333,7 @@
           "lgb": 0.3179
         }
       },
-      "mapping_pct": 100.0,
+      "mapping_pct": 100,
       "features_mapped": 89,
       "features_total": 89,
       "shap_features": [
@@ -345,7 +345,7 @@
         {
           "feature": "HOME_SP_IP",
           "shap_value": -0.3681,
-          "feature_value": 57.0
+          "feature_value": 57
         },
         {
           "feature": "AVG_BA_AWAY_DAY",
@@ -365,7 +365,7 @@
         {
           "feature": "HOMETEAM_BULLPEN_WORKLOAD",
           "shap_value": 0.0784,
-          "feature_value": 14.0
+          "feature_value": 14
         },
         {
           "feature": "OBP_AWAY",
@@ -429,7 +429,7 @@
           "lgb": 0.2422
         }
       },
-      "mapping_pct": 100.0,
+      "mapping_pct": 100,
       "features_mapped": 89,
       "features_total": 89,
       "shap_features": [
@@ -441,7 +441,7 @@
         {
           "feature": "BVP_CONFIDENCE_HOME",
           "shap_value": 0.2059,
-          "feature_value": 8.0
+          "feature_value": 8
         },
         {
           "feature": "AWAYTEAM_wOBA",
@@ -456,7 +456,7 @@
         {
           "feature": "HOMETEAM_BULLPEN_WORKLOAD",
           "shap_value": 0.1032,
-          "feature_value": 16.0
+          "feature_value": 16
         },
         {
           "feature": "BP_IP_3d_HOME",
@@ -537,7 +537,7 @@
         {
           "feature": "HOME_SP_IP",
           "shap_value": -0.2968,
-          "feature_value": 58.0
+          "feature_value": 58
         },
         {
           "feature": "Home_Win_Rate",
@@ -621,14 +621,14 @@
           "lgb": 0.4578
         }
       },
-      "mapping_pct": 100.0,
+      "mapping_pct": 100,
       "features_mapped": 89,
       "features_total": 89,
       "shap_features": [
         {
           "feature": "HOMETEAM_E",
           "shap_value": 0.4203,
-          "feature_value": 31.0
+          "feature_value": 31
         },
         {
           "feature": "AVG_BA_AWAY_DAY",
@@ -638,12 +638,12 @@
         {
           "feature": "HOME_SP_IP",
           "shap_value": -0.2049,
-          "feature_value": 55.0
+          "feature_value": 55
         },
         {
           "feature": "BVP_CONFIDENCE_HOME",
           "shap_value": 0.1856,
-          "feature_value": 8.0
+          "feature_value": 8
         },
         {
           "feature": "SAPA_HOME_ONLY_HOMETEAM",
@@ -673,7 +673,7 @@
         {
           "feature": "BVP_CONFIDENCE_AWAY",
           "shap_value": -0.0774,
-          "feature_value": 7.0
+          "feature_value": 7
         }
       ],
       "feature_importance": {
@@ -724,7 +724,7 @@
         {
           "feature": "HOME_SP_IP",
           "shap_value": -0.3205,
-          "feature_value": 60.0
+          "feature_value": 60
         },
         {
           "feature": "BP_ERA_30d_HOME",
@@ -916,7 +916,7 @@
         {
           "feature": "HOME_SP_IP",
           "shap_value": -0.423,
-          "feature_value": 45.0
+          "feature_value": 45
         },
         {
           "feature": "BP_ERA_30d_HOME",
@@ -931,7 +931,7 @@
         {
           "feature": "ERA_AWAY_PITCHER_NIGHT",
           "shap_value": 0.1508,
-          "feature_value": 12.0
+          "feature_value": 12
         },
         {
           "feature": "AWAYTEAM_SIERA",
@@ -1012,12 +1012,12 @@
         {
           "feature": "HOMETEAM_E",
           "shap_value": 0.2945,
-          "feature_value": 32.0
+          "feature_value": 32
         },
         {
           "feature": "ERA_HOME_PITCHER_HOMEONLY",
           "shap_value": -0.2267,
-          "feature_value": 0.0
+          "feature_value": 0
         },
         {
           "feature": "HOMETEAM_SIERA",
@@ -1052,7 +1052,7 @@
         {
           "feature": "HOMETEAM_BULLPEN_WORKLOAD",
           "shap_value": 0.0682,
-          "feature_value": 26.0
+          "feature_value": 26
         },
         {
           "feature": "AWAYTEAM_FPct",
@@ -1101,7 +1101,7 @@
           "lgb": 0.3886
         }
       },
-      "mapping_pct": 100.0,
+      "mapping_pct": 100,
       "features_mapped": 89,
       "features_total": 89,
       "shap_features": [
@@ -1118,7 +1118,7 @@
         {
           "feature": "BP_IP_3d_HOME",
           "shap_value": 0.2062,
-          "feature_value": 9.0
+          "feature_value": 9
         },
         {
           "feature": "AwayTEAM_Win_Rate_ONLYAWAY",
@@ -1197,7 +1197,7 @@
           "lgb": 0.5932
         }
       },
-      "mapping_pct": 100.0,
+      "mapping_pct": 100,
       "features_mapped": 89,
       "features_total": 89,
       "shap_features": [
@@ -1268,7 +1268,7 @@
         "HOMETEAM_SIERA": 0.0579,
         "SAPA_HOMETEAM": 0.057,
         "SWP_AWAYTEAM": 0.0559,
-        "BP_IP_3d_AWAY": 0.0536,
+        "BP_IP_3d_AWAY": 0.0526,
         "OBP_AWAY": 0.0526,
         "UO_LINE": 0.0521,
         "ERA_AWAYTEAM_PITCHER": 0.0466,
