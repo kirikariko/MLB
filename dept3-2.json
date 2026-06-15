@@ -1,23 +1,147 @@
 {
-  "DATE": "2026-06-14",
-  "generated_at": "2026-06-14T08:19:04.661438+00:00",
+  "DATE": "2026-06-15",
+  "generated_at": "2026-06-15T13:42:50.401055+00:00",
   "games": [
     {
-      "DATE": "2026-06-14",
-      "GAME_ID": "PIT_MIA",
-      "home_team": "PIT",
+      "DATE": "2026-06-15",
+      "GAME_ID": "PHI_MIA",
+      "home_team": "PHI",
       "away_team": "MIA",
       "momentum": {
         "home_team": {
           "record_L5": "2-3",
-          "record_L10": "3-7",
-          "streak": "W1",
-          "close_game_L10": "7-3"
+          "record_L10": "6-4",
+          "streak": "L1",
+          "close_game_L10": "8-2"
         },
         "away_team": {
           "record_L5": "4-1",
           "record_L10": "8-2",
+          "streak": "W1",
+          "close_game_L10": "5-5"
+        }
+      },
+      "fatigue": {
+        "home_team": {
+          "played_yesterday": true,
+          "yesterday_location": "AWAY",
+          "travel_distance_km": 1120,
+          "timezone_change": 1,
+          "games_without_rest": 3,
+          "doubleheader": "NONE",
+          "games_L7": 6
+        },
+        "away_team": {
+          "played_yesterday": true,
+          "yesterday_location": "AWAY",
+          "travel_distance_km": 415,
+          "timezone_change": 0,
+          "games_without_rest": 6,
+          "doubleheader": "NONE",
+          "games_L7": 6
+        }
+      },
+      "motivation": {
+        "home_team": {
+          "division_rank": 2,
+          "games_behind_leader": 8.0,
+          "wildcard_gb": 0.5
+        },
+        "away_team": {
+          "division_rank": 4,
+          "games_behind_leader": 10.5,
+          "wildcard_gb": 2.0
+        },
+        "series_position": "1/3",
+        "series_record": "0-0",
+        "sweep_risk": false,
+        "sweep_chance": false,
+        "rivalry_tag": null
+      },
+      "schedule_context": {
+        "days_to_allstar": 30,
+        "days_to_deadline": 46,
+        "expanded_roster": false
+      }
+    },
+    {
+      "DATE": "2026-06-15",
+      "GAME_ID": "WSH_KC",
+      "home_team": "WSH",
+      "away_team": "KC",
+      "momentum": {
+        "home_team": {
+          "record_L5": "3-2",
+          "record_L10": "6-4",
+          "streak": "W2",
+          "close_game_L10": "5-5"
+        },
+        "away_team": {
+          "record_L5": "1-4",
+          "record_L10": "5-5",
+          "streak": "W1",
+          "close_game_L10": "2-8"
+        }
+      },
+      "fatigue": {
+        "home_team": {
+          "played_yesterday": true,
+          "yesterday_location": "HOME",
+          "travel_distance_km": 0,
+          "timezone_change": 0,
+          "games_without_rest": 3,
+          "doubleheader": "NONE",
+          "games_L7": 6
+        },
+        "away_team": {
+          "played_yesterday": true,
+          "yesterday_location": "HOME",
+          "travel_distance_km": 1508,
+          "timezone_change": 1,
+          "games_without_rest": 6,
+          "doubleheader": "NONE",
+          "games_L7": 6
+        }
+      },
+      "motivation": {
+        "home_team": {
+          "division_rank": 3,
+          "games_behind_leader": 9.5,
+          "wildcard_gb": 1.0
+        },
+        "away_team": {
+          "division_rank": 5,
+          "games_behind_leader": 10.0,
+          "wildcard_gb": 6.5
+        },
+        "series_position": "1/3",
+        "series_record": "0-0",
+        "sweep_risk": false,
+        "sweep_chance": false,
+        "rivalry_tag": null
+      },
+      "schedule_context": {
+        "days_to_allstar": 30,
+        "days_to_deadline": 46,
+        "expanded_roster": false
+      }
+    },
+    {
+      "DATE": "2026-06-15",
+      "GAME_ID": "CIN_NYM",
+      "home_team": "CIN",
+      "away_team": "NYM",
+      "momentum": {
+        "home_team": {
+          "record_L5": "2-3",
+          "record_L10": "2-8",
           "streak": "L1",
+          "close_game_L10": "4-6"
+        },
+        "away_team": {
+          "record_L5": "3-2",
+          "record_L10": "6-4",
+          "streak": "W1",
           "close_game_L10": "5-5"
         }
       },
@@ -27,803 +151,369 @@
           "yesterday_location": "HOME",
           "travel_distance_km": 0,
           "timezone_change": 0,
-          "games_without_rest": 5,
+          "games_without_rest": 3,
           "doubleheader": "NONE",
           "games_L7": 6
         },
         "away_team": {
           "played_yesterday": true,
-          "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
+          "yesterday_location": "HOME",
+          "travel_distance_km": 928,
           "timezone_change": 0,
-          "games_without_rest": 5,
+          "games_without_rest": 6,
           "doubleheader": "NONE",
           "games_L7": 6
         }
       },
       "motivation": {
         "home_team": {
-          "division_rank": 4,
+          "division_rank": 5,
+          "games_behind_leader": 10.5,
+          "wildcard_gb": 4.0
+        },
+        "away_team": {
+          "division_rank": 5,
+          "games_behind_leader": 14.0,
+          "wildcard_gb": 5.5
+        },
+        "series_position": "1/3",
+        "series_record": "0-0",
+        "sweep_risk": false,
+        "sweep_chance": false,
+        "rivalry_tag": null
+      },
+      "schedule_context": {
+        "days_to_allstar": 30,
+        "days_to_deadline": 46,
+        "expanded_roster": false
+      }
+    },
+    {
+      "DATE": "2026-06-15",
+      "GAME_ID": "STL_SD",
+      "home_team": "STL",
+      "away_team": "SD",
+      "momentum": {
+        "home_team": {
+          "record_L5": "2-3",
+          "record_L10": "7-3",
+          "streak": "L1",
+          "close_game_L10": "4-6"
+        },
+        "away_team": {
+          "record_L5": "3-2",
+          "record_L10": "5-5",
+          "streak": "W2",
+          "close_game_L10": "4-6"
+        }
+      },
+      "fatigue": {
+        "home_team": {
+          "played_yesterday": true,
+          "yesterday_location": "AWAY",
+          "travel_distance_km": 751,
+          "timezone_change": 0,
+          "games_without_rest": 6,
+          "doubleheader": "NONE",
+          "games_L7": 6
+        },
+        "away_team": {
+          "played_yesterday": true,
+          "yesterday_location": "AWAY",
+          "travel_distance_km": 1175,
+          "timezone_change": -1,
+          "games_without_rest": 3,
+          "doubleheader": "NONE",
+          "games_L7": 6
+        }
+      },
+      "motivation": {
+        "home_team": {
+          "division_rank": 2,
+          "games_behind_leader": 5.0,
+          "wildcard_gb": 1.5
+        },
+        "away_team": {
+          "division_rank": 2,
+          "games_behind_leader": 7.0,
+          "wildcard_gb": 0.0
+        },
+        "series_position": "1/3",
+        "series_record": "0-0",
+        "sweep_risk": false,
+        "sweep_chance": false,
+        "rivalry_tag": null
+      },
+      "schedule_context": {
+        "days_to_allstar": 30,
+        "days_to_deadline": 46,
+        "expanded_roster": false
+      }
+    },
+    {
+      "DATE": "2026-06-15",
+      "GAME_ID": "CHC_COL",
+      "home_team": "CHC",
+      "away_team": "COL",
+      "momentum": {
+        "home_team": {
+          "record_L5": "3-2",
+          "record_L10": "5-5",
+          "streak": "L1",
+          "close_game_L10": "3-7"
+        },
+        "away_team": {
+          "record_L5": "2-3",
+          "record_L10": "3-7",
+          "streak": "W1",
+          "close_game_L10": "6-4"
+        }
+      },
+      "fatigue": {
+        "home_team": {
+          "played_yesterday": true,
+          "yesterday_location": "AWAY",
+          "travel_distance_km": 2978,
+          "timezone_change": 2,
+          "games_without_rest": 6,
+          "doubleheader": "NONE",
+          "games_L7": 6
+        },
+        "away_team": {
+          "played_yesterday": true,
+          "yesterday_location": "AWAY",
+          "travel_distance_km": 2964,
+          "timezone_change": 2,
+          "games_without_rest": 6,
+          "doubleheader": "NONE",
+          "games_L7": 6
+        }
+      },
+      "motivation": {
+        "home_team": {
+          "division_rank": 3,
           "games_behind_leader": 7.5,
           "wildcard_gb": 1.0
         },
         "away_team": {
-          "division_rank": 4,
-          "games_behind_leader": 11.5,
-          "wildcard_gb": 2.0
-        },
-        "series_position": "3/3",
-        "series_record": "1-1",
-        "sweep_risk": false,
-        "sweep_chance": false,
-        "rivalry_tag": null
-      },
-      "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
-        "expanded_roster": false
-      }
-    },
-    {
-      "DATE": "2026-06-14",
-      "GAME_ID": "BAL_SD",
-      "home_team": "BAL",
-      "away_team": "SD",
-      "momentum": {
-        "home_team": {
-          "record_L5": "3-2",
-          "record_L10": "5-5",
-          "streak": "L1",
-          "close_game_L10": "3-7"
-        },
-        "away_team": {
-          "record_L5": "3-2",
-          "record_L10": "4-6",
-          "streak": "W1",
-          "close_game_L10": "4-6"
-        }
-      },
-      "fatigue": {
-        "home_team": {
-          "played_yesterday": true,
-          "yesterday_location": "HOME",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 12,
-          "doubleheader": "NONE",
-          "games_L7": 7
-        },
-        "away_team": {
-          "played_yesterday": true,
-          "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 2,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        }
-      },
-      "motivation": {
-        "home_team": {
-          "division_rank": 4,
-          "games_behind_leader": 9.5,
-          "wildcard_gb": 2.0
-        },
-        "away_team": {
-          "division_rank": 2,
-          "games_behind_leader": 8.0,
-          "wildcard_gb": 0.0
-        },
-        "series_position": "3/3",
-        "series_record": "1-1",
-        "sweep_risk": false,
-        "sweep_chance": false,
-        "rivalry_tag": null
-      },
-      "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
-        "expanded_roster": false
-      }
-    },
-    {
-      "DATE": "2026-06-14",
-      "GAME_ID": "WSH_SEA",
-      "home_team": "WSH",
-      "away_team": "SEA",
-      "momentum": {
-        "home_team": {
-          "record_L5": "3-2",
-          "record_L10": "5-5",
-          "streak": "W1",
-          "close_game_L10": "5-5"
-        },
-        "away_team": {
-          "record_L5": "2-3",
-          "record_L10": "4-6",
-          "streak": "L1",
-          "close_game_L10": "5-5"
-        }
-      },
-      "fatigue": {
-        "home_team": {
-          "played_yesterday": true,
-          "yesterday_location": "HOME",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 2,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        },
-        "away_team": {
-          "played_yesterday": true,
-          "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 9,
-          "doubleheader": "NONE",
-          "games_L7": 7
-        }
-      },
-      "motivation": {
-        "home_team": {
-          "division_rank": 3,
-          "games_behind_leader": 10.5,
-          "wildcard_gb": 1.0
-        },
-        "away_team": {
-          "division_rank": 1,
-          "games_behind_leader": 0.0,
-          "wildcard_gb": 0.0
-        },
-        "series_position": "3/3",
-        "series_record": "1-1",
-        "sweep_risk": false,
-        "sweep_chance": false,
-        "rivalry_tag": null
-      },
-      "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
-        "expanded_roster": false
-      }
-    },
-    {
-      "DATE": "2026-06-14",
-      "GAME_ID": "TOR_NYY",
-      "home_team": "TOR",
-      "away_team": "NYY",
-      "momentum": {
-        "home_team": {
-          "record_L5": "2-3",
-          "record_L10": "5-5",
-          "streak": "L1",
-          "close_game_L10": "6-4"
-        },
-        "away_team": {
-          "record_L5": "4-1",
-          "record_L10": "6-4",
-          "streak": "W1",
-          "close_game_L10": "5-5"
-        }
-      },
-      "fatigue": {
-        "home_team": {
-          "played_yesterday": true,
-          "yesterday_location": "HOME",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 2,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        },
-        "away_team": {
-          "played_yesterday": true,
-          "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 2,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        }
-      },
-      "motivation": {
-        "home_team": {
-          "division_rank": 3,
-          "games_behind_leader": 9.0,
-          "wildcard_gb": 1.5
-        },
-        "away_team": {
-          "division_rank": 1,
-          "games_behind_leader": 0.0,
-          "wildcard_gb": 0.0
-        },
-        "series_position": "3/3",
-        "series_record": "1-1",
-        "sweep_risk": false,
-        "sweep_chance": false,
-        "rivalry_tag": null
-      },
-      "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
-        "expanded_roster": false
-      }
-    },
-    {
-      "DATE": "2026-06-14",
-      "GAME_ID": "CIN_ARI",
-      "home_team": "CIN",
-      "away_team": "ARI",
-      "momentum": {
-        "home_team": {
-          "record_L5": "2-3",
-          "record_L10": "3-7",
-          "streak": "W1",
-          "close_game_L10": "4-6"
-        },
-        "away_team": {
-          "record_L5": "1-4",
-          "record_L10": "3-7",
-          "streak": "L1",
-          "close_game_L10": "4-6"
-        }
-      },
-      "fatigue": {
-        "home_team": {
-          "played_yesterday": true,
-          "yesterday_location": "HOME",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 2,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        },
-        "away_team": {
-          "played_yesterday": true,
-          "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 5,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        }
-      },
-      "motivation": {
-        "home_team": {
           "division_rank": 5,
-          "games_behind_leader": 9.5,
-          "wildcard_gb": 3.0
-        },
-        "away_team": {
-          "division_rank": 3,
-          "games_behind_leader": 9.5,
-          "wildcard_gb": 1.5
-        },
-        "series_position": "3/3",
-        "series_record": "1-1",
-        "sweep_risk": false,
-        "sweep_chance": false,
-        "rivalry_tag": null
-      },
-      "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
-        "expanded_roster": false
-      }
-    },
-    {
-      "DATE": "2026-06-14",
-      "GAME_ID": "CLE_DET",
-      "home_team": "CLE",
-      "away_team": "DET",
-      "momentum": {
-        "home_team": {
-          "record_L5": "2-3",
-          "record_L10": "4-6",
-          "streak": "W2",
-          "close_game_L10": "7-3"
-        },
-        "away_team": {
-          "record_L5": "2-3",
-          "record_L10": "6-4",
-          "streak": "L2",
-          "close_game_L10": "3-7"
-        }
-      },
-      "fatigue": {
-        "home_team": {
-          "played_yesterday": true,
-          "yesterday_location": "HOME",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 2,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        },
-        "away_team": {
-          "played_yesterday": true,
-          "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 5,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        }
-      },
-      "motivation": {
-        "home_team": {
-          "division_rank": 1,
-          "games_behind_leader": 0.0,
-          "wildcard_gb": 0.0
-        },
-        "away_team": {
-          "division_rank": 4,
-          "games_behind_leader": 9.5,
-          "wildcard_gb": 6.5
-        },
-        "series_position": "3/3",
-        "series_record": "2-0",
-        "sweep_risk": true,
-        "sweep_chance": true,
-        "rivalry_tag": null
-      },
-      "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
-        "expanded_roster": false
-      }
-    },
-    {
-      "DATE": "2026-06-14",
-      "GAME_ID": "NYM_ATL",
-      "home_team": "NYM",
-      "away_team": "ATL",
-      "momentum": {
-        "home_team": {
-          "record_L5": "2-3",
-          "record_L10": "5-5",
-          "streak": "L1",
-          "close_game_L10": "5-5"
-        },
-        "away_team": {
-          "record_L5": "1-4",
-          "record_L10": "5-5",
-          "streak": "W1",
-          "close_game_L10": "6-4"
-        }
-      },
-      "fatigue": {
-        "home_team": {
-          "played_yesterday": true,
-          "yesterday_location": "HOME",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 5,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        },
-        "away_team": {
-          "played_yesterday": true,
-          "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 5,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        }
-      },
-      "motivation": {
-        "home_team": {
-          "division_rank": 5,
-          "games_behind_leader": 15.0,
-          "wildcard_gb": 5.5
-        },
-        "away_team": {
-          "division_rank": 1,
-          "games_behind_leader": 0.0,
-          "wildcard_gb": 0.0
-        },
-        "series_position": "3/3",
-        "series_record": "1-1",
-        "sweep_risk": false,
-        "sweep_chance": false,
-        "rivalry_tag": "ATL_NYM"
-      },
-      "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
-        "expanded_roster": false
-      }
-    },
-    {
-      "DATE": "2026-06-14",
-      "GAME_ID": "KC_HOU",
-      "home_team": "KC",
-      "away_team": "HOU",
-      "momentum": {
-        "home_team": {
-          "record_L5": "1-4",
-          "record_L10": "5-5",
-          "streak": "L4",
-          "close_game_L10": "2-8"
-        },
-        "away_team": {
-          "record_L5": "3-2",
-          "record_L10": "6-4",
-          "streak": "W2",
-          "close_game_L10": "7-3"
-        }
-      },
-      "fatigue": {
-        "home_team": {
-          "played_yesterday": true,
-          "yesterday_location": "HOME",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 5,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        },
-        "away_team": {
-          "played_yesterday": true,
-          "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 2,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        }
-      },
-      "motivation": {
-        "home_team": {
-          "division_rank": 5,
-          "games_behind_leader": 10.5,
-          "wildcard_gb": 7.5
-        },
-        "away_team": {
-          "division_rank": 4,
-          "games_behind_leader": 4.0,
-          "wildcard_gb": 3.0
-        },
-        "series_position": "3/3",
-        "series_record": "0-2",
-        "sweep_risk": true,
-        "sweep_chance": true,
-        "rivalry_tag": null
-      },
-      "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
-        "expanded_roster": false
-      }
-    },
-    {
-      "DATE": "2026-06-14",
-      "GAME_ID": "MIN_STL",
-      "home_team": "MIN",
-      "away_team": "STL",
-      "momentum": {
-        "home_team": {
-          "record_L5": "2-3",
-          "record_L10": "3-7",
-          "streak": "L1",
-          "close_game_L10": "3-7"
-        },
-        "away_team": {
-          "record_L5": "3-2",
-          "record_L10": "7-3",
-          "streak": "W1",
-          "close_game_L10": "4-6"
-        }
-      },
-      "fatigue": {
-        "home_team": {
-          "played_yesterday": true,
-          "yesterday_location": "HOME",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 5,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        },
-        "away_team": {
-          "played_yesterday": true,
-          "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 5,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        }
-      },
-      "motivation": {
-        "home_team": {
-          "division_rank": 3,
-          "games_behind_leader": 7.0,
-          "wildcard_gb": 4.0
-        },
-        "away_team": {
-          "division_rank": 2,
-          "games_behind_leader": 4.0,
-          "wildcard_gb": 2.5
-        },
-        "series_position": "3/3",
-        "series_record": "1-1",
-        "sweep_risk": false,
-        "sweep_chance": false,
-        "rivalry_tag": null
-      },
-      "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
-        "expanded_roster": false
-      }
-    },
-    {
-      "DATE": "2026-06-14",
-      "GAME_ID": "CWS_LAD",
-      "home_team": "CWS",
-      "away_team": "LAD",
-      "momentum": {
-        "home_team": {
-          "record_L5": "3-2",
-          "record_L10": "5-5",
-          "streak": "L1",
-          "close_game_L10": "9-1"
-        },
-        "away_team": {
-          "record_L5": "3-2",
-          "record_L10": "6-4",
-          "streak": "W1",
-          "close_game_L10": "3-7"
-        }
-      },
-      "fatigue": {
-        "home_team": {
-          "played_yesterday": true,
-          "yesterday_location": "HOME",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 5,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        },
-        "away_team": {
-          "played_yesterday": true,
-          "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 5,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        }
-      },
-      "motivation": {
-        "home_team": {
-          "division_rank": 2,
-          "games_behind_leader": 0.5,
-          "wildcard_gb": 2.5
-        },
-        "away_team": {
-          "division_rank": 1,
-          "games_behind_leader": 0.0,
-          "wildcard_gb": 0.0
-        },
-        "series_position": "3/3",
-        "series_record": "1-1",
-        "sweep_risk": false,
-        "sweep_chance": false,
-        "rivalry_tag": null
-      },
-      "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
-        "expanded_roster": false
-      }
-    },
-    {
-      "DATE": "2026-06-14",
-      "GAME_ID": "MIL_PHI",
-      "home_team": "MIL",
-      "away_team": "PHI",
-      "momentum": {
-        "home_team": {
-          "record_L5": "2-3",
-          "record_L10": "5-5",
-          "streak": "L1",
-          "close_game_L10": "6-4"
-        },
-        "away_team": {
-          "record_L5": "3-2",
-          "record_L10": "7-3",
-          "streak": "W1",
-          "close_game_L10": "8-2"
-        }
-      },
-      "fatigue": {
-        "home_team": {
-          "played_yesterday": true,
-          "yesterday_location": "HOME",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 2,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        },
-        "away_team": {
-          "played_yesterday": true,
-          "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 2,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        }
-      },
-      "motivation": {
-        "home_team": {
-          "division_rank": 1,
-          "games_behind_leader": 0.0,
-          "wildcard_gb": 0.0
-        },
-        "away_team": {
-          "division_rank": 2,
-          "games_behind_leader": 8.0,
-          "wildcard_gb": 1.5
-        },
-        "series_position": "3/3",
-        "series_record": "1-1",
-        "sweep_risk": false,
-        "sweep_chance": false,
-        "rivalry_tag": null
-      },
-      "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
-        "expanded_roster": false
-      }
-    },
-    {
-      "DATE": "2026-06-14",
-      "GAME_ID": "OAK_COL",
-      "home_team": "OAK",
-      "away_team": "COL",
-      "momentum": {
-        "home_team": {
-          "record_L5": "4-1",
-          "record_L10": "6-4",
-          "streak": "W4",
-          "close_game_L10": "5-5"
-        },
-        "away_team": {
-          "record_L5": "2-3",
-          "record_L10": "3-7",
-          "streak": "L3",
-          "close_game_L10": "6-4"
-        }
-      },
-      "fatigue": {
-        "home_team": {
-          "played_yesterday": true,
-          "yesterday_location": "HOME",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 2,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        },
-        "away_team": {
-          "played_yesterday": true,
-          "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 5,
-          "doubleheader": "NONE",
-          "games_L7": 6
-        }
-      },
-      "motivation": {
-        "home_team": {
-          "division_rank": 2,
-          "games_behind_leader": 1.0,
-          "wildcard_gb": 0.0
-        },
-        "away_team": {
-          "division_rank": 5,
-          "games_behind_leader": 19.0,
+          "games_behind_leader": 18.0,
           "wildcard_gb": 11.0
         },
-        "series_position": "3/3",
-        "series_record": "2-0",
-        "sweep_risk": true,
-        "sweep_chance": true,
+        "series_position": "1/3",
+        "series_record": "0-0",
+        "sweep_risk": false,
+        "sweep_chance": false,
         "rivalry_tag": null
       },
       "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
+        "days_to_allstar": 30,
+        "days_to_deadline": 46,
         "expanded_roster": false
       }
     },
     {
-      "DATE": "2026-06-14",
-      "GAME_ID": "SF_CHC",
-      "home_team": "SF",
-      "away_team": "CHC",
+      "DATE": "2026-06-15",
+      "GAME_ID": "TEX_MIN",
+      "home_team": "TEX",
+      "away_team": "MIN",
       "momentum": {
         "home_team": {
-          "record_L5": "1-4",
+          "record_L5": "3-2",
           "record_L10": "5-5",
-          "streak": "L2",
-          "close_game_L10": "5-5"
+          "streak": "W1",
+          "close_game_L10": "6-4"
         },
         "away_team": {
           "record_L5": "3-2",
-          "record_L10": "5-5",
-          "streak": "W3",
-          "close_game_L10": "3-7"
+          "record_L10": "4-6",
+          "streak": "W1",
+          "close_game_L10": "4-6"
         }
       },
       "fatigue": {
         "home_team": {
           "played_yesterday": true,
-          "yesterday_location": "HOME",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 2,
+          "yesterday_location": "AWAY",
+          "travel_distance_km": 2513,
+          "timezone_change": -1,
+          "games_without_rest": 6,
           "doubleheader": "NONE",
           "games_L7": 6
         },
         "away_team": {
           "played_yesterday": true,
-          "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
+          "yesterday_location": "HOME",
+          "travel_distance_km": 1398,
           "timezone_change": 0,
-          "games_without_rest": 5,
+          "games_without_rest": 6,
           "doubleheader": "NONE",
           "games_L7": 6
         }
       },
       "motivation": {
         "home_team": {
-          "division_rank": 4,
-          "games_behind_leader": 17.0,
-          "wildcard_gb": 9.0
+          "division_rank": 3,
+          "games_behind_leader": 1.0,
+          "wildcard_gb": 0.0
         },
         "away_team": {
           "division_rank": 3,
           "games_behind_leader": 6.5,
-          "wildcard_gb": 0.0
+          "wildcard_gb": 3.0
         },
-        "series_position": "3/3",
-        "series_record": "0-2",
-        "sweep_risk": true,
-        "sweep_chance": true,
+        "series_position": "1/3",
+        "series_record": "0-0",
+        "sweep_risk": false,
+        "sweep_chance": false,
         "rivalry_tag": null
       },
       "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
+        "days_to_allstar": 30,
+        "days_to_deadline": 46,
         "expanded_roster": false
       }
     },
     {
-      "DATE": "2026-06-14",
-      "GAME_ID": "LAA_TB",
-      "home_team": "LAA",
-      "away_team": "TB",
+      "DATE": "2026-06-15",
+      "GAME_ID": "HOU_DET",
+      "home_team": "HOU",
+      "away_team": "DET",
       "momentum": {
         "home_team": {
-          "record_L5": "4-1",
-          "record_L10": "6-4",
-          "streak": "W4",
+          "record_L5": "2-3",
+          "record_L10": "5-5",
+          "streak": "L1",
+          "close_game_L10": "7-3"
+        },
+        "away_team": {
+          "record_L5": "1-4",
+          "record_L10": "5-5",
+          "streak": "L2",
+          "close_game_L10": "3-7"
+        }
+      },
+      "fatigue": {
+        "home_team": {
+          "played_yesterday": true,
+          "yesterday_location": "AWAY",
+          "travel_distance_km": 1038,
+          "timezone_change": 0,
+          "games_without_rest": 3,
+          "doubleheader": "NONE",
+          "games_L7": 6
+        },
+        "away_team": {
+          "played_yesterday": true,
+          "yesterday_location": "AWAY",
+          "travel_distance_km": 1792,
+          "timezone_change": -1,
+          "games_without_rest": 6,
+          "doubleheader": "NONE",
+          "games_L7": 6
+        }
+      },
+      "motivation": {
+        "home_team": {
+          "division_rank": 4,
+          "games_behind_leader": 4.0,
+          "wildcard_gb": 3.0
+        },
+        "away_team": {
+          "division_rank": 4,
+          "games_behind_leader": 9.5,
+          "wildcard_gb": 6.0
+        },
+        "series_position": "1/3",
+        "series_record": "0-0",
+        "sweep_risk": false,
+        "sweep_chance": false,
+        "rivalry_tag": null
+      },
+      "schedule_context": {
+        "days_to_allstar": 30,
+        "days_to_deadline": 46,
+        "expanded_roster": false
+      }
+    },
+    {
+      "DATE": "2026-06-15",
+      "GAME_ID": "ARI_LAA",
+      "home_team": "ARI",
+      "away_team": "LAA",
+      "momentum": {
+        "home_team": {
+          "record_L5": "2-3",
+          "record_L10": "4-6",
+          "streak": "W1",
           "close_game_L10": "4-6"
         },
         "away_team": {
-          "record_L5": "3-2",
-          "record_L10": "4-6",
-          "streak": "L2",
+          "record_L5": "4-1",
+          "record_L10": "6-4",
+          "streak": "L1",
+          "close_game_L10": "4-6"
+        }
+      },
+      "fatigue": {
+        "home_team": {
+          "played_yesterday": true,
+          "yesterday_location": "AWAY",
+          "travel_distance_km": 2537,
+          "timezone_change": -2,
+          "games_without_rest": 6,
+          "doubleheader": "NONE",
+          "games_L7": 6
+        },
+        "away_team": {
+          "played_yesterday": true,
+          "yesterday_location": "HOME",
+          "travel_distance_km": 539,
+          "timezone_change": 1,
+          "games_without_rest": 3,
+          "doubleheader": "NONE",
+          "games_L7": 6
+        }
+      },
+      "motivation": {
+        "home_team": {
+          "division_rank": 3,
+          "games_behind_leader": 8.5,
+          "wildcard_gb": 1.5
+        },
+        "away_team": {
+          "division_rank": 5,
+          "games_behind_leader": 7.5,
+          "wildcard_gb": 6.5
+        },
+        "series_position": "1/3",
+        "series_record": "0-0",
+        "sweep_risk": false,
+        "sweep_chance": false,
+        "rivalry_tag": null
+      },
+      "schedule_context": {
+        "days_to_allstar": 30,
+        "days_to_deadline": 46,
+        "expanded_roster": false
+      }
+    },
+    {
+      "DATE": "2026-06-15",
+      "GAME_ID": "OAK_PIT",
+      "home_team": "OAK",
+      "away_team": "PIT",
+      "momentum": {
+        "home_team": {
+          "record_L5": "4-1",
+          "record_L10": "5-5",
+          "streak": "L1",
+          "close_game_L10": "5-5"
+        },
+        "away_team": {
+          "record_L5": "2-3",
+          "record_L10": "3-7",
+          "streak": "L1",
           "close_game_L10": "7-3"
         }
       },
@@ -833,102 +523,102 @@
           "yesterday_location": "HOME",
           "travel_distance_km": 0,
           "timezone_change": 0,
-          "games_without_rest": 2,
+          "games_without_rest": 3,
           "doubleheader": "NONE",
           "games_L7": 6
         },
         "away_team": {
           "played_yesterday": true,
-          "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 2,
+          "yesterday_location": "HOME",
+          "travel_distance_km": 3619,
+          "timezone_change": -3,
+          "games_without_rest": 6,
           "doubleheader": "NONE",
           "games_L7": 6
         }
       },
       "motivation": {
         "home_team": {
-          "division_rank": 5,
-          "games_behind_leader": 7.5,
-          "wildcard_gb": 6.5
-        },
-        "away_team": {
           "division_rank": 2,
           "games_behind_leader": 1.0,
-          "wildcard_gb": 6.5
+          "wildcard_gb": 0.0
         },
-        "series_position": "3/3",
-        "series_record": "2-0",
-        "sweep_risk": true,
-        "sweep_chance": true,
+        "away_team": {
+          "division_rank": 4,
+          "games_behind_leader": 8.5,
+          "wildcard_gb": 2.0
+        },
+        "series_position": "1/3",
+        "series_record": "0-0",
+        "sweep_risk": false,
+        "sweep_chance": false,
         "rivalry_tag": null
       },
       "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
+        "days_to_allstar": 30,
+        "days_to_deadline": 46,
         "expanded_roster": false
       }
     },
     {
-      "DATE": "2026-06-14",
-      "GAME_ID": "BOS_TEX",
-      "home_team": "BOS",
-      "away_team": "TEX",
+      "DATE": "2026-06-15",
+      "GAME_ID": "LAD_TB",
+      "home_team": "LAD",
+      "away_team": "TB",
       "momentum": {
         "home_team": {
           "record_L5": "2-3",
-          "record_L10": "4-6",
-          "streak": "W2",
-          "close_game_L10": "4-6"
+          "record_L10": "5-5",
+          "streak": "L1",
+          "close_game_L10": "3-7"
         },
         "away_team": {
-          "record_L5": "2-3",
+          "record_L5": "3-2",
           "record_L10": "5-5",
-          "streak": "L2",
-          "close_game_L10": "6-4"
+          "streak": "W1",
+          "close_game_L10": "7-3"
         }
       },
       "fatigue": {
         "home_team": {
           "played_yesterday": true,
-          "yesterday_location": "HOME",
-          "travel_distance_km": 0,
-          "timezone_change": 0,
-          "games_without_rest": 2,
+          "yesterday_location": "AWAY",
+          "travel_distance_km": 2801,
+          "timezone_change": -2,
+          "games_without_rest": 6,
           "doubleheader": "NONE",
           "games_L7": 6
         },
         "away_team": {
           "played_yesterday": true,
           "yesterday_location": "AWAY",
-          "travel_distance_km": 0,
+          "travel_distance_km": 45,
           "timezone_change": 0,
-          "games_without_rest": 5,
+          "games_without_rest": 3,
           "doubleheader": "NONE",
           "games_L7": 6
         }
       },
       "motivation": {
         "home_team": {
-          "division_rank": 5,
-          "games_behind_leader": 12.5,
-          "wildcard_gb": 5.0
+          "division_rank": 1,
+          "games_behind_leader": 0.0,
+          "wildcard_gb": 0.0
         },
         "away_team": {
-          "division_rank": 3,
-          "games_behind_leader": 2.0,
-          "wildcard_gb": 1.0
+          "division_rank": 2,
+          "games_behind_leader": 1.0,
+          "wildcard_gb": 7.5
         },
-        "series_position": "3/3",
-        "series_record": "2-0",
-        "sweep_risk": true,
-        "sweep_chance": true,
+        "series_position": "1/3",
+        "series_record": "0-0",
+        "sweep_risk": false,
+        "sweep_chance": false,
         "rivalry_tag": null
       },
       "schedule_context": {
-        "days_to_allstar": 31,
-        "days_to_deadline": 47,
+        "days_to_allstar": 30,
+        "days_to_deadline": 46,
         "expanded_roster": false
       }
     }
