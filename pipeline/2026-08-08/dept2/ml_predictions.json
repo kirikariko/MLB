@@ -1,0 +1,1471 @@
+{
+  "date": "2026-08-08",
+  "model_status": "active",
+  "training_source": "mlb_two.csv_direct",
+  "training_rows_wl": 2664,
+  "training_rows_ou": 2574,
+  "n_features": 95,
+  "mapping_pct": 100.0,
+  "models": {
+    "wl": {
+      "lr": 0.5293,
+      "xgb": 0.5233,
+      "lgb": 0.5113
+    },
+    "ou": {
+      "lr": 0.542,
+      "xgb": 0.5183,
+      "lgb": 0.5101
+    }
+  },
+  "model_names": [
+    "lr",
+    "xgb",
+    "lgb"
+  ],
+  "ensemble_method": "cv_accuracy_weighted",
+  "null_threshold": 0.95,
+  "imputation": "median",
+  "games": [
+    {
+      "game_id": "NYY_ATL",
+      "ml_home_win_prob": 0.3692,
+      "ml_away_win_prob": 0.6308,
+      "ml_over_prob": 0.4077,
+      "ml_under_prob": 0.5923,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.4213,
+          "xgb": 0.2899,
+          "lgb": 0.3965
+        },
+        "ou": {
+          "lr": 0.5664,
+          "xgb": 0.3053,
+          "lgb": 0.3431
+        }
+      },
+      "mapping_pct": 100.0,
+      "features_mapped": 95,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "ERA_AWAYTEAM_PITCHER",
+          "shap_value": -0.2242,
+          "feature_value": 2.08
+        },
+        {
+          "feature": "ERA_AWAY_PITCHER_AWAYONLY",
+          "shap_value": -0.1241,
+          "feature_value": 2.5
+        },
+        {
+          "feature": "R_H2H_WP_AWAYTEAM",
+          "shap_value": -0.0864,
+          "feature_value": 0.0
+        },
+        {
+          "feature": "HOME_SP_FB_Velo_Trend",
+          "shap_value": -0.0762,
+          "feature_value": 0.16
+        },
+        {
+          "feature": "BVP_OBP_AWAY",
+          "shap_value": -0.0759,
+          "feature_value": 0.133
+        },
+        {
+          "feature": "AVG_BA_HOME_DAY",
+          "shap_value": 0.0736,
+          "feature_value": 0.206
+        },
+        {
+          "feature": "AWAYTEAM_BM",
+          "shap_value": -0.0717,
+          "feature_value": 1.87
+        },
+        {
+          "feature": "AWAY_SP_FB_Velo_Trend",
+          "shap_value": -0.0622,
+          "feature_value": 0.55
+        },
+        {
+          "feature": "ERA_HOMETEAM_PITCHER",
+          "shap_value": 0.0599,
+          "feature_value": 3.42
+        },
+        {
+          "feature": "Avg_Temp_C",
+          "shap_value": 0.0525,
+          "feature_value": 26.7
+        }
+      ],
+      "feature_importance": {
+        "ERA_AWAYTEAM_PITCHER": 0.2242,
+        "ERA_AWAY_PITCHER_AWAYONLY": 0.1241,
+        "R_H2H_WP_AWAYTEAM": 0.0864,
+        "HOME_SP_FB_Velo_Trend": 0.0762,
+        "BVP_OBP_AWAY": 0.0759,
+        "AVG_BA_HOME_DAY": 0.0736,
+        "AWAYTEAM_BM": 0.0717,
+        "AWAY_SP_FB_Velo_Trend": 0.0622,
+        "ERA_HOMETEAM_PITCHER": 0.0599,
+        "Avg_Temp_C": 0.0525,
+        "AwayTEAM_Win_Rate_ONLYAWAY": 0.052,
+        "HOME_SP_IP": 0.0482,
+        "AWAYTEAM_PM": 0.0476,
+        "SAPS_HOMETEAM": 0.046,
+        "SAPS_AWAYTEAM": 0.0445,
+        "BVP_AB_AWAY": 0.043,
+        "OBP_AWAY": 0.0422,
+        "AWAY_SP_xFIP": 0.0408,
+        "ERA_AWAY_PITCHER_DAY": 0.04,
+        "BVP_OBP_HOME": 0.0374
+      }
+    },
+    {
+      "game_id": "BOS_OAK",
+      "ml_home_win_prob": 0.4164,
+      "ml_away_win_prob": 0.5836,
+      "ml_over_prob": 0.4265,
+      "ml_under_prob": 0.5735,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.4149,
+          "xgb": 0.3545,
+          "lgb": 0.4812
+        },
+        "ou": {
+          "lr": 0.4109,
+          "xgb": 0.431,
+          "lgb": 0.4385
+        }
+      },
+      "mapping_pct": 100.0,
+      "features_mapped": 95,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "BP_ERA_30d_HOME",
+          "shap_value": -0.43,
+          "feature_value": 1.38
+        },
+        {
+          "feature": "AWAYTEAM_SIERA",
+          "shap_value": 0.2308,
+          "feature_value": 4.3171
+        },
+        {
+          "feature": "AVG_BA_HOME_DAY",
+          "shap_value": -0.1892,
+          "feature_value": 0.373
+        },
+        {
+          "feature": "HOME_SP_FB_Velo_Trend",
+          "shap_value": -0.1836,
+          "feature_value": -0.38
+        },
+        {
+          "feature": "UO_LINE",
+          "shap_value": -0.1409,
+          "feature_value": 9.5
+        },
+        {
+          "feature": "L5G_avg_runs_conceded_AWAY",
+          "shap_value": 0.1172,
+          "feature_value": 7.6
+        },
+        {
+          "feature": "Home_Team_BM",
+          "shap_value": -0.1005,
+          "feature_value": 2.73
+        },
+        {
+          "feature": "BVP_OBP_AWAY",
+          "shap_value": -0.0867,
+          "feature_value": 0.389
+        },
+        {
+          "feature": "OBP_AWAY",
+          "shap_value": 0.079,
+          "feature_value": 0.299
+        },
+        {
+          "feature": "OBP_HOME",
+          "shap_value": 0.0785,
+          "feature_value": 0.388
+        }
+      ],
+      "feature_importance": {
+        "BP_ERA_30d_HOME": 0.43,
+        "AWAYTEAM_SIERA": 0.2308,
+        "AVG_BA_HOME_DAY": 0.1892,
+        "HOME_SP_FB_Velo_Trend": 0.1836,
+        "UO_LINE": 0.1409,
+        "L5G_avg_runs_conceded_AWAY": 0.1172,
+        "Home_Team_BM": 0.1005,
+        "BVP_OBP_AWAY": 0.0867,
+        "OBP_AWAY": 0.079,
+        "OBP_HOME": 0.0785,
+        "ERA_HOME_PITCHER_HOMEONLY": 0.0731,
+        "ERA_HOMETEAM_PITCHER": 0.0674,
+        "SAPS_AWAY_ONLY_AWAYTEAM": 0.0669,
+        "ERA_AWAY_PITCHER_DAY": 0.0622,
+        "AWAYTEAM_PM": 0.061,
+        "L5G_avg_runs_AWAY": 0.0598,
+        "L5G_avg_runs_HOME": 0.0517,
+        "HOME_SP_IP": 0.0509,
+        "AVG_BA_HOME_Total": 0.0447,
+        "ERA_AWAY_PITCHER_AWAYONLY": 0.0432
+      }
+    },
+    {
+      "game_id": "MIA_LAA",
+      "ml_home_win_prob": 0.5318,
+      "ml_away_win_prob": 0.4682,
+      "ml_over_prob": 0.4428,
+      "ml_under_prob": 0.5572,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.4357,
+          "xgb": 0.5693,
+          "lgb": 0.5928
+        },
+        "ou": {
+          "lr": 0.7215,
+          "xgb": 0.3364,
+          "lgb": 0.2549
+        }
+      },
+      "mapping_pct": 97.9,
+      "features_mapped": 93,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "BVP_OBP_AWAY",
+          "shap_value": -0.1481,
+          "feature_value": 0.389
+        },
+        {
+          "feature": "BVP_AB_HOME",
+          "shap_value": 0.1314,
+          "feature_value": 0.0
+        },
+        {
+          "feature": "AWAY_SP_FB_Velo_Trend",
+          "shap_value": -0.1301,
+          "feature_value": 1.36
+        },
+        {
+          "feature": "AWAYTEAM_SIERA",
+          "shap_value": 0.1086,
+          "feature_value": 4.2072
+        },
+        {
+          "feature": "AwayTEAM_Win_Rate_ONLYAWAY",
+          "shap_value": 0.0875,
+          "feature_value": 0.345
+        },
+        {
+          "feature": "ERA_AWAY_PITCHER_NIGHT",
+          "shap_value": -0.0741,
+          "feature_value": 2.79
+        },
+        {
+          "feature": "BVP_CONFIDENCE_AWAY",
+          "shap_value": 0.073,
+          "feature_value": 5.0
+        },
+        {
+          "feature": "L5G_avg_runs_conceded_AWAY",
+          "shap_value": -0.0668,
+          "feature_value": 2.4
+        },
+        {
+          "feature": "ERA_HOME_PITCHER_HOMEONLY",
+          "shap_value": -0.0574,
+          "feature_value": 2.95
+        },
+        {
+          "feature": "ERA_AWAY_PITCHER_DAY",
+          "shap_value": -0.056,
+          "feature_value": 1.45
+        }
+      ],
+      "feature_importance": {
+        "BVP_OBP_AWAY": 0.1481,
+        "BVP_AB_HOME": 0.1314,
+        "AWAY_SP_FB_Velo_Trend": 0.1301,
+        "AWAYTEAM_SIERA": 0.1086,
+        "AwayTEAM_Win_Rate_ONLYAWAY": 0.0875,
+        "ERA_AWAY_PITCHER_NIGHT": 0.0741,
+        "BVP_CONFIDENCE_AWAY": 0.073,
+        "L5G_avg_runs_conceded_AWAY": 0.0668,
+        "ERA_HOME_PITCHER_HOMEONLY": 0.0574,
+        "ERA_AWAY_PITCHER_DAY": 0.056,
+        "ERA_AWAY_PITCHER_AWAYONLY": 0.0526,
+        "BP_ERA_30d_HOME": 0.0513,
+        "BP_ERA_30d_AWAY": 0.0506,
+        "ERA_AWAYTEAM": 0.0488,
+        "SAPS_AWAY_ONLY_AWAYTEAM": 0.0473,
+        "HOME_SP_FB_Velo": 0.047,
+        "AVG_BA_HOME_NIGHT": 0.0433,
+        "HOMETEAM_wOBA": 0.0433,
+        "SAPA_AWAY_ONLY_AWAYTEAM": 0.0396,
+        "AWAYTEAM_E": 0.0383
+      }
+    },
+    {
+      "game_id": "PHI_TOR",
+      "ml_home_win_prob": 0.6059,
+      "ml_away_win_prob": 0.3941,
+      "ml_over_prob": 0.6907,
+      "ml_under_prob": 0.3093,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.7163,
+          "xgb": 0.6271,
+          "lgb": 0.4699
+        },
+        "ou": {
+          "lr": 0.708,
+          "xgb": 0.7612,
+          "lgb": 0.6007
+        }
+      },
+      "mapping_pct": 100.0,
+      "features_mapped": 95,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "HOMETEAM_SIERA",
+          "shap_value": 0.178,
+          "feature_value": 3.506
+        },
+        {
+          "feature": "UO_LINE",
+          "shap_value": -0.1532,
+          "feature_value": 9.5
+        },
+        {
+          "feature": "ERA_HOME_PITCHER_DAY",
+          "shap_value": -0.134,
+          "feature_value": 5.87
+        },
+        {
+          "feature": "AWAYTEAM_wOBA",
+          "shap_value": 0.1158,
+          "feature_value": 0.2989
+        },
+        {
+          "feature": "AWAYTEAM_E",
+          "shap_value": 0.105,
+          "feature_value": 77.0
+        },
+        {
+          "feature": "OBP_AWAY",
+          "shap_value": 0.1019,
+          "feature_value": 0.308
+        },
+        {
+          "feature": "AWAYTEAM_BULLPEN_WORKLOAD",
+          "shap_value": 0.0917,
+          "feature_value": 28.0
+        },
+        {
+          "feature": "BVP_CONFIDENCE_AWAY",
+          "shap_value": 0.0914,
+          "feature_value": 5.0
+        },
+        {
+          "feature": "HOMETEAM_BULLPEN_WORKLOAD",
+          "shap_value": 0.0854,
+          "feature_value": 25.0
+        },
+        {
+          "feature": "HOME_SP_FB_Velo_Trend",
+          "shap_value": -0.0839,
+          "feature_value": 0.26
+        }
+      ],
+      "feature_importance": {
+        "HOMETEAM_SIERA": 0.178,
+        "UO_LINE": 0.1532,
+        "ERA_HOME_PITCHER_DAY": 0.134,
+        "AWAYTEAM_wOBA": 0.1158,
+        "AWAYTEAM_E": 0.105,
+        "OBP_AWAY": 0.1019,
+        "AWAYTEAM_BULLPEN_WORKLOAD": 0.0917,
+        "BVP_CONFIDENCE_AWAY": 0.0914,
+        "HOMETEAM_BULLPEN_WORKLOAD": 0.0854,
+        "HOME_SP_FB_Velo_Trend": 0.0839,
+        "ERA_HOME_PITCHER_HOMEONLY": 0.08,
+        "BVP_CONFIDENCE_HOME": 0.0791,
+        "ERA_HOMETEAM_PITCHER": 0.0772,
+        "AWAYTEAM_SIERA": 0.0716,
+        "ERA_HOME_PITCHER_NIGHT": 0.0636,
+        "AVG_BA_HOME_DAY": 0.0589,
+        "SAPS_AWAY_ONLY_AWAYTEAM": 0.0575,
+        "AWAYTEAM_FPct": 0.0525,
+        "AWAY_ROAD_STREAK": 0.0412,
+        "SWP_AWAYTEAM": 0.0402
+      }
+    },
+    {
+      "game_id": "PIT_NYM",
+      "ml_home_win_prob": 0.5115,
+      "ml_away_win_prob": 0.4885,
+      "ml_over_prob": 0.5122,
+      "ml_under_prob": 0.4878,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.5061,
+          "xgb": 0.5266,
+          "lgb": 0.5015
+        },
+        "ou": {
+          "lr": 0.6912,
+          "xgb": 0.3949,
+          "lgb": 0.4413
+        }
+      },
+      "mapping_pct": 93.7,
+      "features_mapped": 89,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "AVG_BA_AWAY_NIGHT",
+          "shap_value": -0.1433,
+          "feature_value": 0.213
+        },
+        {
+          "feature": "ERA_AWAYTEAM_PITCHER",
+          "shap_value": -0.1102,
+          "feature_value": 1.8
+        },
+        {
+          "feature": "AWAYTEAM_E",
+          "shap_value": 0.1069,
+          "feature_value": 78.0
+        },
+        {
+          "feature": "BVP_AB_HOME",
+          "shap_value": 0.0996,
+          "feature_value": 0.0
+        },
+        {
+          "feature": "BP_ERA_30d_AWAY",
+          "shap_value": 0.0828,
+          "feature_value": 2.69
+        },
+        {
+          "feature": "ERA_HOME_PITCHER_HOMEONLY",
+          "shap_value": 0.0751,
+          "feature_value": 4.81
+        },
+        {
+          "feature": "HOME_SP_FB_Velo_Trend",
+          "shap_value": -0.0736,
+          "feature_value": 0.22
+        },
+        {
+          "feature": "L5G_avg_runs_AWAY",
+          "shap_value": 0.0663,
+          "feature_value": 6.2
+        },
+        {
+          "feature": "Home_Team_BM",
+          "shap_value": -0.0617,
+          "feature_value": 2.01
+        },
+        {
+          "feature": "AWAYTEAM_FPct",
+          "shap_value": 0.0607,
+          "feature_value": 0.981
+        }
+      ],
+      "feature_importance": {
+        "AVG_BA_AWAY_NIGHT": 0.1433,
+        "ERA_AWAYTEAM_PITCHER": 0.1102,
+        "AWAYTEAM_E": 0.1069,
+        "BVP_AB_HOME": 0.0996,
+        "BP_ERA_30d_AWAY": 0.0828,
+        "ERA_HOME_PITCHER_HOMEONLY": 0.0751,
+        "HOME_SP_FB_Velo_Trend": 0.0736,
+        "L5G_avg_runs_AWAY": 0.0663,
+        "Home_Team_BM": 0.0617,
+        "AWAYTEAM_FPct": 0.0607,
+        "HOME_SP_xFIP": 0.0602,
+        "SAPS_AWAYTEAM": 0.0561,
+        "OBP_AWAY": 0.0561,
+        "ERA_HOME_PITCHER_DAY": 0.0544,
+        "Home_Team_PM": 0.0499,
+        "ERA_AWAY_PITCHER_DAY": 0.0467,
+        "HOMETEAM_wOBA": 0.0452,
+        "SAPS_HOMETEAM": 0.0446,
+        "AVG_BA_HOME_DAY": 0.044,
+        "AWAY_SP_IP": 0.0433
+      }
+    },
+    {
+      "game_id": "WSH_CIN",
+      "ml_home_win_prob": 0.6171,
+      "ml_away_win_prob": 0.3829,
+      "ml_over_prob": 0.2394,
+      "ml_under_prob": 0.7606,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.6215,
+          "xgb": 0.609,
+          "lgb": 0.6208
+        },
+        "ou": {
+          "lr": 0.2919,
+          "xgb": 0.1796,
+          "lgb": 0.2443
+        }
+      },
+      "mapping_pct": 97.9,
+      "features_mapped": 93,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "AWAYTEAM_SIERA",
+          "shap_value": 0.2622,
+          "feature_value": 4.5386
+        },
+        {
+          "feature": "SAPS_HOMETEAM",
+          "shap_value": 0.1599,
+          "feature_value": 5.32
+        },
+        {
+          "feature": "HOMETEAM_SIERA",
+          "shap_value": -0.112,
+          "feature_value": 4.3836
+        },
+        {
+          "feature": "Home_Win_Rate",
+          "shap_value": 0.105,
+          "feature_value": 0.414
+        },
+        {
+          "feature": "AVG_BA_AWAY_NIGHT",
+          "shap_value": -0.0957,
+          "feature_value": 0.214
+        },
+        {
+          "feature": "OBP_AWAY",
+          "shap_value": 0.0893,
+          "feature_value": 0.305
+        },
+        {
+          "feature": "ERA_AWAY_PITCHER_AWAYONLY",
+          "shap_value": -0.0796,
+          "feature_value": 2.51
+        },
+        {
+          "feature": "OBP_HOME",
+          "shap_value": -0.0718,
+          "feature_value": 0.307
+        },
+        {
+          "feature": "ERA_HOME_PITCHER_HOMEONLY",
+          "shap_value": 0.069,
+          "feature_value": 4.63
+        },
+        {
+          "feature": "SAPA_HOME_ONLY_HOMETEAM",
+          "shap_value": -0.0664,
+          "feature_value": 5.84
+        }
+      ],
+      "feature_importance": {
+        "AWAYTEAM_SIERA": 0.2622,
+        "SAPS_HOMETEAM": 0.1599,
+        "HOMETEAM_SIERA": 0.112,
+        "Home_Win_Rate": 0.105,
+        "AVG_BA_AWAY_NIGHT": 0.0957,
+        "OBP_AWAY": 0.0893,
+        "ERA_AWAY_PITCHER_AWAYONLY": 0.0796,
+        "OBP_HOME": 0.0718,
+        "ERA_HOME_PITCHER_HOMEONLY": 0.069,
+        "SAPA_HOME_ONLY_HOMETEAM": 0.0664,
+        "SAPS_HOME_ONLY_HOMETEAM": 0.063,
+        "Max_Wind_kph": 0.0587,
+        "Avg_Temp_C": 0.058,
+        "AWAY_SP_FB_Velo": 0.0505,
+        "AVG_BA_AWAY_Total": 0.0491,
+        "ERA_HOME_PITCHER_DAY": 0.0439,
+        "R_H2H_WP_AWAYTEAM": 0.0426,
+        "AWAYTEAM_BM": 0.0426,
+        "SWP_HOMETEAM": 0.0394,
+        "AWAYTEAM_FPct": 0.0383
+      }
+    },
+    {
+      "game_id": "KC_CHC",
+      "ml_home_win_prob": 0.3544,
+      "ml_away_win_prob": 0.6456,
+      "ml_over_prob": 0.3298,
+      "ml_under_prob": 0.6702,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.3161,
+          "xgb": 0.3207,
+          "lgb": 0.4286
+        },
+        "ou": {
+          "lr": 0.5001,
+          "xgb": 0.2317,
+          "lgb": 0.2486
+        }
+      },
+      "mapping_pct": 98.9,
+      "features_mapped": 94,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "HOMETEAM_SIERA",
+          "shap_value": -0.1611,
+          "feature_value": 4.5245
+        },
+        {
+          "feature": "UO_LINE",
+          "shap_value": -0.1314,
+          "feature_value": 9.5
+        },
+        {
+          "feature": "AWAYTEAM_wOBA",
+          "shap_value": -0.1251,
+          "feature_value": 0.3318
+        },
+        {
+          "feature": "ERA_HOME_PITCHER_DAY",
+          "shap_value": -0.1036,
+          "feature_value": 5.76
+        },
+        {
+          "feature": "SAPS_HOMETEAM",
+          "shap_value": -0.1033,
+          "feature_value": 4.14
+        },
+        {
+          "feature": "OBP_AWAY",
+          "shap_value": -0.1007,
+          "feature_value": 0.343
+        },
+        {
+          "feature": "L5G_avg_runs_conceded_AWAY",
+          "shap_value": -0.0841,
+          "feature_value": 3.6
+        },
+        {
+          "feature": "BP_ERA_30d_AWAY",
+          "shap_value": 0.0797,
+          "feature_value": 3.05
+        },
+        {
+          "feature": "SWP_HOMETEAM",
+          "shap_value": -0.0703,
+          "feature_value": 0.41
+        },
+        {
+          "feature": "ERA_AWAY_PITCHER_AWAYONLY",
+          "shap_value": -0.0668,
+          "feature_value": 2.1
+        }
+      ],
+      "feature_importance": {
+        "HOMETEAM_SIERA": 0.1611,
+        "UO_LINE": 0.1314,
+        "AWAYTEAM_wOBA": 0.1251,
+        "ERA_HOME_PITCHER_DAY": 0.1036,
+        "SAPS_HOMETEAM": 0.1033,
+        "OBP_AWAY": 0.1007,
+        "L5G_avg_runs_conceded_AWAY": 0.0841,
+        "BP_ERA_30d_AWAY": 0.0797,
+        "SWP_HOMETEAM": 0.0703,
+        "ERA_AWAY_PITCHER_AWAYONLY": 0.0668,
+        "ERA_HOMETEAM_PITCHER": 0.066,
+        "L5G_avg_runs_HOME": 0.0545,
+        "AWAYTEAM_SIERA": 0.053,
+        "BVP_OBP_AWAY": 0.0527,
+        "R_H2H_WP_AWAYTEAM": 0.0526,
+        "SAPA_HOMETEAM": 0.0513,
+        "Avg_Temp_C": 0.0467,
+        "ERA_AWAY_PITCHER_NIGHT": 0.0464,
+        "SWP_AWAYTEAM": 0.0442,
+        "Home_Team_BM": 0.0425
+      }
+    },
+    {
+      "game_id": "MIL_MIN",
+      "ml_home_win_prob": 0.6259,
+      "ml_away_win_prob": 0.3741,
+      "ml_over_prob": 0.322,
+      "ml_under_prob": 0.678,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.6543,
+          "xgb": 0.6037,
+          "lgb": 0.6192
+        },
+        "ou": {
+          "lr": 0.2997,
+          "xgb": 0.3257,
+          "lgb": 0.3419
+        }
+      },
+      "mapping_pct": 100.0,
+      "features_mapped": 95,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "HOMETEAM_SIERA",
+          "shap_value": 0.2069,
+          "feature_value": 3.5199
+        },
+        {
+          "feature": "AWAYTEAM_SIERA",
+          "shap_value": 0.1523,
+          "feature_value": 4.2953
+        },
+        {
+          "feature": "ERA_HOME_PITCHER_DAY",
+          "shap_value": -0.0973,
+          "feature_value": 6.0
+        },
+        {
+          "feature": "HOME_SP_FB_Velo_Trend",
+          "shap_value": -0.0674,
+          "feature_value": 0.34
+        },
+        {
+          "feature": "SAPS_HOMETEAM",
+          "shap_value": 0.063,
+          "feature_value": 4.97
+        },
+        {
+          "feature": "BVP_OBP_AWAY",
+          "shap_value": -0.0573,
+          "feature_value": 0.353
+        },
+        {
+          "feature": "L5G_avg_runs_HOME",
+          "shap_value": 0.0502,
+          "feature_value": 4.4
+        },
+        {
+          "feature": "SAPA_HOMETEAM",
+          "shap_value": 0.0475,
+          "feature_value": 3.78
+        },
+        {
+          "feature": "BVP_AB_AWAY",
+          "shap_value": -0.0466,
+          "feature_value": 26.0
+        },
+        {
+          "feature": "AVG_BA_HOME_Total",
+          "shap_value": 0.0458,
+          "feature_value": 0.265
+        }
+      ],
+      "feature_importance": {
+        "HOMETEAM_SIERA": 0.2069,
+        "AWAYTEAM_SIERA": 0.1523,
+        "ERA_HOME_PITCHER_DAY": 0.0973,
+        "HOME_SP_FB_Velo_Trend": 0.0674,
+        "SAPS_HOMETEAM": 0.063,
+        "BVP_OBP_AWAY": 0.0573,
+        "L5G_avg_runs_HOME": 0.0502,
+        "SAPA_HOMETEAM": 0.0475,
+        "BVP_AB_AWAY": 0.0466,
+        "AVG_BA_HOME_Total": 0.0458,
+        "BP_ERA_30d_AWAY": 0.0442,
+        "OBP_AWAY": 0.0438,
+        "SAPA_AWAY_ONLY_AWAYTEAM": 0.0424,
+        "AWAYTEAM_E": 0.0424,
+        "AWAYTEAM_BM": 0.0414,
+        "SWP_AWAYTEAM": 0.0375,
+        "SAPA_HOME_ONLY_HOMETEAM": 0.0353,
+        "BP_IRS_30d_HOME": 0.035,
+        "UO_LINE": 0.0341,
+        "SWP_HOMETEAM": 0.0339
+      }
+    },
+    {
+      "game_id": "SD_HOU",
+      "ml_home_win_prob": 0.5205,
+      "ml_away_win_prob": 0.4795,
+      "ml_over_prob": 0.3912,
+      "ml_under_prob": 0.6088,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.5821,
+          "xgb": 0.4833,
+          "lgb": 0.4947
+        },
+        "ou": {
+          "lr": 0.4774,
+          "xgb": 0.3149,
+          "lgb": 0.3772
+        }
+      },
+      "mapping_pct": 100.0,
+      "features_mapped": 95,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "AWAYTEAM_SIERA",
+          "shap_value": 0.1402,
+          "feature_value": 4.2616
+        },
+        {
+          "feature": "ERA_HOMETEAM_PITCHER",
+          "shap_value": 0.0933,
+          "feature_value": 3.45
+        },
+        {
+          "feature": "L5G_avg_runs_conceded_AWAY",
+          "shap_value": -0.087,
+          "feature_value": 3.2
+        },
+        {
+          "feature": "SAPS_HOMETEAM",
+          "shap_value": -0.0793,
+          "feature_value": 4.22
+        },
+        {
+          "feature": "BVP_OBP_AWAY",
+          "shap_value": -0.0605,
+          "feature_value": 0.242
+        },
+        {
+          "feature": "ERA_AWAY_PITCHER_AWAYONLY",
+          "shap_value": -0.051,
+          "feature_value": 2.89
+        },
+        {
+          "feature": "BP_ERA_30d_AWAY",
+          "shap_value": 0.0469,
+          "feature_value": 3.09
+        },
+        {
+          "feature": "SAPA_HOME_ONLY_HOMETEAM",
+          "shap_value": 0.0453,
+          "feature_value": 4.02
+        },
+        {
+          "feature": "AVG_BA_HOME_VS_LHP",
+          "shap_value": -0.0451,
+          "feature_value": 0.263
+        },
+        {
+          "feature": "AVG_BA_AWAY_NIGHT",
+          "shap_value": 0.042,
+          "feature_value": 0.255
+        }
+      ],
+      "feature_importance": {
+        "AWAYTEAM_SIERA": 0.1402,
+        "ERA_HOMETEAM_PITCHER": 0.0933,
+        "L5G_avg_runs_conceded_AWAY": 0.087,
+        "SAPS_HOMETEAM": 0.0793,
+        "BVP_OBP_AWAY": 0.0605,
+        "ERA_AWAY_PITCHER_AWAYONLY": 0.051,
+        "BP_ERA_30d_AWAY": 0.0469,
+        "SAPA_HOME_ONLY_HOMETEAM": 0.0453,
+        "AVG_BA_HOME_VS_LHP": 0.0451,
+        "AVG_BA_AWAY_NIGHT": 0.042,
+        "Home_Win_Rate": 0.0417,
+        "ERA_HOME_PITCHER_DAY": 0.0406,
+        "ERA_AWAYTEAM": 0.0392,
+        "AVG_BA_AWAY_VS_RHP": 0.0383,
+        "OBP_AWAY": 0.038,
+        "SAPS_HOME_ONLY_HOMETEAM": 0.0377,
+        "AwayTEAM_Win_Rate_ONLYAWAY": 0.0345,
+        "SWP_AWAYTEAM": 0.0344,
+        "BVP_AB_AWAY": 0.0335,
+        "SAPS_AWAY_ONLY_AWAYTEAM": 0.0331
+      }
+    },
+    {
+      "game_id": "SF_DET",
+      "ml_home_win_prob": 0.4818,
+      "ml_away_win_prob": 0.5182,
+      "ml_over_prob": 0.4274,
+      "ml_under_prob": 0.5726,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.5349,
+          "xgb": 0.483,
+          "lgb": 0.4257
+        },
+        "ou": {
+          "lr": 0.5358,
+          "xgb": 0.3299,
+          "lgb": 0.4112
+        }
+      },
+      "mapping_pct": 90.5,
+      "features_mapped": 86,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "BVP_OBP_AWAY",
+          "shap_value": -0.1975,
+          "feature_value": 0.462
+        },
+        {
+          "feature": "AVG_BA_HOME_VS_LHP",
+          "shap_value": 0.1383,
+          "feature_value": 0.164
+        },
+        {
+          "feature": "OBP_AWAY",
+          "shap_value": -0.1139,
+          "feature_value": 0.348
+        },
+        {
+          "feature": "R_H2H_WP_AWAYTEAM",
+          "shap_value": -0.1111,
+          "feature_value": 0.0
+        },
+        {
+          "feature": "BP_ERA_30d_AWAY",
+          "shap_value": 0.0962,
+          "feature_value": 3.34
+        },
+        {
+          "feature": "L5G_avg_runs_AWAY",
+          "shap_value": 0.094,
+          "feature_value": 6.8
+        },
+        {
+          "feature": "SAPS_HOMETEAM",
+          "shap_value": -0.0913,
+          "feature_value": 4.17
+        },
+        {
+          "feature": "HOMETEAM_SIERA",
+          "shap_value": -0.0851,
+          "feature_value": 4.3906
+        },
+        {
+          "feature": "L5G_avg_runs_HOME",
+          "shap_value": 0.0847,
+          "feature_value": 3.6
+        },
+        {
+          "feature": "AWAYTEAM_BM",
+          "shap_value": -0.0703,
+          "feature_value": 1.73
+        }
+      ],
+      "feature_importance": {
+        "BVP_OBP_AWAY": 0.1975,
+        "AVG_BA_HOME_VS_LHP": 0.1383,
+        "OBP_AWAY": 0.1139,
+        "R_H2H_WP_AWAYTEAM": 0.1111,
+        "BP_ERA_30d_AWAY": 0.0962,
+        "L5G_avg_runs_AWAY": 0.094,
+        "SAPS_HOMETEAM": 0.0913,
+        "HOMETEAM_SIERA": 0.0851,
+        "L5G_avg_runs_HOME": 0.0847,
+        "AWAYTEAM_BM": 0.0703,
+        "AVG_BA_HOME_DAY": 0.0675,
+        "AVG_BA_AWAY_NIGHT": 0.0559,
+        "ERA_AWAY_PITCHER_AWAYONLY": 0.0543,
+        "L5G_avg_runs_conceded_HOME": 0.0497,
+        "SWP_HOMETEAM": 0.042,
+        "AWAYTEAM_E": 0.0397,
+        "ERA_HOME_PITCHER_DAY": 0.0395,
+        "SWP_AWAYTEAM": 0.039,
+        "Home_Win_Rate": 0.0385,
+        "AwayTEAM_Win_Rate_ONLYAWAY": 0.038
+      }
+    },
+    {
+      "game_id": "STL_COL",
+      "ml_home_win_prob": 0.601,
+      "ml_away_win_prob": 0.399,
+      "ml_over_prob": 0.3944,
+      "ml_under_prob": 0.6056,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.6074,
+          "xgb": 0.5514,
+          "lgb": 0.6451
+        },
+        "ou": {
+          "lr": 0.2928,
+          "xgb": 0.4294,
+          "lgb": 0.4667
+        }
+      },
+      "mapping_pct": 100.0,
+      "features_mapped": 95,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "ERA_AWAY_PITCHER_NIGHT",
+          "shap_value": 0.2377,
+          "feature_value": 7.57
+        },
+        {
+          "feature": "BVP_OBP_AWAY",
+          "shap_value": -0.193,
+          "feature_value": 0.438
+        },
+        {
+          "feature": "AWAYTEAM_SIERA",
+          "shap_value": 0.1697,
+          "feature_value": 4.5193
+        },
+        {
+          "feature": "R_H2H_WP_AWAYTEAM",
+          "shap_value": -0.1517,
+          "feature_value": 0.0
+        },
+        {
+          "feature": "AWAYTEAM_BM",
+          "shap_value": -0.101,
+          "feature_value": 1.76
+        },
+        {
+          "feature": "Avg_Temp_C",
+          "shap_value": 0.0902,
+          "feature_value": 26.7
+        },
+        {
+          "feature": "AwayTEAM_Win_Rate_ONLYAWAY",
+          "shap_value": 0.0853,
+          "feature_value": 0.316
+        },
+        {
+          "feature": "ERA_HOME_PITCHER_NIGHT",
+          "shap_value": -0.0818,
+          "feature_value": 5.51
+        },
+        {
+          "feature": "Home_Win_Rate",
+          "shap_value": 0.0644,
+          "feature_value": 0.475
+        },
+        {
+          "feature": "L5G_avg_runs_conceded_HOME",
+          "shap_value": -0.0632,
+          "feature_value": 2.6
+        }
+      ],
+      "feature_importance": {
+        "ERA_AWAY_PITCHER_NIGHT": 0.2377,
+        "BVP_OBP_AWAY": 0.193,
+        "AWAYTEAM_SIERA": 0.1697,
+        "R_H2H_WP_AWAYTEAM": 0.1517,
+        "AWAYTEAM_BM": 0.101,
+        "Avg_Temp_C": 0.0902,
+        "AwayTEAM_Win_Rate_ONLYAWAY": 0.0853,
+        "ERA_HOME_PITCHER_NIGHT": 0.0818,
+        "Home_Win_Rate": 0.0644,
+        "L5G_avg_runs_conceded_HOME": 0.0632,
+        "SAPA_AWAY_ONLY_AWAYTEAM": 0.0602,
+        "AVG_BA_AWAY_VS_LHP": 0.0557,
+        "OBP_AWAY": 0.0489,
+        "L5G_avg_runs_conceded_AWAY": 0.0454,
+        "HOMETEAM_SIERA": 0.0453,
+        "SWP_AWAYTEAM": 0.0394,
+        "AWAYTEAM_FPct": 0.038,
+        "ERA_AWAY_PITCHER_AWAYONLY": 0.0377,
+        "ERA_HOME_PITCHER_HOMEONLY": 0.0369,
+        "SAPS_HOME_ONLY_HOMETEAM": 0.0348
+      }
+    },
+    {
+      "game_id": "TEX_BAL",
+      "ml_home_win_prob": 0.5597,
+      "ml_away_win_prob": 0.4403,
+      "ml_over_prob": 0.444,
+      "ml_under_prob": 0.556,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.5665,
+          "xgb": 0.5867,
+          "lgb": 0.5251
+        },
+        "ou": {
+          "lr": 0.5957,
+          "xgb": 0.4051,
+          "lgb": 0.3223
+        }
+      },
+      "mapping_pct": 100.0,
+      "features_mapped": 95,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "OBP_HOME",
+          "shap_value": -0.1874,
+          "feature_value": 0.278
+        },
+        {
+          "feature": "AVG_BA_AWAY_NIGHT",
+          "shap_value": -0.1505,
+          "feature_value": 0.215
+        },
+        {
+          "feature": "Avg_Temp_C",
+          "shap_value": 0.144,
+          "feature_value": 32.9
+        },
+        {
+          "feature": "AWAYTEAM_SIERA",
+          "shap_value": 0.1138,
+          "feature_value": 4.2306
+        },
+        {
+          "feature": "ERA_HOME_PITCHER_HOMEONLY",
+          "shap_value": -0.0889,
+          "feature_value": 3.04
+        },
+        {
+          "feature": "BP_ERA_30d_AWAY",
+          "shap_value": 0.0881,
+          "feature_value": 2.63
+        },
+        {
+          "feature": "AVG_BA_AWAY_VS_RHP",
+          "shap_value": 0.0852,
+          "feature_value": 0.214
+        },
+        {
+          "feature": "SAPS_HOMETEAM",
+          "shap_value": -0.0829,
+          "feature_value": 4.13
+        },
+        {
+          "feature": "OBP_AWAY",
+          "shap_value": 0.081,
+          "feature_value": 0.308
+        },
+        {
+          "feature": "BP_IRS_30d_HOME",
+          "shap_value": 0.0747,
+          "feature_value": 35.1
+        }
+      ],
+      "feature_importance": {
+        "OBP_HOME": 0.1874,
+        "AVG_BA_AWAY_NIGHT": 0.1505,
+        "Avg_Temp_C": 0.144,
+        "AWAYTEAM_SIERA": 0.1138,
+        "ERA_HOME_PITCHER_HOMEONLY": 0.0889,
+        "BP_ERA_30d_AWAY": 0.0881,
+        "AVG_BA_AWAY_VS_RHP": 0.0852,
+        "SAPS_HOMETEAM": 0.0829,
+        "OBP_AWAY": 0.081,
+        "BP_IRS_30d_HOME": 0.0747,
+        "HOME_SP_FB_Velo_Trend": 0.0667,
+        "L5G_avg_runs_HOME": 0.0642,
+        "AVG_BA_AWAY_Total": 0.0626,
+        "ERA_AWAY_PITCHER_AWAYONLY": 0.0602,
+        "BP_ERA_30d_HOME": 0.0565,
+        "Home_Win_Rate": 0.056,
+        "SAPA_HOME_ONLY_HOMETEAM": 0.0533,
+        "ERA_AWAY_PITCHER_DAY": 0.0533,
+        "BVP_OBP_AWAY": 0.0505,
+        "AWAYTEAM_FPct": 0.049
+      }
+    },
+    {
+      "game_id": "CWS_CLE",
+      "ml_home_win_prob": 0.4544,
+      "ml_away_win_prob": 0.5456,
+      "ml_over_prob": 0.553,
+      "ml_under_prob": 0.447,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.2688,
+          "xgb": 0.4746,
+          "lgb": 0.6258
+        },
+        "ou": {
+          "lr": 0.6041,
+          "xgb": 0.4939,
+          "lgb": 0.5588
+        }
+      },
+      "mapping_pct": 100.0,
+      "features_mapped": 95,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "HOME_SP_xFIP",
+          "shap_value": -0.105,
+          "feature_value": 4.7849
+        },
+        {
+          "feature": "BVP_OBP_AWAY",
+          "shap_value": -0.1023,
+          "feature_value": 0.346
+        },
+        {
+          "feature": "AWAYTEAM_SIERA",
+          "shap_value": -0.094,
+          "feature_value": 3.7756
+        },
+        {
+          "feature": "AWAY_SP_FB_Velo_Trend",
+          "shap_value": -0.0877,
+          "feature_value": 1.21
+        },
+        {
+          "feature": "SAPS_HOMETEAM",
+          "shap_value": 0.0773,
+          "feature_value": 4.75
+        },
+        {
+          "feature": "AWAYTEAM_BM",
+          "shap_value": 0.075,
+          "feature_value": 0.77
+        },
+        {
+          "feature": "AVG_BA_HOME_NIGHT",
+          "shap_value": 0.0705,
+          "feature_value": 0.252
+        },
+        {
+          "feature": "AWAYTEAM_FPct",
+          "shap_value": 0.07,
+          "feature_value": 0.984
+        },
+        {
+          "feature": "Home_Win_Rate",
+          "shap_value": -0.0654,
+          "feature_value": 0.607
+        },
+        {
+          "feature": "AVG_BA_HOME_VS_LHP",
+          "shap_value": 0.0624,
+          "feature_value": 0.211
+        }
+      ],
+      "feature_importance": {
+        "HOME_SP_xFIP": 0.105,
+        "BVP_OBP_AWAY": 0.1023,
+        "AWAYTEAM_SIERA": 0.094,
+        "AWAY_SP_FB_Velo_Trend": 0.0877,
+        "SAPS_HOMETEAM": 0.0773,
+        "AWAYTEAM_BM": 0.075,
+        "AVG_BA_HOME_NIGHT": 0.0705,
+        "AWAYTEAM_FPct": 0.07,
+        "Home_Win_Rate": 0.0654,
+        "AVG_BA_HOME_VS_LHP": 0.0624,
+        "HOMETEAM_wOBA": 0.0621,
+        "AVG_BA_HOME_DAY": 0.0588,
+        "BP_ERA_30d_HOME": 0.0586,
+        "ERA_HOME_PITCHER_DAY": 0.0555,
+        "AWAY_SP_xFIP": 0.0526,
+        "HOME_SP_FB_Velo": 0.047,
+        "L5G_avg_runs_AWAY": 0.0463,
+        "L5G_avg_runs_conceded_AWAY": 0.0452,
+        "BP_IP_3d_AWAY": 0.0359,
+        "SWP_AWAYTEAM": 0.0348
+      }
+    },
+    {
+      "game_id": "ARI_LAD",
+      "ml_home_win_prob": 0.4509,
+      "ml_away_win_prob": 0.5491,
+      "ml_over_prob": 0.3532,
+      "ml_under_prob": 0.6468,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.4028,
+          "xgb": 0.4262,
+          "lgb": 0.5259
+        },
+        "ou": {
+          "lr": 0.3044,
+          "xgb": 0.3507,
+          "lgb": 0.4076
+        }
+      },
+      "mapping_pct": 100.0,
+      "features_mapped": 95,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "Avg_Temp_C",
+          "shap_value": 0.1782,
+          "feature_value": 38.5
+        },
+        {
+          "feature": "AWAYTEAM_wOBA",
+          "shap_value": -0.1772,
+          "feature_value": 0.3364
+        },
+        {
+          "feature": "HOMETEAM_SIERA",
+          "shap_value": -0.1535,
+          "feature_value": 4.4538
+        },
+        {
+          "feature": "L5G_avg_runs_conceded_AWAY",
+          "shap_value": 0.1142,
+          "feature_value": 6.8
+        },
+        {
+          "feature": "BP_ERA_30d_AWAY",
+          "shap_value": -0.1079,
+          "feature_value": 5.4
+        },
+        {
+          "feature": "AWAYTEAM_SIERA",
+          "shap_value": -0.1014,
+          "feature_value": 3.7655
+        },
+        {
+          "feature": "BVP_AB_AWAY",
+          "shap_value": -0.1005,
+          "feature_value": 238.0
+        },
+        {
+          "feature": "SAPS_HOMETEAM",
+          "shap_value": 0.0888,
+          "feature_value": 4.55
+        },
+        {
+          "feature": "ERA_HOME_PITCHER_HOMEONLY",
+          "shap_value": 0.0788,
+          "feature_value": 4.17
+        },
+        {
+          "feature": "SAPA_AWAY_ONLY_AWAYTEAM",
+          "shap_value": -0.0747,
+          "feature_value": 3.61
+        }
+      ],
+      "feature_importance": {
+        "Avg_Temp_C": 0.1782,
+        "AWAYTEAM_wOBA": 0.1772,
+        "HOMETEAM_SIERA": 0.1535,
+        "L5G_avg_runs_conceded_AWAY": 0.1142,
+        "BP_ERA_30d_AWAY": 0.1079,
+        "AWAYTEAM_SIERA": 0.1014,
+        "BVP_AB_AWAY": 0.1005,
+        "SAPS_HOMETEAM": 0.0888,
+        "ERA_HOME_PITCHER_HOMEONLY": 0.0788,
+        "SAPA_AWAY_ONLY_AWAYTEAM": 0.0747,
+        "OBP_AWAY": 0.0698,
+        "BVP_CONFIDENCE_HOME": 0.069,
+        "ERA_AWAY_PITCHER_AWAYONLY": 0.0671,
+        "Home_Win_Rate": 0.0604,
+        "BVP_OBP_AWAY": 0.0536,
+        "ERA_HOME_PITCHER_DAY": 0.0524,
+        "BP_ERA_30d_HOME": 0.0507,
+        "OBP_HOME": 0.0419,
+        "ERA_HOMETEAM_PITCHER": 0.0399,
+        "SWP_AWAYTEAM": 0.0396
+      }
+    },
+    {
+      "game_id": "SEA_TB",
+      "ml_home_win_prob": 0.5871,
+      "ml_away_win_prob": 0.4129,
+      "ml_over_prob": 0.5091,
+      "ml_under_prob": 0.4909,
+      "model_breakdown": {
+        "wl": {
+          "lr": 0.5299,
+          "xgb": 0.5742,
+          "lgb": 0.6596
+        },
+        "ou": {
+          "lr": 0.5322,
+          "xgb": 0.4751,
+          "lgb": 0.519
+        }
+      },
+      "mapping_pct": 100.0,
+      "features_mapped": 95,
+      "features_total": 95,
+      "shap_features": [
+        {
+          "feature": "HOME_SP_FB_Velo_Trend",
+          "shap_value": -0.1547,
+          "feature_value": -0.44
+        },
+        {
+          "feature": "BP_ERA_30d_AWAY",
+          "shap_value": 0.1183,
+          "feature_value": 3.02
+        },
+        {
+          "feature": "AWAYTEAM_FPct",
+          "shap_value": 0.069,
+          "feature_value": 0.983
+        },
+        {
+          "feature": "SAPS_HOMETEAM",
+          "shap_value": -0.0661,
+          "feature_value": 3.92
+        },
+        {
+          "feature": "AVG_BA_AWAY_NIGHT",
+          "shap_value": 0.0604,
+          "feature_value": 0.275
+        },
+        {
+          "feature": "BVP_OBP_AWAY",
+          "shap_value": 0.0571,
+          "feature_value": 0.306
+        },
+        {
+          "feature": "BP_ERA_30d_HOME",
+          "shap_value": 0.0541,
+          "feature_value": 5.04
+        },
+        {
+          "feature": "AVG_BA_HOME_HOMEONLY",
+          "shap_value": 0.0528,
+          "feature_value": 0.242
+        },
+        {
+          "feature": "AWAYTEAM_SIERA",
+          "shap_value": -0.0528,
+          "feature_value": 3.8692
+        },
+        {
+          "feature": "ERA_AWAYTEAM",
+          "shap_value": 0.0523,
+          "feature_value": 3.71
+        }
+      ],
+      "feature_importance": {
+        "HOME_SP_FB_Velo_Trend": 0.1547,
+        "BP_ERA_30d_AWAY": 0.1183,
+        "AWAYTEAM_FPct": 0.069,
+        "SAPS_HOMETEAM": 0.0661,
+        "AVG_BA_AWAY_NIGHT": 0.0604,
+        "BVP_OBP_AWAY": 0.0571,
+        "BP_ERA_30d_HOME": 0.0541,
+        "AVG_BA_HOME_HOMEONLY": 0.0528,
+        "AWAYTEAM_SIERA": 0.0528,
+        "ERA_AWAYTEAM": 0.0523,
+        "AWAY_SP_xFIP": 0.0477,
+        "HOMETEAM_BULLPEN_WORKLOAD": 0.0471,
+        "AVG_BA_AWAY_VS_RHP": 0.047,
+        "SWP_HOMETEAM": 0.0459,
+        "ERA_HOME_PITCHER_DAY": 0.045,
+        "SWP_AWAYTEAM": 0.0439,
+        "ERA_HOME_PITCHER_HOMEONLY": 0.0414,
+        "AWAYTEAM_E": 0.0408,
+        "SAPA_HOMETEAM": 0.0395,
+        "SAPS_AWAY_ONLY_AWAYTEAM": 0.0389
+      }
+    }
+  ]
+}
