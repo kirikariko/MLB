@@ -75,7 +75,12 @@ PROTECTED_FEATURES = [
     'HOMETEAM_BULLPEN_WORKLOAD', 'AWAYTEAM_BULLPEN_WORKLOAD',
     'BVP_AVG_HOME', 'BVP_AVG_AWAY',
     'HOME_REST_DAYS', 'AWAY_REST_DAYS',
-    'Series_Game_Num'
+    'Series_Game_Num',
+    # SP Statcast 투수실력 지표 (2026-08-06 추가). 과거 행 NaN → 초기엔 95% 필터에 걸리므로
+    # 보호 피처로 유지해 누적. 데이터 쌓이면 순수 독립 신호로 작동 (배당 오염 없음).
+    'HOME_SP_xwOBA', 'AWAY_SP_xwOBA',
+    'HOME_SP_HardHit', 'AWAY_SP_HardHit',
+    'HOME_SP_Barrel', 'AWAY_SP_Barrel',
 ]
 
 # NOTE: 이전에 있던 HOME_MAP/AWAY_MAP/SP_IP_MAP/ENV_MAP/META_MAP 5개 매핑은
@@ -106,10 +111,11 @@ def fetch_from_github(remote_path: str, local_path: Path, max_retries: int = 2) 
             # Fetch latest from remote (silent)
             r = subprocess.run(
                 ['git', 'fetch', 'origin', GITHUB_BRANCH],
-                cwd=str(repo_root), capture_output=True, text=True, timeout=30,
+                cwd=str(repo_root), capture_output=True, text=True,
+                encoding='utf-8', errors='replace', timeout=30,
             )
             if r.returncode != 0:
-                last_err = f"git fetch failed: {r.stderr.strip()}"
+                last_err = f"git fetch failed: {(r.stderr or '').strip()}"
                 continue
 
             # Checkout the file from origin/{branch} into local_path
@@ -208,6 +214,252 @@ def load_training_data(base_dir: Path):
     return df_wl, df_ou
 
 
+# ============================================================
+# 확정 선발 동기화 (2026-08-17 박음 — I-8 사고)
+# ============================================================
+# 사고 내용:
+#   mlb_two.csv(=MLB_KING.csv 파생)는 KING 시점의 "예고 선발" 성적을 담는다.
+#   dept1은 등판 확정 후 RotoWire로 실제 선발을 확인해 sp_profiles.json에 기록하며,
+#   KING과 0.5 이상 차이 나면 era_source="RotoWire(KING stale >0.5 diff)"로 표시한다.
+#   Poisson(dept2)은 sp_profiles를 읽어 신선한 값을 쓰지만,
+#   ML(ml_predict.py)은 mlb_two.csv를 직접 읽어 낡은 값을 그대로 학습/예측에 썼다.
+#   → 같은 부서 두 엔진이 서로 다른 투수를 보고 예측했고,
+#     그 인위적 이견을 dept3가 "모델 vs 시장 이견"으로 오인해 확률을 왜곡 조정했다.
+#   실사고: 2026-08-16 MIN_PHI — Poisson ERA 5.25(Dean Kremer 확정) vs ML ERA 6.50(취소된 예고선발).
+#           Poisson 홈 63.9% vs ML 홈 40.5% (23.4%p 가짜 이견) → 2폴드 오발행 → 패.
+#
+# 조치: 예측 대상 행의 선발 관련 피처를 dept1 sp_profiles.json 확정값으로 덮어쓴다.
+#   - 확정값이 있는 피처만 덮어쓴다.
+#   - 확정값이 없는 파생 피처(HOMEONLY/DAY/NIGHT 분할 ERA 등)는 "다른 투수의 값"이므로
+#     NaN으로 비운다. median imputation이 처리한다. ⛔ 추정값 채워넣기(날조) 금지.
+#   - 학습 데이터는 건드리지 않는다 (과거 행은 이미 실제 등판 결과가 반영된 확정 데이터).
+
+# sp_profiles 필드 → mlb_two.csv 컬럼 매핑 (확정값 존재)
+SP_OVERRIDE_MAP = {
+    'home': {
+        'era':            'ERA_HOMETEAM_PITCHER',
+        'ip':             'HOME_SP_IP',
+        'xfip':           'HOME_SP_xFIP',
+        'xwoba':          'HOME_SP_xwOBA',
+        'hard_hit':       'HOME_SP_HardHit',
+        'barrel':         'HOME_SP_Barrel',
+        'fb_velo':        'HOME_SP_FB_Velo',
+        'fb_velo_trend':  'HOME_SP_FB_Velo_Trend',
+    },
+    'away': {
+        'era':            'ERA_AWAYTEAM_PITCHER',
+        'ip':             'AWAY_SP_IP',
+        'xfip':           'AWAY_SP_xFIP',
+        'xwoba':          'AWAY_SP_xwOBA',
+        'hard_hit':       'AWAY_SP_HardHit',
+        'barrel':         'AWAY_SP_Barrel',
+        'fb_velo':        'AWAY_SP_FB_Velo',
+        'fb_velo_trend':  'AWAY_SP_FB_Velo_Trend',
+    },
+}
+
+# 확정값이 없는 파생 피처 → 선발이 바뀌면 무효화 (NaN)
+SP_INVALIDATE = {
+    'home': ['ERA_HOME_PITCHER_HOMEONLY', 'ERA_HOME_PITCHER_DAY', 'ERA_HOME_PITCHER_NIGHT'],
+    'away': ['ERA_AWAY_PITCHER_AWAYONLY', 'ERA_AWAY_PITCHER_DAY', 'ERA_AWAY_PITCHER_NIGHT'],
+}
+
+# ERA가 이만큼 이상 차이나면 "선발이 바뀐 것"으로 간주 (dept1의 stale 판정과 동일 기준)
+SP_STALE_ERA_DIFF = 0.5
+
+# dept2 Poisson이 쓰는 ERA 축소(shrinkage) 상수.
+# 2026-08-17 역산 검증: base_probabilities.json의 era_shrinkage 102쌍 전부에서
+#   shrunk = (IP*raw + K*PRIOR) / (IP + K),  K=70.0, PRIOR=4.15  — 오차 0.02 이내로 일치.
+# ⛔ ML 피처는 raw ERA를 그대로 쓴다. 학습 행(과거)이 raw이므로 예측 행만 축소하면
+#    학습/예측 분포가 어긋나는 새 버그가 된다. 축소값은 참고 지표로만 기록한다.
+SP_SHRINK_K = 70.0
+SP_SHRINK_PRIOR = 4.15
+# 이닝이 이보다 적으면 ERA가 극단값(0.00, 10.13 등)이 되어 신뢰할 수 없다 → 플래그만 남긴다.
+SP_LOW_IP_THRESHOLD = 20.0
+
+# 물리적으로 불가능한 값 방어 (2026-08-17 발견).
+# 실제 사례: 2026-08-15 TOR_NYY 홈 선발 sp_profiles era=0.00 / ip=61.0.
+# MLB 역사상 규정이닝급 0.00 ERA는 존재하지 않는다 → 원천 데이터 결손이다.
+# 이런 값으로 덮어쓰면 낡은 값보다 더 나빠지므로 덮어쓰지 않고 플래그만 남긴다.
+# ⛔ 값을 임의 추정해 채우지 않는다 (날조 금지). 판단은 dept3/dept4에 넘긴다.
+SP_IMPLAUSIBLE_IP = 30.0
+
+
+def is_implausible_era(era, ip):
+    """ERA 0.00인데 이닝이 충분히 많으면 원천 데이터 결손으로 본다."""
+    try:
+        era, ip = float(era), float(ip)
+    except (TypeError, ValueError):
+        return False
+    return era <= 0.0 and ip >= SP_IMPLAUSIBLE_IP
+
+
+def shrunk_era(raw, ip):
+    """dept2와 동일한 ERA 축소값 (참고용)."""
+    try:
+        raw, ip = float(raw), float(ip)
+    except (TypeError, ValueError):
+        return None
+    return round((ip * raw + SP_SHRINK_K * SP_SHRINK_PRIOR) / (ip + SP_SHRINK_K), 4)
+
+
+def _iter_sp_games(obj):
+    """sp_profiles.json 구조가 바뀌어도 game_id+home_sp를 가진 dict를 찾아낸다."""
+    if isinstance(obj, dict):
+        if 'game_id' in obj and ('home_sp' in obj or 'away_sp' in obj):
+            yield obj
+        for v in obj.values():
+            yield from _iter_sp_games(v)
+    elif isinstance(obj, list):
+        for v in obj:
+            yield from _iter_sp_games(v)
+
+
+def apply_confirmed_sp(df_predict, date_str: str, base_dir: Path):
+    """예측 행의 선발 피처를 dept1 확정 선발값으로 동기화.
+
+    Returns: (df_predict, report_dict)
+    """
+    print(f"\n[1.5/6] 확정 선발 동기화 (dept1 sp_profiles)")
+    report = {
+        'applied': False,
+        'source': None,
+        'games_checked': 0,
+        'games_overridden': 0,
+        'overrides': [],
+        'note': None,
+    }
+
+    sp_path = base_dir / 'pipeline' / date_str / 'dept1' / 'sp_profiles.json'
+    if not sp_path.exists():
+        msg = f"sp_profiles.json 없음 ({sp_path}) — KING 값 그대로 사용"
+        print(f"  ⚠ {msg}")
+        report['note'] = msg
+        return df_predict, report
+
+    try:
+        with open(sp_path, 'r', encoding='utf-8') as f:
+            sp_raw = json.load(f)
+    except Exception as e:
+        msg = f"sp_profiles.json 파싱 실패: {e} — KING 값 그대로 사용"
+        print(f"  ⚠ {msg}")
+        report['note'] = msg
+        return df_predict, report
+
+    sp_by_gid = {g['game_id']: g for g in _iter_sp_games(sp_raw)}
+    report['applied'] = True
+    report['source'] = str(sp_path.relative_to(base_dir)) if str(sp_path).startswith(str(base_dir)) else str(sp_path)
+
+    if 'GAME_ID' not in df_predict.columns:
+        msg = "df_predict에 GAME_ID 컬럼 없음 — 동기화 불가"
+        print(f"  ⛔ {msg}")
+        report['applied'] = False
+        report['note'] = msg
+        return df_predict, report
+
+    for idx, row in df_predict.iterrows():
+        gid = str(row['GAME_ID'])
+        g = sp_by_gid.get(gid)
+        if not g:
+            continue
+        report['games_checked'] += 1
+        changed_fields = []
+        stale_sides = []
+        low_ip_sides = []
+        suspect_sides = []
+        shrunk_ref = {}
+
+        for side in ('home', 'away'):
+            prof = g.get(f'{side}_sp') or {}
+            if not prof:
+                continue
+
+            # 선발 교체 여부 판정: dept1의 era_source 표시 우선, 없으면 ERA 차이로 판정
+            era_new = prof.get('era')
+            era_col = SP_OVERRIDE_MAP[side]['era']
+            era_old = pd.to_numeric(pd.Series([row.get(era_col)]), errors='coerce').iloc[0]
+            src = str(prof.get('era_source') or '')
+            starter_changed = ('stale' in src.lower()) or (
+                era_new is not None and pd.notna(era_old)
+                and abs(float(era_new) - float(era_old)) >= SP_STALE_ERA_DIFF
+            )
+
+            # 표본 부족 경고 — 피처는 건드리지 않고 플래그만 (⛔ 값 조작 금지)
+            ip_new = prof.get('ip')
+            try:
+                if ip_new is not None and float(ip_new) < SP_LOW_IP_THRESHOLD:
+                    low_ip_sides.append(side)
+            except (TypeError, ValueError):
+                pass
+            sh = shrunk_era(era_new, ip_new)
+            if sh is not None:
+                shrunk_ref[side] = {'raw': era_new, 'ip': ip_new, 'shrunk_dept2_equiv': sh}
+
+            # 원천 데이터 결손 방어 — 덮어쓰지 않고 그 side 전체를 건너뛴다
+            if is_implausible_era(era_new, prof.get('ip')):
+                suspect_sides.append(side)
+                print(f"  ⚠ {gid} {side}_sp ERA={era_new} IP={prof.get('ip')} — 물리적 불가능값, 동기화 건너뜀")
+                continue
+
+            # 확정값이 있는 피처는 항상 동기화 (선발 교체 여부와 무관 — 최신본이 진실)
+            for fld, col in SP_OVERRIDE_MAP[side].items():
+                val = prof.get(fld)
+                if val is None or col not in df_predict.columns:
+                    continue
+                old = pd.to_numeric(pd.Series([row.get(col)]), errors='coerce').iloc[0]
+                try:
+                    new = float(val)
+                except (TypeError, ValueError):
+                    continue
+                if pd.isna(old) or abs(old - new) > 1e-9:
+                    df_predict.at[idx, col] = new
+                    changed_fields.append({
+                        'col': col,
+                        'from': None if pd.isna(old) else round(float(old), 4),
+                        'to': round(new, 4),
+                    })
+
+            # 선발이 바뀐 경우: 확정값 없는 파생 피처는 "다른 투수의 값"이므로 무효화
+            if starter_changed:
+                stale_sides.append(side)
+                for col in SP_INVALIDATE[side]:
+                    if col in df_predict.columns and pd.notna(
+                        pd.to_numeric(pd.Series([row.get(col)]), errors='coerce').iloc[0]
+                    ):
+                        df_predict.at[idx, col] = float('nan')
+                        changed_fields.append({'col': col, 'from': 'stale', 'to': None})
+
+        if changed_fields or low_ip_sides or suspect_sides:
+            if changed_fields:
+                report['games_overridden'] += 1
+            report['overrides'].append({
+                'game_id': gid,
+                'starter_changed_sides': stale_sides,
+                'sp_stats_stale': bool(stale_sides),
+                'sp_low_ip_sides': low_ip_sides,
+                'sp_low_ip': bool(low_ip_sides),
+                'sp_era_suspect_sides': suspect_sides,
+                'sp_era_suspect': bool(suspect_sides),
+                'era_shrink_reference': shrunk_ref,
+                'home_confirmed_starter': (g.get('home_sp') or {}).get('confirmed_starter'),
+                'away_confirmed_starter': (g.get('away_sp') or {}).get('confirmed_starter'),
+                'fields': changed_fields,
+            })
+            tag = ''
+            if stale_sides:
+                tag += ' ⚠선발교체'
+            if low_ip_sides:
+                tag += f" ⚠표본부족(IP<{SP_LOW_IP_THRESHOLD:.0f}): {','.join(low_ip_sides)}"
+            if suspect_sides:
+                tag += f" ⛔원천데이터결손: {','.join(suspect_sides)}"
+            print(f"  {gid}: {len(changed_fields)}개 피처 동기화{tag}")
+
+    print(f"  대상 {report['games_checked']}경기 중 {report['games_overridden']}경기 동기화")
+    if report['games_overridden'] == 0:
+        print(f"  (KING 값과 dept1 확정값이 일치 — 조정 없음)")
+    return df_predict, report
+
+
 def get_feature_cols(df: pd.DataFrame):
     """피처 컬럼 선택 — 95% null 필터 + 보호 피처"""
     candidates = [c for c in df.columns if c not in NON_FEATURE_COLS]
@@ -259,7 +511,9 @@ def prepare_features(df: pd.DataFrame, feature_cols: list):
         X[c] = pd.to_numeric(X[c], errors='coerce')
 
     # Median imputation (⛔ 0이나 mean 대치 금지 — CLAUDE.md 규칙)
-    imputer = SimpleImputer(strategy='median')
+    # keep_empty_features=True: 전부 NaN인 보호 피처(신규 Statcast 등, 아직 누적 전)를
+    # 버리지 않고 유지해 shape 불일치 크래시 방지. 실값 쌓이면 median 대치 정상 작동. (2026-08-12)
+    imputer = SimpleImputer(strategy='median', keep_empty_features=True)
     X_imputed = pd.DataFrame(
         imputer.fit_transform(X),
         columns=feature_cols,
@@ -495,11 +749,83 @@ def compute_shap_from_df(results: list, df_predict: pd.DataFrame, feature_cols: 
 
 
 # ============================================================
+# EDGE vs MARKET (배당은 피처가 아니라 '판단 기준선' — 오염 방지 설계, 2026-08-06)
+# ============================================================
+def compute_edge_from_odds(results: list, date_str: str, base_dir: Path):
+    """모델 확률(p_model)과 시장 vig-제거 확률(p_market)의 엣지 계산.
+
+    ⛔ 배당은 학습 피처로 절대 넣지 않는다 (모델이 배당만 베끼는 오염 방지).
+       odds.json은 '판단 단계'에서 기준선으로만 사용한다.
+    edge = p_model - p_market  (양수 = 모델이 시장보다 그 쪽을 높게 봄 = 밸류 후보)
+    odds.json 없거나 게임 미매칭 시 조용히 skip (market_available=False, 크래시 없음).
+    """
+    odds_path = Path(base_dir) / 'pipeline' / date_str / 'dept1' / 'odds.json'
+    if not odds_path.exists():
+        print(f"\n[Edge] odds.json 없음 ({odds_path}) — 엣지 skip (모델 예측은 정상)")
+        for r in results:
+            r['market_available'] = False
+        return results
+
+    try:
+        raw = odds_path.read_bytes().replace(b'\x00', b'').decode('utf-8', 'ignore')
+        odds = json.loads(raw)
+    except Exception as e:
+        print(f"\n[Edge] odds.json 파싱 실패: {e} — skip")
+        for r in results:
+            r['market_available'] = False
+        return results
+
+    omap = {g.get('game_id'): g for g in odds.get('games', [])}
+    print(f"\n[Edge] 시장 대비 엣지 계산 ({len(omap)}경기 배당 로드)")
+
+    n_matched = 0
+    for r in results:
+        g = omap.get(r.get('game_id'))
+        if not g:
+            r['market_available'] = False
+            continue
+        n_matched += 1
+        r['market_available'] = True
+        ml = g.get('moneyline') or {}
+        r['home_ml'] = ml.get('home')
+        r['away_ml'] = ml.get('away')
+
+        # W/L 엣지 (true_prob = vig 제거 시장확률)
+        tp = g.get('true_prob') or {}
+        mh, ma = tp.get('home'), tp.get('away')
+        if mh is not None and ma is not None:
+            r['market_home_prob'] = round(float(mh), 4)
+            r['market_away_prob'] = round(float(ma), 4)
+            eh = round(r['ml_home_win_prob'] - float(mh), 4)
+            ea = round(r['ml_away_win_prob'] - float(ma), 4)
+            r['wl_edge_home'], r['wl_edge_away'] = eh, ea
+            r['wl_value_side'], r['wl_value_edge'] = ('home', eh) if eh >= ea else ('away', ea)
+
+        # O/U 엣지 (total_field.over_true/under_true = vig 제거 시장확률)
+        tf = g.get('total_field') or {}
+        ot, ut = tf.get('over_true'), tf.get('under_true')
+        if ot is not None and ut is not None:
+            r['ou_market_over_prob'] = round(float(ot), 4)
+            r['ou_market_under_prob'] = round(float(ut), 4)
+            eo = round(r['ml_over_prob'] - float(ot), 4)
+            eu = round(r['ml_under_prob'] - float(ut), 4)
+            r['ou_edge_over'], r['ou_edge_under'] = eo, eu
+            r['ou_value_side'], r['ou_value_edge'] = ('over', eo) if eo >= eu else ('under', eu)
+
+        print(f"  {r['game_id']}: WL엣지 {r.get('wl_value_side','-')} {r.get('wl_value_edge',0):+.3f}"
+              f" | OU엣지 {r.get('ou_value_side','-')} {r.get('ou_value_edge',0):+.3f}")
+
+    print(f"  매칭: {n_matched}/{len(results)}경기 (미매칭은 market_available=False)")
+    return results
+
+
+# ============================================================
 # OUTPUT
 # ============================================================
 def save_output(results: list, date_str: str, base_dir: Path,
                 wl_scores: dict, ou_scores: dict, n_features: int,
-                n_train_wl: int, n_train_ou: int, avg_mapping_pct: float):
+                n_train_wl: int, n_train_ou: int, avg_mapping_pct: float,
+                sp_sync: dict = None):
     """ml_predictions.json 저장"""
     print(f"\n[6/6] 출력 저장")
 
@@ -522,8 +848,30 @@ def save_output(results: list, date_str: str, base_dir: Path,
         'ensemble_method': 'cv_accuracy_weighted',
         'null_threshold': 0.95,
         'imputation': 'median',
+        'sp_source': 'dept1/sp_profiles.json (확정 선발 동기화)',
+        'sp_sync': sp_sync or {'applied': False, 'note': 'apply_confirmed_sp 미실행'},
         'games': results,
     }
+
+    # 선발 교체가 감지된 경기는 게임 레코드에도 플래그를 남긴다 (dept3/dept4가 읽는다)
+    if sp_sync and sp_sync.get('overrides'):
+        stale_map = {o['game_id']: o for o in sp_sync['overrides']}
+        for r in results:
+            o = stale_map.get(r.get('game_id'))
+            if not o:
+                continue
+            r['sp_synced'] = True
+            r['sp_stats_stale'] = bool(o.get('sp_stats_stale'))
+            r['sp_starter_changed_sides'] = o.get('starter_changed_sides') or []
+            r['sp_low_ip'] = bool(o.get('sp_low_ip'))
+            r['sp_low_ip_sides'] = o.get('sp_low_ip_sides') or []
+            r['sp_era_suspect'] = bool(o.get('sp_era_suspect'))
+            r['sp_era_suspect_sides'] = o.get('sp_era_suspect_sides') or []
+            r['era_shrink_reference'] = o.get('era_shrink_reference') or {}
+            r['confirmed_starters'] = {
+                'home': o.get('home_confirmed_starter'),
+                'away': o.get('away_confirmed_starter'),
+            }
 
     out_path = out_dir / 'ml_predictions.json'
     with open(out_path, 'w', encoding='utf-8') as f:
@@ -572,6 +920,9 @@ def main():
         print(f"⛔ HALT: 학습 데이터 {len(df_wl)}행 < 50행 최소 기준")
         sys.exit(1)
 
+    # 1.5 확정 선발 동기화 — Poisson(dept2)과 ML이 같은 투수를 보게 한다 (I-8, 2026-08-17)
+    df_predict, sp_sync = apply_confirmed_sp(df_predict, date_str, base_dir)
+
     # 피처 선택
     feature_cols = get_feature_cols(df_wl)
 
@@ -600,12 +951,16 @@ def main():
     results = compute_shap_from_df(results, df_predict, feature_cols, imputer_wl,
                                    wl_models, ou_models)
 
+    # 5.5 배당 대비 엣지 (배당은 피처가 아니라 판단 기준선 — 오염 방지)
+    results = compute_edge_from_odds(results, date_str, base_dir)
+
     # 6. 저장
     n_features = len(feature_cols)
     out_path = save_output(
         results, date_str, base_dir,
         wl_scores, ou_scores, n_features,
-        len(df_wl), len(df_ou), 100.0  # 매핑 100% (직접 컬럼 사용)
+        len(df_wl), len(df_ou), 100.0,  # 매핑 100% (직접 컬럼 사용)
+        sp_sync=sp_sync
     )
 
     print(f"\n{'=' * 60}")
@@ -624,7 +979,10 @@ def auto_git_push(out_path, date_str: str, base_dir):
     import time as _time
 
     def run(cmd):
-        return subprocess.run(cmd, cwd=str(base_dir), capture_output=True, text=True)
+        # encoding='utf-8', errors='replace': 한글 Windows에서 git 출력이 UTF-8 한글을
+        # 담을 때 기본 cp949 디코딩이 UnicodeDecodeError로 죽어 stderr=None이 되는 사고 방지 (2026-08-15)
+        return subprocess.run(cmd, cwd=str(base_dir), capture_output=True,
+                              text=True, encoding='utf-8', errors='replace')
 
     # 0. git repo 여부 확인
     r = run(['git', 'rev-parse', '--is-inside-work-tree'])
@@ -633,20 +991,22 @@ def auto_git_push(out_path, date_str: str, base_dir):
         return
 
     # 1. Stale lock 자동 제거 (10초 이상이면 즉시, 그 미만은 2초 대기 후 제거)
-    lock_path = base_dir / '.git' / 'index.lock'
-    if lock_path.exists():
-        try:
-            age = _time.time() - lock_path.stat().st_mtime
-            if age > 10:
-                lock_path.unlink()
-                print(f"  [Git] Removed stale index.lock (age {age:.0f}s)")
-            else:
-                _time.sleep(2)
-                if lock_path.exists():
+    #    index.lock 뿐 아니라 HEAD.lock 도 정리 (중단된 git이 남기면 commit이 'cannot lock ref HEAD'로 막힘, 2026-08-15)
+    for lock_name in ('index.lock', 'HEAD.lock'):
+        lock_path = base_dir / '.git' / lock_name
+        if lock_path.exists():
+            try:
+                age = _time.time() - lock_path.stat().st_mtime
+                if age > 10:
                     lock_path.unlink()
-                    print(f"  [Git] Removed lock after 2s wait")
-        except OSError as e:
-            print(f"  [Git] Could not remove lock: {e}")
+                    print(f"  [Git] Removed stale {lock_name} (age {age:.0f}s)")
+                else:
+                    _time.sleep(2)
+                    if lock_path.exists():
+                        lock_path.unlink()
+                        print(f"  [Git] Removed {lock_name} after 2s wait")
+            except OSError as e:
+                print(f"  [Git] Could not remove {lock_name}: {e}")
 
     # 2. Stage the file
     rel_path = str(out_path.relative_to(base_dir)).replace('\\', '/')
